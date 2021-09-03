@@ -56,7 +56,9 @@ ROOT_URLCONF = 'moinproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'moinproject/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -20,4 +20,6 @@ from moinapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
+    path('search', search, name="search"),
+    path('list', list, name="list"),
 ]
