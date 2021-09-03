@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'moinapp',
-    'openapp',
+    'openapp_1',
 ]
 
 MIDDLEWARE = [
@@ -56,9 +56,7 @@ ROOT_URLCONF = 'moinproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'moinproject/templates',
-        ],
+        'DIRS': ['moinproject/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

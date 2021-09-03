@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from moinapp.views import *
+from openapp_1.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path('search', search, name="search"),
-    path('list', list, name="list"),
+    path('open_1', open_1, name="open_1"),
+    path('index_1', index_1, name="index_1"),
+    path('detail_1/<str:open_id>', detail_1, name="detail_1")
 ]
