@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'moinapp',
     'account',
-    'openapp_1',
+    'openapp',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFIELS_DIRS = [
     os.path.join(BASE_DIR, 'moinapp', 'static'),
-    os.path.join(BASE_DIR, 'openapp_1', 'static'),    
+    os.path.join(BASE_DIR, 'openapp', 'static'),    
     ]
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 
