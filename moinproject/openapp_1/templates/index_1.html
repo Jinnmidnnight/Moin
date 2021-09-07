@@ -230,35 +230,31 @@
             </div>
         </div>
         <div class = "fourthbox" style= "padding-top:2vh;">
-            <div id = "imgbox"><img src = "{%static '친목상세.png' %}"></div>
-            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:50px;">
-                <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">신촌 새내기들</div>
-                <div id = "detailsubtitle" style = "font-size:10px;">✨새내기들 밥+카페+술 모임✨</div>
-                <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;
-                ">
-                    <div id = "members">인원:17/20</div>
-                    <div id = "leader"> 작성자 : 조윤</div>
+            <ul style="list-style: none;">
+                {% for open in open_index %}
+                <li>
+                <div id = "imgbox">
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="">
+                    {% endif %}
                 </div>
-            </div>
-            <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center">
-                    <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;">
-                        <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
-                        <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
-            </div>
-            <a href="{%url 'select' %}"><button>개설</button></a>
-    </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:50px;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
+                        <div id = "members">인원:0/{{open.number}}</div>
+                        <div id = "leader"> 작성자 : 조윤</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center">
+                        <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;">
+                            <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
+                            <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
+                </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{%url 'select' %}"><button>개설</button></a>
 </body>
-<!-- <ul style="list-style: none;">
-    {% for open in open_index %}
-        <li>
-            <a href="">
-                {{open.image}}
-                {{open.title}}
-                {{open.intro}}
-                {{open.content}}
-                {{open.number}}
-            </a>
-        </li>
-    {% endfor %}
-</ul> -->
 {% endblock %}
