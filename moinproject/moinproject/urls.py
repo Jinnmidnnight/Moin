@@ -18,13 +18,11 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from moinapp.views import *
 from django.conf import settings
-from openapp_1.views import *
+from openapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('account/', include('account.urls')),
-    path('open_1', open_1, name="open_1"),
-    path('index_1', index_1, name="index_1"),
-    path('detail_1/<str:open_id>', detail_1, name="detail_1")
-]
+    path('openapp/', include('openapp.urls')),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
