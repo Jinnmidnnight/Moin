@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class = "secondbox" style="margin-top: 70px;">
+    <a href="{%url 'open_1' %}">
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;padding-left : 15px; padding-right:15px;border-radius:10px;">
+        <img src = "{%static '친목.png' %}">
+        <br>
+        <div id="category_txt">
+            친목
+        </div>
+    </div>
+    </a>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '문화.png' %}">
+        <br>
+        <div id="category_txt">
+            문화
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '스포츠.png' %}">
+        <br>
+        <div id="category_txt">
+            스포츠
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '음악.png' %}">
+        <br>
+        <div id="category_txt">
+            음악
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '스터디.png' %}">
+        <br>
+        <div id="category_txt">
+            스터디
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '여행.png' %}">
+        <br>
+        <div id="category_txt">
+            여행
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '게임.png' %}">
+        <br>
+        <div id="category_txt">
+            게임
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '봉사.png' %}">
+        <br>
+        <div id="category_txt">
+            봉사
+        </div>
+    </div>
+    <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+        <img src = "{%static '기타.png' %}">
+        <br>
+        <div id="category_txt">
+            기타
+        </div>
+    </div>
+</div>
+
+{% endblock %}

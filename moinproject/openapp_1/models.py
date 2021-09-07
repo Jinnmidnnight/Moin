@@ -7,6 +7,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Open_1(models.Model):
     title = models.CharField(max_length=200)
     intro = models.CharField(max_length=200)
-    conent = models.TextField()
+    content = models.TextField()
     image = models.ImageField(upload_to = "openapp_1", null=True, blank=True)
-    number = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(50)], null=True, blank=True)
+    number = models.IntegerField(default=0, validators = [MinValueValidator(0), MaxValueValidator(50)], null=True, blank=True)

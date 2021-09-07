@@ -21,5 +21,8 @@ def index_1(request):
     return render(request, 'index_1.html', {'open_index' : open_index})
 
 def detail_1(request, open_id):
-    love = get_object_or_404(Open_1, pk = open_id)
+    open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_1.html', {'open' : open})
+
+def select(request):
+    return render(request, 'select.html')
