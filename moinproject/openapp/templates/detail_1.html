@@ -87,7 +87,7 @@
         display:flex;
         flex-direction:row;
         align-items: center;
-        margin-top: 7vh;
+        margin-top: 6vh;
 
     }
     #intro_txt{
@@ -96,7 +96,7 @@
         color :black ; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-right : 22.5%;}
 
     #yellow_line{
-        background : #F6B955; height:0.3vh; width:50%;}
+        background : #F6B955; height:0.3vh; width:50%;z-index: 0;}
     .membersbox{
         display : flex;
         flex-direction : row;
@@ -160,19 +160,77 @@
         margin-top:auto;
         margin-bottom: 4px;
     }
+    a { text-decoration:none; color:inherit }
+    a:active {text-decoration: none; color: #f6b955;}
 </style>
-<div class = "all" style = "margin-top : 5vh; width:100%; margin-bottom : 7vh; top : 0vh;">
-    <div class = "firstbox">
-        <div id = "intro_txt" >소개</div>
-        <div id = "date_txt">일정</div>
+<body>
+    <div class="navbar" 
+    style = "
+    top:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 6vh;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
+                <img src = "{%static 'yonsei.png' %}">
+        </div>
+        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
+            <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+        </div>
         
     </div>
-        <div id = "yellow_line"></div>
+    <div class = "bottombar">
+        <a href="{%url 'home' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '홈.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    홈
+                </div>
+            </div>
+        </a>
+        <a href="{%url 'index_1' %}">
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '소모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                소모임
+            </div>
+        </div>
+        </a>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+            <img src = "{%static '내모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                내 모임
+            </div>
+        </div>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '알림.png' %}">
+            <br>
+            <div id="bottom_txt">
+                알림
+            </div>
+        </div>
+    </div>
+    <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
+        <div class = "firstbox">
+            <div id = "intro_txt" >소개</div>
+            <div id = "date_txt"><a href="{%url 'schedule' %}">일정</a></div>
+        </div>
+    <div id = "yellow_line"></div>
     <div class = "detailimg">
         {% if open.image %}        
         <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 22.5vh; object-fit:cover;position:relative;">
         {% endif %}
-        <div class="blackbox" style = "width:100%; height: 22.5vh; background: rgba(0, 0, 0, 0.35);position:absolute;top:13vh;display:flex;align-items: center;flex-direction: column;">
+        <div class="blackbox" style = "width:100%; height: 22.5vh; background: rgba(0, 0, 0, 0.35);position:absolute;top:11.5vh;display:flex;align-items: center;flex-direction: column;">
             <div id= "title" style = "font-size: 27px;font-weight: bold;font-family: Nanum-Gothic;color:white;margin-top:7vh;">
                 {{open.title}}
             </div>
