@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+
+    {% if error %}
+    {{ error }}
+
+    <!-- {% csrf_token %}
+    <p>연세 메일을 입력해주세요: {{form.email}}</p>
+    <p>비밀번호를 설정해주세요: {{form.password1}}</p>
+    <p>비밀번호를 확인해주세요: {{form.password2}}</p>
+    <p>이름을 입력해주세요: {{form.username}}</p>
+    <p>성별을 설정해주세요: {{form.성별}}</p>
+    <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p> -->
+
+    {% endif %}
+
+    <h1>Sign Up!</h1>
+    <form action="{% url 'signup' %}" method="post">
+    <!-- <form method="POST" action="{% url 'signup' %}"> -->
+
+        {% csrf_token %}
+        <p>연세 메일을 입력해주세요: {{form.email}}</p>
+        <p>비밀번호를 설정해주세요: {{form.password1}}</p>
+        <p>비밀번호를 확인해주세요: {{form.password2}}</p>
+        <p>이름을 입력해주세요: {{form.username}}</p>
+        <p>성별을 설정해주세요: {{form.성별}}</p>
+        <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p>
+        <!-- <p>생년월일을 설정해주세요: {{form.생년월일}}</p> -->
+        <!-- Username:
+        <br>
+        <input name="username" type="text" value="">
+        <br>
+        Email:
+        <br>
+        <input name="email" type="email" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password1" type="password" value="">
+        <br>
+        Confirm Password:
+        <br>
+        <input name="password2" type="password" value="">
+        <br>
+        <br> 
+        <input type="submit" value="Sign Up!">-->
+        <button type='submit'>Sign Up</button>
+    </form>
+</div>
+{% endblock %}

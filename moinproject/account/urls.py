@@ -1,11 +1,8 @@
-from django.contrib import admin
 from django.urls import path
-from .views import *
-
+from . import views
 urlpatterns = [
-    path('login/', login_view, name = "login"),
-    path('logout/', logout_view, name="logout"),
-    path('register/', register_view, name="register"),
-    path('mail/', mail_view, name="mail"),
+    path('signup/', views.signup, name="signup"),
+    path('login/', views.login, name="login"),
+    path('logout/', views.logout, name="logout"),
+    path('activate/<str:uidb64>/<str:token>/', views.activate, name="activate"),
 ]
-
