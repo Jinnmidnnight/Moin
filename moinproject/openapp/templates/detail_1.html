@@ -194,63 +194,20 @@
             <div id = "membernumber" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">({{open.number}})</div>
         </div>
     </div>
+        
     <div class = "membersbox">
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
-        <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
-            <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                {% if open.image %}        
-                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
-                {% endif %}
-            </div>
-            <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
-        </div>
+        <ul style="list-style: none;margin:0px;padding:0px;">
+            <li style = "float: left;">
+                <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
+                    <div id = "memberprofile" style = "display:flex;justify-content: center;">
+                        {% if open.image %}        
+                        <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                        {% endif %}
+                    </div>
+                    <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
+                </div>
+            </li>
+        </ul>
     </div>
     
     <div class = "moinwritings" style = "margin-top: 20px;">
@@ -258,118 +215,51 @@
             <div id = "yellowmoin" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
             <div id = "mointitletxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">글</div>
         </div>
-        <div class = "mointext">
-            <div class = "moin1box" style = "position:relative;">
-                <div class = "profile" style = "display: flex;flex-direction:row;">
-                    <div id = "writerprofile" style="margin-left:10px;">
-                        {% if open.image %}        
-                        <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
-                        {% endif %}
+        
+        <ul style="list-style: none;margin:0px;padding:0px;">
+            <li>
+                <div class = "mointext">
+                    <div class = "moin1box" style = "position:relative;">
+                        <div class = "profile" style = "display: flex;flex-direction:row;">
+                            <div id = "writerprofile" style="margin-left:10px;">
+                                {% if open.image %}        
+                                <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                                {% endif %}
+                            </div>
+                            <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
+                        </div>
+                        <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">8월 27일 21:04</div>
                     </div>
-                    <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
-                </div>
-                <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">8월 27일 21:04</div>
-            </div>
-            <div class = "moin2box" style = "position:absolute;">
-                <div class = "contenttxt">
-                    <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">가입인사</div>
-                    <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;margin-top:10px;">안녕하세요. 김윤조입니다.</div>
-                </div>
-                <div class = "contentimg">
-                    {% if open.image %}        
-                        <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 6vh; object-fit:cover;">
-                    {% endif %}
-                </div>
-            </div>
-            <div class = "moin3box">
-                <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
-                    <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
-                        <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
-                        <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 1</div>
+                    <div class = "moin2box" style = "position:absolute;">
+                        <div class = "contenttxt">
+                            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">가입인사</div>
+                            <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;margin-top:10px;">안녕하세요. 김윤조입니다.</div>
+                        </div>
+                        <div class = "contentimg">
+                            {% if open.image %}        
+                                <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 6vh; object-fit:cover;">
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
-                        <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
-                        <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 2</div>
+
+                    <div class = "moin3box">
+                        <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
+                            <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
+                                <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
+                                <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 1</div>
+                            </div>
+                            <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
+                                <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
+                                <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 2</div>
+                            </div>
+                        </div>
+                        <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
                     </div>
                 </div>
-                <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
-    <div class = "mointext">
-        <div class = "moin1box" style = "position:relative;">
-            <div class = "profile" style = "display: flex;flex-direction:row;">
-                <div id = "writerprofile" style="margin-left:10px;">
-                    {% if open.image %}        
-                    <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
-                    {% endif %}
-                </div>
-                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
-            </div>
-            <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">8월 27일 21:04</div>
-        </div>
-        <div class = "moin2box" style = "position:absolute;">
-            <div class = "contenttxt">
-                <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">가입인사</div>
-                <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;margin-top:10px;">안녕하세요. 김윤조입니다.</div>
-            </div>
-            <div class = "contentimg">
-                {% if open.image %}        
-                    <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 6vh; object-fit:cover;">
-                {% endif %}
-            </div>
-        </div>
-        <div class = "moin3box">
-            <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
-                <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
-                    <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
-                    <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 1</div>
-                </div>
-                <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
-                    <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
-                    <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 2</div>
-                </div>
-            </div>
-            <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
-        </div>
-    </div>
-    <div class = "mointext">
-        <div class = "moin1box" style = "position:relative;">
-            <div class = "profile" style = "display: flex;flex-direction:row;">
-                <div id = "writerprofile" style="margin-left:10px;">
-                    {% if open.image %}        
-                    <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
-                    {% endif %}
-                </div>
-                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
-            </div>
-            <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">8월 27일 21:04</div>
-        </div>
-        <div class = "moin2box" style = "position:absolute;">
-            <div class = "contenttxt">
-                <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">가입인사</div>
-                <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;margin-top:10px;">안녕하세요. 김윤조입니다.</div>
-            </div>
-            <div class = "contentimg">
-                {% if open.image %}        
-                    <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 6vh; object-fit:cover;">
-                {% endif %}
-            </div>
-        </div>
-        <div class = "moin3box">
-            <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
-                <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
-                    <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
-                    <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 1</div>
-                </div>
-                <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
-                    <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
-                    <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 2</div>
-                </div>
-            </div>
-            <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
-        </div>
-    </div>
+    <div class = "blank" style = "display:flex;height:5vh;"></div>
 </div>
 </div>
 <div class = "writebotton">
