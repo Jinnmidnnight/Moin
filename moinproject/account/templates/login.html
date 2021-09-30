@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
+
     {% if error %}
     {{ error }}
     {% endif %}
+
     <h1>Login</h1>
     <form method="POST" action="{% url 'login' %}">
+
         {% csrf_token %}
         연세 메일:
         <br>
@@ -17,6 +20,7 @@
         <br>
         <br>
         <input type="submit" value="Login">
+        
     </form>
 
     <br><br>
