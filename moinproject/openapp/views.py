@@ -30,6 +30,9 @@ def detail_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_1.html', {'open' : open})
 
+def write_1(request):
+    return render(request, 'write_1.html')
+
 def open_2(request):
     if request.method == "GET":
         return render(request, "open_2.html")
