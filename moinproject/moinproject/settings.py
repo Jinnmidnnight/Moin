@@ -125,7 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFIELS_DIRS = [
     os.path.join(BASE_DIR, 'moinapp', 'static'),
-    os.path.join(BASE_DIR, 'openapp', 'static'),    
+    os.path.join(BASE_DIR, 'openapp', 'static'),
     ]
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 
