@@ -1,5 +1,5 @@
 from django import forms
-from .models import Write_1, Write_2, Write_3, Write_4, Write_5, Write_6, Write_7, Write_8, Write_9
+from .models import Comment_1, Write_1, Write_2, Write_3, Write_4, Write_5, Write_6, Write_7, Write_8, Write_9, Comment_1
 
 class WriteForm_1(forms.ModelForm):
     class Meta:
@@ -45,3 +45,8 @@ class WriteForm_9(forms.ModelForm):
     class Meta:
         model = Write_9
         fields = ('제목', '내용', '사진')
+
+class Commentform_1(forms.ModelForm):
+    class Meta:
+        model = Comment_1
+        fields = ('댓글')

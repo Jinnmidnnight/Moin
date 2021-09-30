@@ -120,3 +120,9 @@ class Write_9(models.Model):
 
     def __str__(self):
         return self.작성자
+
+class Comment_1(models.Model):
+    post = models.ForeignKey(Write_1, related_name = 'comments', on_delete = models.CASCADE, null = True)
+    댓글 = models.CharField(max_length = 200)
+    created_at = models.DateTimeField(default=timezone.now)
+    

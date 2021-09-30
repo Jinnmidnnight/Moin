@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_7, Open_8, Open_9
 from .models import Write_1, Write_2, Write_3, Write_4, Write_5, Write_6, Write_7, Write_8, Write_9
-from .forms import WriteForm_1, WriteForm_2, WriteForm_3, WriteForm_4, WriteForm_5, WriteForm_6, WriteForm_7, WriteForm_8, WriteForm_9
+from .forms import WriteForm_1, WriteForm_2, WriteForm_3, WriteForm_4, WriteForm_5, WriteForm_6, WriteForm_7, WriteForm_8, WriteForm_9, Commentform_1
 
 # Create your views here.
 
@@ -20,7 +20,16 @@ def write_1(request, open_id):
 
 def comment_1(request, write_id):
     write = get_object_or_404(Write_1, pk = write_id)
-    return render(request, 'comment_1.html', {'write' : write})
+    if request.method == "POST":
+        form = Commentform_1(request.POST)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.post = write
+            comment.save()
+        return redirect('write_1', write_id)
+    else:
+        form = Commentform_1()
+        return render(request, 'comment_1.html', {'form' : form})
 
 def write_2(request, open_id):
     open = get_object_or_404(Open_2, pk = open_id)
