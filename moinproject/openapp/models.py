@@ -68,15 +68,3 @@ class Open_9(models.Model):
     image = models.ImageField(upload_to = "Open_9", null=True, blank=True)
     number = models.IntegerField(default=0, validators = [MinValueValidator(0), MaxValueValidator(50)], null=True, blank=True)
 
-class Write_1(models.Model):
-    post = models.ForeignKey(Open_1, related_name = 'writes', on_delete = models.CASCADE, null = True)
-    제목 = models.CharField(max_length=200)
-    내용 = models.TextField()
-    사진 = models.ImageField(upload_to = "Write_1", null=True, blank=True)
-    created_at = models.DateTimeField(default=timezone.now)
-
-    def approve(self):
-        self.save()
-
-    def __str__(self):
-        return self.작성자

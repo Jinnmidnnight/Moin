@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account',
     'moinapp',
     'openapp',
+    'writeapp',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,7 @@ STATIC_URL = '/static/'
 STATICFIELS_DIRS = [
     os.path.join(BASE_DIR, 'moinapp', 'static'),
     os.path.join(BASE_DIR, 'openapp', 'static'),
+    os.path.join(BASE_DIR, 'writeapp', 'static'),
     ]
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 

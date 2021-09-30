@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_7, Open_8, Open_9, Write_1
-from .forms import WriteForm_1
+from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_7, Open_8, Open_9
 
 # Create your views here.
 
@@ -30,19 +29,6 @@ def index_1(request):
 def detail_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_1.html', {'open' : open})
-
-def write_1(request, open_id):
-    open = get_object_or_404(Open_1, pk = open_id)
-    if request.method == "POST":
-        form = WriteForm_1(request.POST)
-        if form.is_valid():
-            write = form.save(commit = False)
-            write.post = open
-            write.save()
-        return redirect('detail_1', open_id)
-    else:
-        form = WriteForm_1()
-        return render(request, "write_1.html", {'form' : form})
 
 def open_2(request):
     if request.method == "GET":
