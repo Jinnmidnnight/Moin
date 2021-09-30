@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+
+    {% if error %}
+    {{ error }}
+    {% endif %}
+
+    <h1>Sign Up!</h1>
+    <form action="{% url 'signup' %}" method="post">
+
+        {% csrf_token %}
+        <p>연세 메일을 입력해주세요: {{form.email}}</p>
+        <p>비밀번호를 설정해주세요: {{form.password1}}</p>
+        <p>비밀번호를 확인해주세요: {{form.password2}}</p>
+        <p>이름을 입력해주세요: {{form.username}}</p>
+        <p>성별을 설정해주세요: {{form.성별}}</p>
+        <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p>
+        <button type='submit'>Sign Up</button>
+        
+    </form>
+</div>
+{% endblock %}

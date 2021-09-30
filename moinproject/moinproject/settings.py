@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'moinapp',
     'account',
+    'moinapp',
     'openapp',
+    'writeapp',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +126,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFIELS_DIRS = [
     os.path.join(BASE_DIR, 'moinapp', 'static'),
-    os.path.join(BASE_DIR, 'openapp', 'static'),    
+    os.path.join(BASE_DIR, 'openapp', 'static'),
+    os.path.join(BASE_DIR, 'writeapp', 'static'),
     ]
 STATIC_ROOT= os.path.join(BASE_DIR,'static')
 
@@ -137,8 +139,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = 'stmp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'withmoin2021@gmail.com'
 EMAIL_HOST_PASSWORD = 'rkwkal123'
 EMAIL_USE_TLS = True

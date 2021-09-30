@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-</head>
-<body>
-    <h1>Login</h1><br>
-    <form action="{% url 'login' %}" method="post">
-        {%csrf_token%}
-        <p>아이디를 입력해주세요: {{form.username}}</p>
-        <p>비밀번호를 입력해주세요: {{form.password}}</p>
+{% extends 'base.html' %}
+{% block content %}
+<div>
 
-        <button type="submit">submit</button>
+    {% if error %}
+    {{ error }}
+    {% endif %}
+
+    <h1>Login</h1>
+    <form method="POST" action="{% url 'login' %}">
+
+        {% csrf_token %}
+        연세 메일:
+        <br>
+        <input name="email" type="text" value="">
+        <br>
+        Password:
+        <br>
+        <input name="password" type="password" value="">
+        <br>
+        <br>
+        <input type="submit" value="Login">
+        
     </form>
-    <br>
-    <a href="{% url 'home' %}"><button>Home</button></a>
-    <a href="{% url 'register' %}"><button>Register</button></a>
-</body>
-</html>
+
+    <br><br>
+    <a href="{% url 'signup' %}"><button>sign up</button></a>
+</div>
+{% endblock %}

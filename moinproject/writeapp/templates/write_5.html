@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<form method="POST" class="post-form" enctype="multipart/form-data" style="margin-top: 70px;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class = "button" style="display:flex;justify-content: center;margin-top:3vh;">
+        <button type="submit" style="width: 274px;height: 41px;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">완료</button>
+    </div>
+</form>
+{% endblock %}

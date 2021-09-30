@@ -6,6 +6,9 @@ from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_
 def select(request):
     return render(request, 'select.html')
 
+def schedule(request):
+    return render(request, 'schedule.html')
+
 def open_1(request):
     if request.method == "GET":
         return render(request, "open_1.html")
@@ -29,7 +32,7 @@ def detail_1(request, open_id):
 
 def open_2(request):
     if request.method == "GET":
-        return render(request, "open_1.html")
+        return render(request, "open_2.html")
     
     open = Open_2.objects.create()
     open.title = request.POST['title']
@@ -50,7 +53,7 @@ def detail_2(request, open_id):
 
 def open_3(request):
     if request.method == "GET":
-        return render(request, "open_1.html")
+        return render(request, "open_3.html")
     
     open = Open_3.objects.create()
     open.title = request.POST['title']
@@ -71,7 +74,7 @@ def detail_3(request, open_id):
 
 def open_4(request):
     if request.method == "GET":
-        return render(request, "open_1.html")
+        return render(request, "open_4.html")
     
     open = Open_4.objects.create()
     open.title = request.POST['title']
@@ -92,7 +95,7 @@ def detail_4(request, open_id):
 
 def open_5(request):
     if request.method == "GET":
-        return render(request, "open_1.html")
+        return render(request, "open_5.html")
     
     open = Open_5.objects.create()
     open.title = request.POST['title']
@@ -113,7 +116,7 @@ def detail_5(request, open_id):
 
 def open_6(request):
     if request.method == "GET":
-        return render(request, "open_1.html")
+        return render(request, "open_6.html")
     
     open = Open_6.objects.create()
     open.title = request.POST['title']

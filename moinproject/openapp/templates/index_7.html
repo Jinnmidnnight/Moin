@@ -148,9 +148,9 @@
     </div>
     <div class = "all" style = "margin-top : 7vh; width:100%; margin-bottom : 7vh;">
         <div class = "firstbox">
-                <div id = "title" style = "font-size: 20px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;padding-top:3vh;padding-bottom:0vh;margin-left:10px;"> 친목 </div>
+                <div id = "title" style = "font-size: 20px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;padding-top:3vh;padding-bottom:0vh;margin-left:10px;"> 게임 </div>
                 <div class = "subtitle" style = "display:flex;flex-direction:row;font-size:13px;font-family:'Nanum Gothic', sans-serif;padding-top:0vh;padding-bottom:2vh;margin-top:0vh;margin-left:10px;">
-                    <div id = "subtxt1"><h3>친목하러</h3></div>
+                    <div id = "subtxt1"><h3>게임하러</h3></div>
                     <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;"><h3>모인</h3></div>
                 </div>
         </div>
@@ -224,14 +224,15 @@
             <div id= "totalresult" style = "font-size:12.5px;font-weight:bold;">117개의 검색결과</div>
             <div class = "alignmethod" style = "display : flex; flex-direction : row; justify-content: space-around;font-size:11.5px;">
                 <div id = "latest" style = "color :#F6B955;padding-right:7px;">최신 순</div>
-                <div id = "oldest"style ="padding-right:7px;">오래된 순</div>
-                <div id = "related"style ="padding-right:7px;">관련도 순</div>
+                <!-- <div id = "oldest"style ="padding-right:7px;">오래된 순</div>
+                <div id = "related"style ="padding-right:7px;">관련도 순</div> -->
 
             </div>
         </div>
         <div class = "fourthbox" style= "padding-top:2vh;">
             <ul style="list-style: none;">
                 {% for open in open_index %}
+                <a href="{%url 'detail_7' open.id%}">
                 <li>
                 <div id = "imgbox">
                     {% if open.image %}
@@ -252,9 +253,12 @@
                             <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
                 </div>
                 </li>
+                </a>
                 {% endfor %}
             </ul>
         </div>
-        <a href="{%url 'select' %}"><button>개설</button></a>
+        <div class = "makebotton" style ="bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;">
+            <a href="{%url 'select' %}"><img src = "{%static '개설.png'%}"></a>
+        </div>
 </body>
 {% endblock %}
