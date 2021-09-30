@@ -232,6 +232,7 @@
         <div class = "fourthbox" style= "padding-top:2vh;">
             <ul style="list-style: none;">
                 {% for open in open_index %}
+                <a href="{%url 'detail_3' open.id%}">
                 <li>
                 <div id = "imgbox">
                     {% if open.image %}
@@ -252,6 +253,7 @@
                             <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
                 </div>
                 </li>
+                </a>
                 {% endfor %}
             </ul>
         </div>

@@ -232,6 +232,7 @@
         <div class = "fourthbox" style= "padding-top:2vh;">
             <ul style="list-style: none;">
                 {% for open in open_index %}
+                <a href="{%url 'detail_9' open.id%}">
                 <li>
                 <div id = "imgbox">
                     {% if open.image %}
@@ -252,8 +253,10 @@
                             <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
                 </div>
                 </li>
+                </a>
                 {% endfor %}
             </ul>
+            </a>
         </div>
         <div class = "makebotton" style ="bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;">
             <a href="{%url 'select' %}"><img src = "{%static '개설.png'%}"></a>
