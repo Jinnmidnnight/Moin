@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'moinapp',
     'account',
+    'moinapp',
     'openapp',
 ]
 
@@ -137,8 +137,8 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = 'stmp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'withmoin2021@gmail.com'
 EMAIL_HOST_PASSWORD = 'rkwkal123'
 EMAIL_USE_TLS = True
