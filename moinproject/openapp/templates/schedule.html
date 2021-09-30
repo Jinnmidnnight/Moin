@@ -6,7 +6,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
     html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
 
-
     .bottombar{
         display : flex;
         flex-direction : row;
@@ -29,85 +28,167 @@
         align-items: center;
         position: fixed;
         width: 100%;
-        height:6.5vh;
+        height: 7vh;
         background: rgba(255, 255, 255);
         box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
 
     }
     #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
-    .secondbox{
-        display : flex;
-        flex-direction : row;
+    .firstbox{
+        height: 5.5vh;
+        background: rgba(0, 0, 0, 0.045);
         justify-content: space-between;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        opacity: 1;
-        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
-        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
-        zoom: 1;
-        overflow-x: auto;
-        -webkit-tap-highlight-color: transparent;
-        margin-left: 0px;
-        margin-right: 16px;
-        zoom: 1;
-        z-index: 1;
-        white-space: nowrap;
-        padding-top: 10px;
-        padding-bottom: 0px;
-        padding-left : 8px;
-        line-height: 20px;
-        -webkit-overflow-scrolling: touch;
+        display:flex;
+        flex-direction:row;
+        align-items: center;
 
     }
-    .categoryicon{
-        opacity: .7;
-        padding: 6px 2.8vw;
-        display: inline-block;
-        font-size: 14px;
-        text-align: center;
-        color: #000;
-        font-weight: 200;
-        padding-left: 20px;
-        padding-right : 20px;
+    #intro_txt{
+        color :black; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-left : 22.5%;}
+    #date_txt{
+        color :#F6B955 ; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-right : 22.5%;}
+
+    #yellow_line{
+        background : #F6B955; height:0.3vh; width:50%;margin-left:auto;}
+    #noticetitle{
+        font-size:15px; font-family: Nanum Gothic; font-weight: bold;margin-bottom: 1vh;
     }
-</style>
+    .noticedetail{display:flex; flex-direction: row;margin-top:1vh;}
+    #yellownotice{color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 13px;font-weight: bold;
 
-<div class = "bottombar">
-    <a href="{%url 'home' %}">
-    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
-        <img src = "{%static '홈.png' %}">
-        <br>
-        <div id="bottom_txt">
-            홈
+    }
+    #notice{font-family: 'Nanum Gothic';font-size: 13px;font-weight: bold;margin-left:0.5vh;}
+    .meetingfirstbox{
+        color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 15px;font-weight: bold;
+        display:Flex;flex-direction: row;
+    }
+    .meetingsecondbox{
+        display: flex;flex-direction: row;justify-content: space-around;
+    }
+    .meetingdate{
+        display:flex;flex-direction: column;justify-content: center;align-items: center;
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+    </style>
+<body>
+    <div class="navbar" 
+    style = "
+    top:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 6vh;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
+                <img src = "{%static 'yonsei.png' %}">
+        </div>
+        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
+            <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+        </div>
+        
+    </div>
+    <div class = "bottombar">
+        <a href="{%url 'home' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '홈.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    홈
+                </div>
+            </div>
+        </a>
+        <a href="{%url 'index_1' %}">
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '소모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                소모임
+            </div>
+        </div>
+        </a>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+            <img src = "{%static '내모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                내 모임
+            </div>
+        </div>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '알림.png' %}">
+            <br>
+            <div id="bottom_txt">
+                알림
+            </div>
         </div>
     </div>
-    </a>
-    <a href="{%url 'index_1'%}">
-    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
-        <img src = "{%static '소모임.png' %}">
-        <br>
-        <div id="bottom_txt">
-            소모임
+    <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
+        <div class = "firstbox">
+            <div id = "intro_txt" >소개</div>
+            <div id = "date_txt"><a href="{%url 'schedule' %}">일정</a></div>
+        </div>
+            <div id = "yellow_line"></div>
+        <div class = "noticebox" style = "display:flex;flex-direction:column;margin-left:5%;margin-top:2vh;">
+            <div id = "noticetitle">공지사항</div>
+            <div class = "noticedetail">
+                <div id = "yellownotice">[공지]</div>
+                <div id = "notice">신촌 새내기들 운영 방침입니다.</div>
+            </div>
+            <div class = "noticedetail">
+                <div id = "yellownotice">[공지]</div>
+                <div id = "notice">가입 시 자기소개 작성 양식 (3일 이내 미작성 시 퇴장)</div>
+            </div>
+            <div class = "noticedetail">
+                <div id = "yellownotice">[공지]</div>
+                <div id = "notice">가입 요강 및 음주 방침</div>
+            </div>
+        </div>
+        <div class = "regularmeetingbox" style = "display:flex;flex-direction:column;margin-top:2vh;">
+            <div id = "noticetitle" style = "margin-left:5%;">모임정모</div>
+            <ul style="list-style: none;margin:0px;padding:0px;">
+                <li>
+                    <div class = "regularmeeting" style ="box-shadow:0px 3px 6px 1px rgba(0, 0, 0, 0.16);height:15vh;display:flex;flex-direction:column;justify-content: space-around;
+                    width:100%;margin-top:2vh;">
+                        <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
+                            <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
+                            <div id = "meetingnumber">(3/4명)</div>
+                        </div>
+                        <div class = "meetingsecondbox" style = "z-index: -1;margin-left:1vh;margin-bottom: 1vh;">
+                            <div class = "meetingdate" style = "width:60px;height:55px;border-radius: 10px;background-color: white;border: 1.5px solid #707070;">
+                                <div id = "meetingday" style = "font-size: 12px;">일요일</div>
+                                <div id = "meetingwhen" style = "font-size:17px;font-weight: bold;margin-top: 3.5px;">5일</div>
+                            </div>
+                            <div class = "meetingdetail" style = "font-size: 13px; display:flex;flex-direction: column; justify-content: center;;">
+                                <div id = "meetingtime">
+                                    📅 9월 5일 (일) 오후 14:00
+                                </div>
+                                <div id = "meetingplace">
+                                    🗺 연대포(신촌)
+                                </div>
+                                <div id = "meetingcost">
+                                    💸 약 12000 ~ 20000
+                                </div>
+                            </div>
+                            <div class= "meetingshare" style = "font-size: 13px;color:#848484;text-decoration: underline;display:flex;text-align: center;margin-top:1.5vh;">
+                                친구에게
+                                <br>
+                                공유하기
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>    
+        <div class = "writebotton">
+            <a href="{%url 'select' %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
         </div>
     </div>
-    </a>
-    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
-        <img src = "{%static '내모임.png' %}">
-        <br>
-        <div id="bottom_txt">
-            내 모임
-        </div>
-    </div>
-    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
-        <img src = "{%static '알림.png' %}">
-        <br>
-        <div id="bottom_txt">
-            알림
-        </div>
-    </div>
-</div>
-
-
+</body>
 {% endblock %}
