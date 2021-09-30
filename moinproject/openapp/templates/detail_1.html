@@ -276,6 +276,7 @@
         
         <ul style="list-style: none;margin:0px;padding:0px;">
             {% for write in open.writes.all %}
+            <a href="{%url 'comment_1' write.id %}">
             <li>
                 <div class = "mointext">
                     <div class = "moin1box" style = "position:relative;">
@@ -316,6 +317,7 @@
                     </div>
                 </div>
             </li>
+            </a>
             {% endfor %}
         </ul>
     </div>

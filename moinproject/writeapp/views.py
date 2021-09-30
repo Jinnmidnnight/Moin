@@ -17,3 +17,7 @@ def write_1(request, open_id):
     else:
         form = WriteForm_1()
         return render(request, "write_1.html", {'form' : form})
+
+def comment_1(request, write_id):
+    write = get_object_or_404(Write_1, pk = write_id)
+    return render(request, 'comment_1.html', {'write' : write})
