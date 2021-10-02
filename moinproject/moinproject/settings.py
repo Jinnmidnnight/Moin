@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'moinapp',
     'openapp',
     'writeapp',
+    'scheduleapp',
 ]
 
 MIDDLEWARE = [
