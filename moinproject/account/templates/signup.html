@@ -1,23 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
+{%load static%}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family: Nanum Gothic;}
+    #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        
+    }
+    #text{
+        font-family: Nanum Gothic;
+        font-size:14px;
+    }
+</style>
 <div>
 
     {% if error %}
     {{ error }}
     {% endif %}
+    <div class= "all" style = "display:flex;flex-direction: column;justify-content: center;margin-top: 7vh;align-items: center;padding-left:20%;">
+        <div id = "moin" style = "display:flex;text-align: center;justify-content: center;align-items: center;"> 
+            <h1>moin</h1>
+        </div>
+        <form action="{% url 'signup' %}" method="post">
 
-    <h1>Sign Up!</h1>
-    <form action="{% url 'signup' %}" method="post">
-
-        {% csrf_token %}
-        <p>연세 메일을 입력해주세요: {{form.email}}</p>
-        <p>비밀번호를 설정해주세요: {{form.password1}}</p>
-        <p>비밀번호를 확인해주세요: {{form.password2}}</p>
-        <p>이름을 입력해주세요: {{form.username}}</p>
-        <p>성별을 설정해주세요: {{form.성별}}</p>
-        <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p>
-        <button type='submit'>Sign Up</button>
-        
-    </form>
+            {% csrf_token %}
+            <div id = "text">
+                아이디(연세메일)
+            </div>
+            <div id = "button">
+                {{form.email}}
+            </div>
+            <p>비밀번호를 설정해주세요: {{form.password1}}</p>
+            <p>비밀번호를 확인해주세요: {{form.password2}}</p>
+            <p>이름을 입력해주세요: {{form.username}}</p>
+            <p>성별을 설정해주세요: {{form.성별}}</p>
+            <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p>
+            <button type='submit'>Sign Up</button>
+            
+        </form>
+    </div>
 </div>
 {% endblock %}
