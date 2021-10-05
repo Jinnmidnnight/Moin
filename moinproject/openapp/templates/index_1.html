@@ -240,6 +240,8 @@
                 <div id = "imgbox" >
                     {% if open.image %}
                     <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
                     {% endif %}
                 </div>
                 <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
