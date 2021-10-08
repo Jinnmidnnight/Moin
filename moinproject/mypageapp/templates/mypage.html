@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPage</title>
+</head>
+<body>
+    {{user.username}}
+
+    {% if user.성별 == 0 %}
+        <p>남성</p>
+    {% endif %}
+
+    {% if user.성별 == 1 %}
+        <p>여성</p>
+    {% endif %}
+
+    {{user.생년월일}}
+
+    <br><br><br>
+
+    {% if user.image %}
+
+        <img src="{{user.image.url}}">
+    {% else %}
+        <img src="{% static 'personid.png' %}">
+    {% endif %}
+    
+    <p>
+    {% if user.자기소개 != None %}
+        {{user.자기소개}}
+    {% endif %}
+    </p>
+
+    <br><br>
+    <a href="{% url 'edit' %}">수정</a>
+    <br><br>
+    <a href="{% url 'logout' %}">로그아웃</a>
+    <br><br>
+</body>
+</html>
