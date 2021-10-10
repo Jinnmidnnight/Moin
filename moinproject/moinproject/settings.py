@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'openapp',
     'writeapp',
     'scheduleapp',
+    'mypageapp',
 ]
 
 MIDDLEWARE = [

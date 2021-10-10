@@ -8,8 +8,8 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes, force_text
 from .tokens import account_activation_token
 from django.contrib.auth.hashers import check_password
-from account.models import User
-from account.forms import RegisterForm
+from .models import User
+from .forms import RegisterForm
 import re
 
 def signup(request):
@@ -118,7 +118,27 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         auth.login(request, user)
-        return redirect("home")
+        return redirect('home')
     else:
         return render(request, 'home.html', {'error' : '계정 활성화 오류'})
-    return
+
+def edit(request):
+    user_id = request.session.get('user')
+    user = User.objects.get(pk = user_id)
+
+    if request.method == "POST":
+
+        try:
+            request.FILES['image']
+            user.image = request.FILES['image']
+            user.자기소개 = request.POST['자기소개']
+            
+
+        except:
+            user.자기소개 = request.POST['자기소개']
+
+        user.save()
+        return render(request, 'mypage.html', {'user': user})
+
+    return render(request, 'edit.html', {'user': user})
+

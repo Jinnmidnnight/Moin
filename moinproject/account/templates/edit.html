@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form action="{% url 'edit' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2>Your name is : {{user.username}}</h2>
+
+        {% if user.성별 == 0 %}
+            <h2>Your 성별 is : 남성</h2>
+        {% endif %}
+
+        {% if user.성별 == 1 %}
+            <h2>Your 성별 is : 여성</h2>
+        {% endif %}
+
+        <h2>Your 생년월일 is : {{user.생년월일}}</h2>
+
+        <h2>프로필 사진</h2>
+        {% if user.image %}
+
+            <img src="{{user.image.url}}">
+            <input type="file" name="image">
+        {% else %}
+            <img src="{% static 'personid.png' %}">
+            <input type="file" name="image">
+        {% endif %}
+
+        {% if user.자기소개 == None %}
+            <h2>Your 자기소개 is : <input name="자기소개" type="text" size=40 placeholder="자신의 학과 등을 자유롭게 입력해주세요."></textarea></h2>
+        {% endif %}
+
+        {% if user.자기소개 == "" %}
+            <h2>Your 자기소개 is : <input name="자기소개" type="text" size=40 placeholder="자신의 학과 등을 자유롭게 입력해주세요."></textarea></h2>
+        {% endif %}
+
+        {% if user.자기소개 != None and user.자기소개 != "" %}
+            <h2>Your 자기소개 is : <input name="자기소개" type="text" size=40 value="{{user.자기소개}}"></textarea></h2>
+        {% endif %}
+
+        <br>
+        <br>
+
+        <input type="submit" value="수정하기">
+    </form>
+</body>
+</html>
