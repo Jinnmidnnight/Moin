@@ -142,3 +142,5 @@ def edit(request):
 
     return render(request, 'edit.html', {'user': user})
 
+def personalinfo(request):
+    return render(request, 'personalinfo.html')
