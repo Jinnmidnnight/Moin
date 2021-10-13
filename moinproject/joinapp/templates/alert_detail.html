@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+    .alertbox{
+    animation-name: changeColor;
+    animation-duration: 600s;
+    animation-delay: 0s;
+    }
+    @keyframes changeColor {
+    from { background-color: #fce9ca; }
+    to { background-color: white;
+ }
+}
+</style>
+<div class = "firstbox" style = "margin-top:8vh;margin-bottom:2vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+    <a href="{%url 'alert'%}">
+    <div id = "arrow" style="margin-left:20px;"><img src = "{%static '화살표.png'%}"> </div>
+    </a>
+    <div id = "make_txt" style = "margin-right: 45%;font-weight: bold;font-size: 19px;font-family: 'Nanum Gothic';">알림</div>
+</div>
+<div class = "profilebox" style="display:flex;flex-direction: row;border: 1px solid rgba(196, 196, 196, 0.22);padding: 2vh 10px 1.5vh 10px;justify-content: space-around;margin-bottom: 3vh;">
+    <div class="profileimg">
+        <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
+            {% if open.image %}        
+            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+            {% else %}
+            <img src = "{%static '독수리.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;" >
+            {% endif %}
+
+        </div>
+    </div>
+    <div class = "profilebigbox" style="display:flex;flex-direction: column;justify-content: space-evenly;width:100%">
+        <div class="profilebox1" style="display:flex;flex-direction: row;margin-right:auto;width:100%;margin-bottom: 1vh;font-size: 12.5px;font-weight: bold;margin-left: 5px;;">
+            <div id="name" >홍길동</div>
+        </div>
+        <div class="profilebox2" style="display:flex;flex-direction: row;;color: #8d8d8d;margin-left: 5px;;">
+            <div id="gender" style="font-size: 12px;;">남성</div>
+            <div id="birth" style="font-size: 12px;margin-right: 45%;margin-left:10px;">2002.11.13</div>
+        </div>
+        <div class="profilebox3" style=" display:flex;flex-direction: row;font-size: 12px;padding:5px;">
+            안녕하세요! 연세대학교 독수리학과 21학번 홍길동입니다! 
+        </div>
+        <div class="introduce"  style=" display:flex;flex-direction: row;font-size: 13px;padding:5px;">
+            (가입인사)안녕하세요! 잘 부탁드립니다~~
+        </div>
+    </div>
+</div>
+<div class="joininggroup" style="border: 1px solid rgba(0, 0, 0, 0.2);padding:0.5vh 20px 1vh 20px;">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+        <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">(이용자)님이 가입한 모임</div>
+        <div id = "arrow" style="margin-left:20px;transform: scaleX(-1);"><img src = "{%static '화살표.png'%}"> </div>
+    </div>
+    <div class = "fourthbox" style= "padding-top:2vh;display: flex;flex-direction:row;justify-content:space-around;padding-right:25%;">
+        <div id = "imgbox"><img src = "{%static '친목상세.png'%}"></div>
+        <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:5%;padding-left: 3%;">
+            <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">신촌 새내기들</div>
+            <div id = "detailsubtitle" style = "font-size:10px;">✨새내기들 밥+카페+술 모임✨</div>
+            <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;
+            ">
+                <div id = "members">인원:17/20</div>
+                <div id = "leader"> 작성자 : 조윤</div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <ul style="list-style: none;padding:20px;">
+        {% for open in open_index %}
+        <a href="{%url 'detail_1' open.id%}">
+        <li>
+            <div class = "fourthbox" style= "padding-top:2vh;display: flex;flex-direction:row;justify-content:space-around;padding-right:25%;">
+            <div id = "imgbox" >
+                {% if open.image %}
+                <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                {% else %}
+                <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                {% endif %}
+            </div>
+            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:5%;padding-left: 3%;">
+                <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
+                <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
+                <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
+                    <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
+                    <div id = "leader"> 작성자 : 조윤</div>
+                </div>
+            </div>
+            
+        </div>
+        </li>
+        </a>
+        {% endfor %}
+    </ul>
+</div>
+<div class="approvalornot" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+    <a href="{%url 'alert_approval'%}">
+    <button type="submit" style="width: 56px;height: 37px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13.5px;font-family: Nanum Gothic;color:white;font-weight: bold;margin:3%;">승인</button>
+    </a>
+    <button type="submit" style="width: 56px;height: 37px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13.5px;font-family: Nanum Gothic;color:white;font-weight: bold;margin:3%;">거절</button>
+</div>
+{% endblock %}
