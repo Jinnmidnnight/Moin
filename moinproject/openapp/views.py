@@ -3,6 +3,24 @@ from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_
 
 # Create your views here.
 
+def joinin_wait(request):
+     return render(request,'joinin_wait.html')
+
+def joinin(request):
+     return render(request,'joinin.html')
+
+def mygroup(request):
+    return render(request, 'mygroup.html')
+
+def alert(request):
+    return render(request, 'alert.html')
+
+def alert_detail(request):
+    return render(request, 'alert_detail.html')
+
+def alert_approval(request):
+    return render(request, 'alert_approval.html')
+
 def select(request):
     return render(request, 'select.html')
 
