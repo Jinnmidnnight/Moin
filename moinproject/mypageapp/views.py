@@ -1,13 +1,19 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import auth
 from account.models import User
+from openapp.models import Open_1
 # Create your views here.
 
+def update_1(request, open_id):
+    open = get_object_or_404(Open_1, pk = open_id)
+    return render(request, 'update_1.html', {'open' : open})
+
 def mypage(request):
+    open_index = Open_1.objects.all()
     user_id = request.session.get('user')
     if user_id:
         user = User.objects.get(pk = user_id)
-        return render(request, 'mypage.html', {'user': user})
+        return render(request, 'mypage.html', {'user': user, 'open_index' : open_index})
     return render(request, 'mypage.html')
 
 def logout(request):

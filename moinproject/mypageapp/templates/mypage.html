@@ -41,5 +41,35 @@
     <br><br>
     <a href="{% url 'logout' %}">로그아웃</a>
     <br><br>
-</body>
+    
+    <ul style="list-style: none;padding:20px;">
+        {% for open in open_index %}
+        <li>
+        <div class = "fourthbox" style= "padding-top:2vh;">
+            <div id = "imgbox" >
+                {% if open.image %}
+                <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                {% else %}
+                <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                {% endif %}
+            </div>
+            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
+                <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
+                <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
+                    <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
+                    <div id = "leader"> 작성자 : 조윤</div>
+                </div>
+            </div>
+            <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+            <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;">
+                <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
+                <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
+            </div>
+        </div>
+        <button><a href="{%url 'update_1' open.id%}">관리하기</a></button>
+        </li>
+        {% endfor %}
+    </ul>
+
 </html>
