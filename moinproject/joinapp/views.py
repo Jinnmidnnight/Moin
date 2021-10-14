@@ -2,11 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def joinin_wait(request):
-     return render(request,'joinin_wait.html')
-
-def joinin(request):
-     return render(request,'joinin.html')
 
 def mygroup(request):
     return render(request, 'mygroup.html')
