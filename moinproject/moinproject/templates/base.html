@@ -72,14 +72,15 @@
     </div>
     <div class = "bottombar">
         <a href="{%url 'home' %}">
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
-            <img src = "{%static '홈.png' %}">
-            <br>
-            <div id="bottom_txt">
-                홈
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '홈.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    홈
+                </div>
             </div>
-        </div>
         </a>
+        <a href="{%url 'index_1' %}">
         <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
             <img src = "{%static '소모임.png' %}">
             <br>
@@ -87,6 +88,8 @@
                 소모임
             </div>
         </div>
+        </a>
+        <a href="{%url 'mygroup' %}">
         <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
             <img src = "{%static '내모임.png' %}">
             <br>
@@ -94,6 +97,8 @@
                 내 모임
             </div>
         </div>
+        </a>
+        <a href="{%url 'alert' %}">
         <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
             <img src = "{%static '알림.png' %}">
             <br>
@@ -101,6 +106,7 @@
                 알림
             </div>
         </div>
+        </a>
     </div>
     {% block content %}
 
