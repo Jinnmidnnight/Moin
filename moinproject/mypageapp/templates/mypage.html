@@ -18,7 +18,85 @@
     .writebotton{
         bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
     }
-    </style>
+
+    .firstbox{ display : flex; flex-direction : column; 
+        justify-content :space-around; height:11vh;margin-top : 7vh; width:100%;}
+
+
+    .bottombar{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0px;
+        left:0px;
+        position:fixed;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        zoom: 1;
+        z-index: 1;
+        line-height: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 7vh;
+        background: rgba(255, 255, 255);
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+    }
+    #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+    .secondbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 16px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+
+    }
+    .categoryicon{
+        opacity: .7;
+        padding: 6px 2.8vw;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        color: #000;
+        font-weight: 200;
+        padding-left: 20px;
+        padding-right : 20px;
+    }
+    .fourthbox{
+        display: flex;
+        flex-direction: row;
+    }
+    #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+    .makebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }  
+
 </style>
 
 <div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;margin-top: 10vh;;margin-bottom: 3vh;">내 모임</div>
@@ -65,38 +143,37 @@
         </div>
     </div>
 </div>
-<div class="joininggroup" style="border: 1px solid rgba(0, 0, 0, 0.2);padding:0.5vh 20px 1vh 20px;">
-    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+<div class="joininggroup" style="border: 1px solid rgba(0, 0, 0, 0.2);">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; padding:0.5vh 20px 1vh 20px; ">
         <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">내가 가입한 모임</div>
         <div id = "arrow" style="margin-left:20px;transform: scaleX(-1);"><img src = "{%static '화살표.png'%}"> </div>
     </div>
-    <ul style="list-style: none;padding:20px;">
+    <ul style="list-style: none; margin-top: 0;">
         {% for open in open_index %}
-        <a href="{%url 'detail_1' open.id%}">
-        <li>
-            <div class = "fourthbox" style= "padding-top:2vh;display: flex;flex-direction:row;justify-content:space-around;">
-            <div id = "imgbox" >
-                {% if open.image %}
-                <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
-                {% else %}
-                <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
-                {% endif %}
-            </div>
-            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:5%;padding-left: 3%;">
-                <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
-                <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
-                <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
-                    <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
-                    <div id = "leader" style="margin-left:5px;"> 작성자 : 조윤</div>
+        <li style="flex-direction: column; margin-bottom: 20px;">
+            <div class = "fourthbox">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
                 </div>
-            </div>
-            <div id="manage">
-                <button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;font-family: Nanum Gothic;color:white;;margin-left: auto;">
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left: 15px; width: 45%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">
+                        {{open.title}}
+                    </div>
+                    <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
+                        <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
+                        <div id = "leader"> 작성자 : 조윤</div>
+                    </div>
+                </div>
+                <button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;font-family: Nanum Gothic;color:white; margin-top: 6px;">
                     <a href="{%url 'update_1' open.id%}">관리하기</a>
                 </button>
             </div>
         </li>
-        </a>
         {% endfor %}
     </ul>
 </div>
@@ -109,7 +186,7 @@
     <ul style="list-style: none;margin:0px;padding:0px;">
         <li>
             <div class = "regularmeeting" style ="height:15vh;display:flex;flex-direction:column;justify-content: space-around;
-            width:100%;margin-top:2vh;">
+            width:100%;">
                 <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
                     <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
                     <div id = "meetingnumber">(3/4명)</div>
