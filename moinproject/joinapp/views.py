@@ -2,10 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-
-def mygroup(request):
-    return render(request, 'mygroup.html')
-
 def alert(request):
     return render(request, 'alert.html')
 

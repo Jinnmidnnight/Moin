@@ -6,5 +6,4 @@ urlpatterns = [
     path('alert_approval', alert_approval, name="alert_approval"),
     path('alert_detail', alert_detail, name="alert_detail"),
     path('alert', alert, name="alert"),
-    path('mygroup', mygroup, name="mygroup"),
 ]

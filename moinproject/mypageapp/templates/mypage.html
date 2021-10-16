@@ -1,51 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+    .meetingfirstbox{
+        color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 15px;font-weight: bold;
+        display:Flex;flex-direction: row;
+    }
+    .meetingsecondbox{
+        display: flex;flex-direction: row;justify-content: space-around;
+    }
+    .meetingdate{
+        display:flex;flex-direction: column;justify-content: center;align-items: center;
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+    </style>
+</style>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPage</title>
-</head>
-<body>
-    {{user.username}}
-
-    {% if user.성별 == 0 %}
-        <p>남성</p>
-    {% endif %}
-
-    {% if user.성별 == 1 %}
-        <p>여성</p>
-    {% endif %}
-
-    {{user.생년월일}}
-
-    <br><br><br>
-
-    {% if user.image %}
-
-        <img src="{{user.image.url}}">
-    {% else %}
-        <img src="{% static 'personid.png' %}">
-    {% endif %}
-    
-    <p>
-    {% if user.자기소개 != None %}
-        {{user.자기소개}}
-    {% endif %}
-    </p>
-
-    <br><br>
-    <a href="{% url 'edit' %}">수정</a>
-    <br><br>
-    <a href="{% url 'logout' %}">로그아웃</a>
-    <br><br>
+<div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;margin-top: 10vh;;margin-bottom: 3vh;">내 모임</div>
+<div class = "profilebox" style="display:flex;flex-direction: row;border: 1px solid rgba(196, 196, 196, 0.22);padding: 2vh 10px 1.5vh 10px;justify-content: space-around;margin-bottom: 3vh;">
+    <div class="profileimg">
+        <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
+            {% if user.image %}
+                <img src="{{user.image.url}}">
+            {% else %}
+                <img src="{% static 'personid.png' %}">
+            {% endif %}
+        </div>
+    </div>
+    <div class = "profilebigbox" style="display:flex;flex-direction: column;justify-content: space-around;width:100%">
+        <div class="profilebox1" style="display:flex;flex-direction: row;justify-content: space-around;width:100%;margin-bottom: 1vh;">
+            <div id="name" >{{user.username}}</div>
+            <div id="edit" style="margin-right: 40%;;">
+                <button type="submit" style="width: 40px;height: 18px;border-radius: 10px;background: #f6b955;border:0px;font-size: 12px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+                    <a href="{% url 'edit' %}">수정</a>
+                </button>
+            </div>
+            <div id="logout">
+                <button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #828282;;border:0px;font-size: 12px;font-family: Nanum Gothic;color:white;font-weight: bold;margin-left: auto;">
+                    <a href="{% url 'logout' %}">로그아웃</a>
+                </button>
+            </div>
+        </div>
+        <div class="profilebox2" style="display:flex;flex-direction: row;justify-content: space-around;color: #8d8d8d;">
+            <div id="gender" style="font-size: 12px;;">
+                {% if user.성별 == 0 %}
+                    <p>남성</p>
+                {% endif %}
+                {% if user.성별 == 1 %}
+                    <p>여성</p>
+                {% endif %}
+            </div>
+            <div id="birth" style="font-size: 12px;margin-right: 45%;">{{user.생년월일}}</div>
+            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;">회원탈퇴</div>
+        </div>
+        <div class="profilebox3" style="display:flex;flex-direction: row;justify-content: space-around;font-size: 12px;padding:5px;">
+            {% if user.자기소개 != None %}
+                {{user.자기소개}}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="joininggroup" style="border: 1px solid rgba(0, 0, 0, 0.2);padding:0.5vh 20px 1vh 20px;">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+        <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">내가 가입한 모임</div>
+        <div id = "arrow" style="margin-left:20px;transform: scaleX(-1);"><img src = "{%static '화살표.png'%}"> </div>
+    </div>
+    <div class = "fourthbox" style= "padding-top:2vh;display: flex;flex-direction:row;justify-content:space-around;">
+        <div id = "imgbox"><img src = "{%static '친목상세.png'%}"></div>
+        <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:5%;padding-left: 3%;">
+            <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">신촌 새내기들</div>
+            <div id = "detailsubtitle" style = "font-size:10px;">✨새내기들 밥+카페+술 모임✨</div>
+            <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;
+            ">
+                <div id = "members">인원:17/20</div>
+                <div id = "leader" style="margin-left: 3px;"> 작성자 : 조윤</div>
+            </div>
+        </div>
+        <div id="manage"><button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;font-family: Nanum Gothic;color:white;;margin-left: auto;">관리하기</button></div>
+    </div>
     
     <ul style="list-style: none;padding:20px;">
         {% for open in open_index %}
+        <a href="{%url 'detail_1' open.id%}">
         <li>
-        <div class = "fourthbox" style= "padding-top:2vh;">
+            <div class = "fourthbox" style= "padding-top:2vh;display: flex;flex-direction:row;justify-content:space-around;">
             <div id = "imgbox" >
                 {% if open.image %}
                 <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
@@ -53,23 +96,63 @@
                 <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
                 {% endif %}
             </div>
-            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+            <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:5%;padding-left: 3%;">
                 <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
                 <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
                 <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
                     <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
-                    <div id = "leader"> 작성자 : 조윤</div>
+                    <div id = "leader" style="margin-left:5px;"> 작성자 : 조윤</div>
                 </div>
             </div>
-            <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
-            <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;">
-                <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
-                <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
-            </div>
+            <a href="{%url 'update_1' open.id %}">
+            <div id="logout"><button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;font-family: Nanum Gothic;color:white;;margin-left: auto;">관리하기</button></div>
+            </a>
         </div>
-        <button><a href="{%url 'update_1' open.id%}">관리하기</a></button>
         </li>
+        </a>
         {% endfor %}
     </ul>
-
-</html>
+</div>
+<div class="joininggroup" style="border: 1px solid rgba(0, 0, 0, 0.2);padding:0.5vh 20px 1vh 20px;">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+        <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">참가한 일정</div>
+        <div id = "arrow" style="margin-left:20px;transform: scaleX(-1);"><img src = "{%static '화살표.png'%}"> </div>
+    </div>
+    <ul style="list-style: none;margin:0px;padding:0px;">
+        <li>
+            <div class = "regularmeeting" style ="height:15vh;display:flex;flex-direction:column;justify-content: space-around;
+            width:100%;margin-top:2vh;">
+                <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
+                    <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
+                    <div id = "meetingnumber">(3/4명)</div>
+                </div>
+                <div class = "meetingsecondbox" style = "z-index: -1;margin-left:1vh;margin-bottom: 1vh;">
+                    <div class = "meetingdate" style = "width:60px;height:55px;border-radius: 10px;background-color: white;border: 1.5px solid #707070;">
+                        <div id = "meetingday" style = "font-size: 12px;">일요일</div>
+                        <div id = "meetingwhen" style = "font-size:17px;font-weight: bold;margin-top: 3.5px;">5일</div>
+                    </div>
+                    <div class = "meetingdetail" style = "font-size: 13px; display:flex;flex-direction: column; justify-content: center;;">
+                        <div id = "meetingtime">
+                            📅 9월 5일 (일) 오후 14:00
+                        </div>
+                        <div id = "meetingplace">
+                            🗺 연대포(신촌)
+                        </div>
+                        <div id = "meetingcost">
+                            💸 약 12000 ~ 20000
+                        </div>
+                    </div>
+                    <div class="meetingsharebox" style="display:flex;flex-direction: column;justify-content: space-around;align-items: center;">
+                        <div class= "meetingshare" style = "font-size: 11.5px;color:#848484;text-decoration: underline;display:flex;text-align: center;margin-top:1.5vh;margin-bottom: 1vh;">
+                            친구에게
+                            <br>
+                            공유하기
+                        </div>
+                        <div id="logout"><button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;font-family: Nanum Gothic;color:white;;margin-left: auto;">참가취소</button></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endblock %}
