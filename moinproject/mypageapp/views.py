@@ -11,13 +11,27 @@ def joinin(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'joinin.html', {'open' : open})
 
-def update_2(request, open_id):
+def deport_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
-    return render(request, 'update_2.html', {'open' : open})
+    return render(request, 'deport_1.html', {'open' : open})
+
+def manage_1(request, open_id):
+    open = get_object_or_404(Open_1, pk = open_id)
+    return render(request, 'manage_1.html', {'open' : open})
 
 def update_1(request, open_id):
+    if request.method == "GET":
+        open = get_object_or_404(Open_1, pk = open_id)
+        return render(request, "update_1.html", {"open": open})
+
     open = get_object_or_404(Open_1, pk = open_id)
-    return render(request, 'update_1.html', {'open' : open})
+    open.title = request.POST['title']
+    open.intro = request.POST['intro']
+    open.content = request.POST['content']
+    open.image = request.FILES.get('image')
+    open.number = request.POST['number']
+    open.save()
+    return redirect('detail_1', open.id)
 
 def mypage(request):
     open_index = Open_1.objects.all()
