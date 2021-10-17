@@ -113,4 +113,10 @@
         <button type="submit" style="width: 274px;height: 41px;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">수정하기</button>
     </div>
 </form>
+<div class = "button" style="display:flex;justify-content: center;margin-top:3vh;">
+    <a href="{% url 'delete_1' open.id %}">
+    <button type="submit" style="width: 274px;height: 41px;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">삭제하기</button>
+    </a>
+</div>
+
 {% endblock %}
