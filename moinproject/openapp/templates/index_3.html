@@ -94,58 +94,6 @@
 </head>
 
 <body>
-    <div class="navbar" 
-    style = "
-    top:0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    height: 6vh;
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
-        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
-                <img src = "{%static 'yonsei.png' %}">
-        </div>
-        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
-            <div id="1" > <img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </div>
-            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
-        </div>
-        
-    </div>
-    <div class = "bottombar">
-        <a href="{%url 'home' %}">
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
-            <img src = "{%static '홈.png' %}">
-            <br>
-            <div id="bottom_txt">
-                홈
-            </div>
-        </div>
-        </a>
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
-            <img src = "{%static '소모임.png' %}">
-            <br>
-            <div id="bottom_txt">
-                소모임
-            </div>
-        </div>
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
-            <img src = "{%static '내모임.png' %}">
-            <br>
-            <div id="bottom_txt">
-                내 모임
-            </div>
-        </div>
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
-            <img src = "{%static '알림.png' %}">
-            <br>
-            <div id="bottom_txt">
-                알림
-            </div>
-        </div>
-    </div>
     <div class = "all" style = "margin-top : 7vh; width:100%; margin-bottom : 7vh;">
         <div class = "firstbox">
                 <div id = "title" style = "font-size: 20px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;padding-top:3vh;padding-bottom:0vh;margin-left:10px;"> 스포츠 </div>
@@ -155,6 +103,7 @@
                 </div>
         </div>
         <div class = "secondbox">
+            <a href="{%url 'index_3' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;padding-left : 15px; padding-right:15px;background: rgba(247, 196, 113, 0.37);border-radius:10px;">
                 <img src = "{%static '스포츠.png' %}">
                 <br>
@@ -162,20 +111,8 @@
                     스포츠
                 </div>
             </div>
-            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
-                <img src = "{%static '친목.png' %}">
-                <br>
-                <div id="category_txt">
-                    친목
-                </div>
-            </div>
-            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
-                <img src = "{%static '문화.png' %}">
-                <br>
-                <div id="category_txt">
-                    문화
-                </div>
-            </div>
+            </a>
+            <a href="{%url 'index_4' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '음악.png' %}">
                 <br>
@@ -183,6 +120,8 @@
                     음악
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_5' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '스터디.png' %}">
                 <br>
@@ -190,6 +129,8 @@
                     스터디
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_6' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '여행.png' %}">
                 <br>
@@ -197,6 +138,8 @@
                     여행
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_7' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '게임.png' %}">
                 <br>
@@ -204,6 +147,8 @@
                     게임
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_8' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '봉사.png' %}">
                 <br>
@@ -211,6 +156,8 @@
                     봉사
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_9' %}">
             <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
                 <img src = "{%static '기타.png' %}">
                 <br>
@@ -218,6 +165,25 @@
                     기타
                 </div>
             </div>
+            </a>
+            <a href="{%url 'index_1' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '친목.png' %}">
+                <br>
+                <div id="category_txt">
+                    친목
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_2' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '문화.png' %}">
+                <br>
+                <div id="category_txt">
+                    문화
+                </div>
+            </div>
+            </a>
         </div>
         <div class = "thirdbox" style = "height:3vh;display:flex;flex-direction:row;justify-content: space-between;
         vertical-align : baseline;line-height:3vh;padding-left:7px;padding-right:7px;padding-top:15px;font-family:'Nanum Gothic', sans-serif;">

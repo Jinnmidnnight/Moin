@@ -127,6 +127,9 @@
     .writebotton{
         bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
     }
+    .writebotton_1{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;margin-bottom: 3vh;
+    }
     .mointext{
         width:90%;
         height: 15vh;
@@ -144,14 +147,17 @@
         justify-content: space-around;
         margin-bottom: auto;
         margin-top: 10px;
+        
     }
     .moin2box{
         display:flex;
         flex-direction: row;
         justify-content: space-around;
-        width:80%;
-        margin-left:11.4%;
+        width:70%;
+        margin-left:16.4%;
         margin-top: 1vh;
+        margin-right:5%;
+        overflow:hidden;
     }
     .moin3box{
         display:flex;
@@ -223,7 +229,7 @@
     <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
         <div class = "firstbox">
             <div id = "intro_txt" >소개</div>
-            <div id = "date_txt"><a href="{%url 'schedule' %}">일정</a></div>
+            <div id = "date_txt"><a href="{%url 'schedule_1' open.id %}">일정</a></div>
         </div>
     <div id = "yellow_line"></div>
     <div class = "detailimg">
@@ -291,13 +297,15 @@
                         <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{write.created_at}}</div>
                     </div>
                     <div class = "moin2box" style = "position:absolute;">
-                        <div class = "contenttxt">
-                            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">{{write.제목}}</div>
-                            <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;margin-top:10px;">{{write.내용}}</div>
+                        <div class = "contenttxt" style = "height:5.4vh;overflow:hidden ;width:210px;text-overflow: ellipsis;">
+                            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 13px;font-weight: bold;margin-bottom:5px;">{{write.제목}}</div>
+                            <div id = "content" style = "font-family:Nanum Gothic;font-size: 11px;width:100%">{{write.내용}}</div>
                         </div>
                         <div class = "contentimg">
                             {% if write.사진 %}        
-                                <img src="{{write.사진.url}}" alt="" style = "width: 100%; height: 6vh; object-fit:cover;">
+                                <img src="{{write.사진.url}}" alt="" style = "width: 60px; height: 7vh; object-fit:cover;">
+                            {%else%}
+                                <img src = "{%static '사진파일.png' %}"style = "width: 60px; height: 7vh;">
                             {% endif %}
                         </div>
                     </div>
@@ -324,12 +332,16 @@
     <div class = "blank" style = "display:flex;height:5vh;"></div>
 </div>
 </div>
-
+<a href="{%url 'write_1' open.id %}">
 <div class = "writebotton">
-    <a href="{%url 'write_1' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+    <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
 </div>
-
-
+</a>
+<a href="{%url 'joinin' open.id %}">
+<div class = "writebotton_1">
+    <img src = "{%static '가입.png'%}" style = "width: 41px;height:41px;margin-bottom: 3vh;;">
+</div>
+</a>
 </div>
 <div class = "bottombar">
     <a href="{%url 'home' %}">

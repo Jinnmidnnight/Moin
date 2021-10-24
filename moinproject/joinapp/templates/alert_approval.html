@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+    .alertbox{
+    animation-name: changeColor;
+    animation-duration: 60s;
+    animation-delay: 0s;
+    }
+    @keyframes changeColor {
+    from { background-color: #fce9ca; }
+    to { background-color: white;
+ }
+    
+}
+</style>
+<div class="all" style="position:relative;">
+    <div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;margin-top: 10vh;;margin-bottom: 3vh;">알림</div>
+    <ul style="list-style: none;padding:0px;margin:0px;">
+        <li style="display:flex;flex-direction: column-reverse;">
+            <a href="{%url 'alert_detail'%}">
+            <div class="alertbox" style="margin-bottom:1.5vh;display:flex;flex-direction:row;align-items: center;justify-content: space-evenly;height:8vh;width:100%;border: 1px solid rgba(196, 196, 196, 0.22);box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
+                <div id="profileimg">
+                    <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
+                        {% if open.image %}        
+                        <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                        {% else %}
+                        <img src = "{%static '독수리.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;" >
+                        {% endif %}
+            
+                    </div>
+                </div>
+                <div class="alertcontent" style="font-size: 12px;line-height: 23.5px;display:Flex;flex-direction: column;">
+                    <div class="alertcontent1" style="display:flex;flex-direction: row;">
+                        <div id="alertuser" style="font-size: 12.5px;font-weight: bold;">(user)</div>님께서 (모임 이름)에 가입 신청을 하였습니다.
+                    </div>
+                    <div id="alertcontent1">
+                        모임장님께서는 가입 승인 혹은 가입 거절을 선택해주세요!
+                    </div>
+                </div>
+            </div>
+            </a>
+            <div class="alertbox" style="margin-bottom:1.5vh;display:flex;flex-direction:row;align-items: center;justify-content: space-evenly;height:8vh;width:100%;border: 1px solid rgba(196, 196, 196, 0.22);box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
+                <div id="profileimg">
+                    <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
+                        {% if open.image %}        
+                        <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                        {% else %}
+                        <img src = "{%static '독수리.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;" >
+                        {% endif %}
+            
+                    </div>
+                </div>
+                <div class="alertcontent" style="font-size: 12px;line-height: 23.5px;display:Flex;flex-direction: column;">
+                    <div class="alertcontent1" style="display:flex;flex-direction: row;">
+                        <div id="alertuser" style="font-size: 12.5px;font-weight: bold;">(user)</div><div id="alertuser" style="font-size: 12.5px;font-weight: bold;color: #f6b955;">"모임장"</div>
+                        <div id="content">님께서 회원님의 가입신청을 승인했습니다!</div>
+                    </div>
+                    <div id="alertcontent1">
+                        지금 (모임 이름)으로 들어가 가입 여부를 확인해보세요!
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+    </ul>
+    <div class="approvalornot" style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+        <a href="{%url 'alert_approval'%}">
+        <button type="submit" style="width: 56px;height: 37px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13.5px;font-family: Nanum Gothic;color:white;font-weight: bold;margin:3%;">승인</button>
+        </a>
+        <button type="submit" style="width: 56px;height: 37px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13.5px;font-family: Nanum Gothic;color:white;font-weight: bold;margin:3%;">거절</button>
+    </div>
+</div>
+<a href="{%url 'alert'%}">
+<div class="approvalbox" style="top:0%;position:absolute;background:rgba(0, 0, 0, 0.25);width:100%;height:100vh;"></div>
+    <div class="approval" style="height:15vh;width:70%;background:white;position:absolute;align-items: center;border-radius: 10px;margin-left: 15%;;">
+        <div id="approvaltxt" style="text-align: center;font-size: 18px;font-weight: bold;padding-top: 6vh;;">승인이 완료되었습니다!</div>
+    </div>
+</div>
+</a>
+{% endblock %}

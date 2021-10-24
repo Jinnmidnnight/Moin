@@ -6,9 +6,6 @@ from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_
 def select(request):
     return render(request, 'select.html')
 
-def schedule(request):
-    return render(request, 'schedule.html')
-
 def open_1(request):
     if request.method == "GET":
         return render(request, "open_1.html")
@@ -29,6 +26,7 @@ def index_1(request):
 def detail_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_1.html', {'open' : open})
+
 
 def open_2(request):
     if request.method == "GET":

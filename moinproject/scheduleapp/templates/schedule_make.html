@@ -129,66 +129,77 @@
             </div>
         </div>
     </div>
-    <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
-        <div class = "firstbox">
-            <div id = "intro_txt" >소개</div>
-            <div id = "date_txt"><a href="{%url 'schedule' %}">일정</a></div>
-        </div>
-            <div id = "yellow_line"></div>
-        <div class = "noticebox" style = "display:flex;flex-direction:column;margin-left:5%;margin-top:2vh;">
-            <div id = "noticetitle">공지사항</div>
-            <div class = "noticedetail">
-                <div id = "yellownotice">[공지]</div>
-                <div id = "notice">신촌 새내기들 운영 방침입니다.</div>
+<div class="allbox" style="position:relative;">
+
+        <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
+            <div class = "firstbox">
+                <div id = "intro_txt" ><a href="{%url 'detail_1' open.id %}">소개</a></div>
+                <div id = "date_txt">일정</div>
             </div>
-            <div class = "noticedetail">
-                <div id = "yellownotice">[공지]</div>
-                <div id = "notice">가입 시 자기소개 작성 양식 (3일 이내 미작성 시 퇴장)</div>
+                <div id = "yellow_line"></div>
+            <div class = "noticebox" style = "display:flex;flex-direction:column;margin-left:5%;margin-top:2vh;">
+                <div id = "noticetitle">공지사항</div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">신촌 새내기들 운영 방침입니다.</div>
+                </div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">가입 시 자기소개 작성 양식 (3일 이내 미작성 시 퇴장)</div>
+                </div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">가입 요강 및 음주 방침</div>
+                </div>
             </div>
-            <div class = "noticedetail">
-                <div id = "yellownotice">[공지]</div>
-                <div id = "notice">가입 요강 및 음주 방침</div>
-            </div>
-        </div>
-        <div class = "regularmeetingbox" style = "display:flex;flex-direction:column;margin-top:2vh;">
-            <div id = "noticetitle" style = "margin-left:5%;">모임정모</div>
-            <ul style="list-style: none;margin:0px;padding:0px;">
-                <li>
-                    <div class = "regularmeeting" style ="box-shadow:0px 3px 6px 1px rgba(0, 0, 0, 0.16);height:15vh;display:flex;flex-direction:column;justify-content: space-around;
-                    width:100%;margin-top:2vh;">
-                        <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
-                            <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
-                            <div id = "meetingnumber">(3/4명)</div>
+            <div class = "regularmeetingbox" style = "display:flex;flex-direction:column;margin-top:2vh;">
+                <div id = "noticetitle" style = "margin-left:5%;">모임정모</div>
+                <ul style="list-style: none;margin:0px;padding:0px;">
+                    <li>
+                        <div class = "regularmeeting" style ="box-shadow:0px 3px 6px 1px rgba(0, 0, 0, 0.16);height:15vh;display:flex;flex-direction:column;justify-content: space-around;
+                        width:100%;margin-top:2vh;">
+                            <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
+                                <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
+                                <div id = "meetingnumber">(3/4명)</div>
+                            </div>
+                            <div class = "meetingsecondbox" style = "z-index: -1;margin-left:1vh;margin-bottom: 1vh;">
+                                <div class = "meetingdate" style = "width:60px;height:55px;border-radius: 10px;background-color: white;border: 1.5px solid #707070;">
+                                    <div id = "meetingday" style = "font-size: 12px;">일요일</div>
+                                    <div id = "meetingwhen" style = "font-size:17px;font-weight: bold;margin-top: 3.5px;">5일</div>
+                                </div>
+                                <div class = "meetingdetail" style = "font-size: 13px; display:flex;flex-direction: column; justify-content: center;;">
+                                    <div id = "meetingtime">
+                                        📅 9월 5일 (일) 오후 14:00
+                                    </div>
+                                    <div id = "meetingplace">
+                                        🗺 연대포(신촌)
+                                    </div>
+                                    <div id = "meetingcost">
+                                        💸 약 12000 ~ 20000
+                                    </div>
+                                </div>
+                                <div class= "meetingshare" style = "font-size: 13px;color:#848484;text-decoration: underline;display:flex;text-align: center;margin-top:1.5vh;">
+                                    친구에게
+                                    <br>
+                                    공유하기
+                                </div>
+                            </div>
                         </div>
-                        <div class = "meetingsecondbox" style = "z-index: -1;margin-left:1vh;margin-bottom: 1vh;">
-                            <div class = "meetingdate" style = "width:60px;height:55px;border-radius: 10px;background-color: white;border: 1.5px solid #707070;">
-                                <div id = "meetingday" style = "font-size: 12px;">일요일</div>
-                                <div id = "meetingwhen" style = "font-size:17px;font-weight: bold;margin-top: 3.5px;">5일</div>
-                            </div>
-                            <div class = "meetingdetail" style = "font-size: 13px; display:flex;flex-direction: column; justify-content: center;;">
-                                <div id = "meetingtime">
-                                    📅 9월 5일 (일) 오후 14:00
-                                </div>
-                                <div id = "meetingplace">
-                                    🗺 연대포(신촌)
-                                </div>
-                                <div id = "meetingcost">
-                                    💸 약 12000 ~ 20000
-                                </div>
-                            </div>
-                            <div class= "meetingshare" style = "font-size: 13px;color:#848484;text-decoration: underline;display:flex;text-align: center;margin-top:1.5vh;">
-                                친구에게
-                                <br>
-                                공유하기
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>    
-        <div class = "writebotton">
-            <a href="{%url 'select' %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+                    </li>
+                </ul>
+            </div>    
+            <div class = "writebotton">
+                <a href="{%url 'schedule_make' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+            </div>
         </div>
+</div>
+<a href="{%url 'schedule_1' open.id%}">
+<div class="approvalbox" style="top:0px;position:absolute;background:rgba(0, 0, 0, 0.25);width:100%;height:120vh;"></div>
+    <div class="approval" style="top:40vh;height:22vh;width:70%;background:white;position:absolute;align-items: center;border-radius: 10px;margin-left: 15%;;">
+        <div id="approvaltxt" style="text-align: center;font-size: 16px;font-weight: bold;padding-top: 9vh;;">모임장의 승인을 기다려주세요!</div>
     </div>
+    
+</div>
+</a>
 </body>
 {% endblock %}
