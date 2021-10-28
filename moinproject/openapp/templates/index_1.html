@@ -230,7 +230,13 @@
         </ul>
     </div>
     <div class = "makebotton">
+        {% if request.session.user %}
             <a href="{%url 'select' %}"><img src = "{%static '개설.png'%}"></a>
+        {% endif %}
+
+        {% if not request.session.user %}
+            <a href="{%url 'login' %}"><img src = "{%static '개설.png'%}"></a>
+        {% endif %}
     </div>
 </body>
 {% endblock %}

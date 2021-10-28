@@ -182,13 +182,28 @@
     background: rgba(255, 255, 255, 0.62);
     box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
         <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
-                <img src = "{%static 'yonsei.png' %}">
+            <a href="{%url 'home' %}"><img src = "{%static 'yonsei.png' %}"></a>
         </div>
+
         <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
             <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            
+            {% if request.session.user %}
+
+            <a href="{%url 'mypage' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+    
+            {% endif %}
+
+            {% if not request.session.user %}
+
             <a href="{%url 'login' %}">
             <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
             </a>
+            
+            {% endif %}
+
         </div>
         
     </div>
@@ -332,16 +347,40 @@
     <div class = "blank" style = "display:flex;height:5vh;"></div>
 </div>
 </div>
-<a href="{%url 'write_1' open.id %}">
-<div class = "writebotton">
-    <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
-</div>
-</a>
-<a href="{%url 'joinin' open.id %}">
-<div class = "writebotton_1">
-    <img src = "{%static '가입.png'%}" style = "width: 41px;height:41px;margin-bottom: 3vh;;">
-</div>
-</a>
+
+{% if request.session.user %}
+    <a href="{%url 'write_1' open.id %}">
+    <div class = "writebotton">
+        <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
+    </div>
+    </a>
+{% endif %}
+
+{% if not request.session.user %}
+    <a href="{%url 'login'%}">
+    <div class = "writebotton">
+        <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
+    </div>
+    </a>
+{% endif %}
+
+{% if request.session.user %}
+    <a href="{%url 'joinin' open.id %}">
+    <div class = "writebotton_1">
+        <img src = "{%static '가입.png'%}" style = "width: 41px;height:41px;margin-bottom: 3vh;">
+    </div>
+    </a>
+{% endif %}
+
+{% if not request.session.user %}
+    <a href="{%url 'login' %}">
+    <div class = "writebotton_1">
+        <img src = "{%static '가입.png'%}" style = "width: 41px;height:41px;margin-bottom: 3vh;">
+    </div>
+    </a>
+{% endif %}
+
+
 </div>
 <div class = "bottombar">
     <a href="{%url 'home' %}">

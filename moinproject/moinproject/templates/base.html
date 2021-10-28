@@ -64,7 +64,21 @@
         </a>
         <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
             <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            {% if request.session.user %}
+
+            <a href="{%url 'mypage' %}">
             <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+    
+            {% endif %}
+
+            {% if not request.session.user %}
+
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+            
+            {% endif %}
         </div>
         
     </div>
@@ -89,24 +103,65 @@
             </div>
         </div>
         </a>
-        <a href="{%url 'mypage' %}">
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
-            <img src = "{%static '내모임.png' %}">
-            <br>
-            <div id="bottom_txt">
-                내 모임
+
+        {% if request.session.user %}
+
+            <a href="{%url 'mypage' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+                
+                <img src = "{%static '내모임.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    내 모임
+                </div>
             </div>
-        </div>
-        </a>
-        <a href="{%url 'alert' %}">
-        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
-            <img src = "{%static '알림.png' %}">
-            <br>
-            <div id="bottom_txt">
-                알림
+            </a>
+    
+        {% endif %}
+
+        {% if not request.session.user %}
+
+            <a href="{%url 'login' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+                
+                <img src = "{%static '내모임.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    내 모임
+                </div>
             </div>
-        </div>
-        </a>
+            </a>
+            
+        {% endif %}
+        
+        {% if request.session.user %}
+
+            <a href="{%url 'alert' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '알림.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    알림
+                </div>
+            </div>
+            </a>
+    
+        {% endif %}
+
+        {% if not request.session.user %}
+
+            <a href="{%url 'login' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '알림.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    알림
+                </div>
+            </div>
+            </a>
+            
+        {% endif %}
+        
     </div>
     {% block content %}
 

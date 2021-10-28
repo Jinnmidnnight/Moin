@@ -28,7 +28,7 @@
 
 </style>
 <div class = "personalinfo" style = "margin-top:6vh;margin-bottom:2vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
-    <div id = "arrow" style="margin-left:20px;"><img src = "{%static '화살표.png'%}"> </div>
+    <div id = "arrow" style="margin-left:20px;"><a href="{%url 'home' %}"><img src = "{%static '화살표.png'%}"></a></div>
     <div id = "personalinfo_txt" style = "margin-right: 3%;color:#686262;font-size: 17px;font-family: 'Nanum Gothic';"><a href="{% url 'personalinfo' %}">개인정보처리방침</a></div>
 </div>
 <div>
