@@ -84,18 +84,34 @@
     height: 6vh;
     background: rgba(255, 255, 255, 0.62);
     box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+
         <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
-                <img src = "{%static 'yonsei.png' %}">
+            <a href="{%url 'home' %}"><img src = "{%static 'yonsei.png' %}"></a>
         </div>
+
         <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
             <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            
+            {% if request.session.user %}
+
+            <a href="{%url 'mypage' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+    
+            {% endif %}
+
+            {% if not request.session.user %}
+
             <a href="{%url 'login' %}">
             <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
             </a>
+            
+            {% endif %}
+
         </div>
         
     </div>
-    <div class = "bottombar">
+    <!-- <div class = "bottombar">
         <a href="{%url 'home' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
                 <img src = "{%static '홈.png' %}">
@@ -128,7 +144,7 @@
                 알림
             </div>
         </div>
-    </div>
+    </div> -->
     <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
         <div class = "firstbox">
             <div id = "intro_txt" ><a href="{%url 'detail_1' open.id %}">소개</a></div>
@@ -185,10 +201,20 @@
                     </div>
                 </li>
             </ul>
-        </div>    
-        <div class = "writebotton">
-            <a href="{%url 'schedule_making' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
-        </div>
+        </div>  
+        
+        {% if request.session.user %}
+            <div class = "writebotton">
+                <a href="{%url 'schedule_making' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+            </div>
+        {% endif %}
+
+        {% if not request.session.user %}
+            <div class = "writebotton">
+                <a href="{%url 'login' %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+            </div>
+        {% endif %}
+
     </div>
 </body>
 {% endblock %}
