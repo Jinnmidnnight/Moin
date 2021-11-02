@@ -1,16 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_7, Open_8, Open_9
+from account.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def select(request):
     return render(request, 'select.html')
 
+@login_required(login_url='login')
 def open_1(request):
     if request.method == "GET":
         return render(request, "open_1.html")
-    
+
     open = Open_1.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -27,12 +31,21 @@ def detail_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_1.html', {'open' : open})
 
+def like_1(request, open_id):
+    open = get_object_or_404(Open_1, id=open_id)
+    if request.user in open.like_users.all():
+        open.like_users.remove(request.user)
+    else:
+        open.like_users.add(request.user)
 
+
+@login_required(login_url='login')
 def open_2(request):
     if request.method == "GET":
         return render(request, "open_2.html")
-    
+
     open = Open_2.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -49,11 +62,13 @@ def detail_2(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'detail_2.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_3(request):
     if request.method == "GET":
         return render(request, "open_3.html")
-    
+
     open = Open_3.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -70,11 +85,13 @@ def detail_3(request, open_id):
     open = get_object_or_404(Open_3, pk = open_id)
     return render(request, 'detail_3.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_4(request):
     if request.method == "GET":
         return render(request, "open_4.html")
-    
+
     open = Open_4.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -91,11 +108,13 @@ def detail_4(request, open_id):
     open = get_object_or_404(Open_4, pk = open_id)
     return render(request, 'detail_4.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_5(request):
     if request.method == "GET":
         return render(request, "open_5.html")
-    
+
     open = Open_5.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -112,11 +131,13 @@ def detail_5(request, open_id):
     open = get_object_or_404(Open_5, pk = open_id)
     return render(request, 'detail_5.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_6(request):
     if request.method == "GET":
         return render(request, "open_6.html")
-    
+
     open = Open_6.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -133,11 +154,13 @@ def detail_6(request, open_id):
     open = get_object_or_404(Open_6, pk = open_id)
     return render(request, 'detail_6.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_7(request):
     if request.method == "GET":
         return render(request, "open_7.html")
-    
+
     open = Open_7.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -154,11 +177,13 @@ def detail_7(request, open_id):
     open = get_object_or_404(Open_7, pk = open_id)
     return render(request, 'detail_7.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_8(request):
     if request.method == "GET":
         return render(request, "open_8.html")
-    
+
     open = Open_8.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']
@@ -175,11 +200,13 @@ def detail_8(request, open_id):
     open = get_object_or_404(Open_8, pk = open_id)
     return render(request, 'detail_8.html', {'open' : open})
 
+@login_required(login_url='login')
 def open_9(request):
     if request.method == "GET":
         return render(request, "open_9.html")
-    
+
     open = Open_9.objects.create()
+    open.writer = request.user
     open.title = request.POST['title']
     open.intro = request.POST['intro']
     open.content = request.POST['content']

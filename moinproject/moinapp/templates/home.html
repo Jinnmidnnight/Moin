@@ -170,19 +170,17 @@
                 <button type="submit">Search</button>
             </form>
 
-            {% if request.session.user %}
-
-            <a href="{%url 'mypage' %}">
-            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
-            </a>
-    
-            {% endif %}
-
-            {% if not request.session.user %}
-
-            <a href="{%url 'login' %}">
-            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
-            </a>
+            
+            {% if user.is_authenticated %}
+                <a href="{%url 'mypage' %}">
+                <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+                </a>
+            
+            {% else %}
+            
+                <a href="{%url 'login' %}">
+                <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+                </a>
             
             {% endif %}
         </div>
@@ -207,7 +205,7 @@
             </div>
         </div>
         </a>
-        {% if request.session.user %}
+        {% if user.is_authenticated %}
 
             <a href="{%url 'mypage' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
@@ -219,10 +217,8 @@
                 </div>
             </div>
             </a>
-    
-        {% endif %}
 
-        {% if not request.session.user %}
+        {% else %}
 
             <a href="{%url 'login' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
@@ -237,7 +233,7 @@
             
         {% endif %}
         
-        {% if request.session.user %}
+        {% if user.is_authenticated %}
 
             <a href="{%url 'alert' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
@@ -248,10 +244,8 @@
                 </div>
             </div>
             </a>
-    
-        {% endif %}
 
-        {% if not request.session.user %}
+        {% else %}
 
             <a href="{%url 'login' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">

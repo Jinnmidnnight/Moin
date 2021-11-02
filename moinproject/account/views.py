@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import check_password
 from .models import User
 from .forms import RegisterForm
 import re
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     form = RegisterForm()
@@ -96,7 +97,8 @@ def login(request):
                     return render(request, 'login.html', errMsg)
 
                 else:
-                    request.session['user'] = user.id
+                    auth.login(request, user)
+                    # request.session['user'] = user.id
                 # login(request, user)
                     return redirect('home')
 
@@ -122,9 +124,13 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'home.html', {'error' : '계정 활성화 오류'})
 
+@login_required(login_url='login')
 def edit(request):
-    user_id = request.session.get('user')
-    user = User.objects.get(pk = user_id)
+    # user_id = request.session.get('user')
+    # user_id = request.user
+    # user = User.objects.get(pk = user_id)
+    # user = User.objects.all()
+    user = request.user
 
     if request.method == "POST":
 
