@@ -223,18 +223,19 @@
                     <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
                     <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
                 </div>
+
             </div>
             </li>
             </a>
             {% endfor %}
         </ul>
     </div>
-    <div class = "makebotton">
-        {% if request.session.user %}
+    <div class = "makebotton" style ="bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;">
+        {% if user.is_authenticated %}
             <a href="{%url 'select' %}"><img src = "{%static '개설.png'%}"></a>
-        {% endif %}
-
-        {% if not request.session.user %}
+        
+        {% else %}
+        
             <a href="{%url 'login' %}"><img src = "{%static '개설.png'%}"></a>
         {% endif %}
     </div>

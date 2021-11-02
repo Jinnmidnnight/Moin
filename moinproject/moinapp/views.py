@@ -4,10 +4,10 @@ from openapp.models import Open_1, Open_2, Open_3, Open_4, Open_5, Open_6, Open_
 # Create your views here.
 
 def home(request):
-    user_id = request.session.get('user')
-    if user_id:
-        user = User.objects.get(pk = user_id)
-        return render(request, 'home.html', {'user': user})
+    # user_id = request.session.get('user')
+    # if user_id:
+    #     user = User.objects.get(pk = user_id)
+    #     return render(request, 'home.html', {'user': user})
     return render(request, 'home.html')
 
 def search(request):
