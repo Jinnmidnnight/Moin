@@ -225,11 +225,11 @@
             </a>
         </div>
         <div class = "makebotton" style ="bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;">
-            {% if request.session.user %}
+            {% if user.is_authenticated %}
                 <a href="{%url 'select' %}"><img src = "{%static '개설.png'%}"></a>
-            {% endif %}
-
-            {% if not request.session.user %}
+            
+            {% else %}
+            
                 <a href="{%url 'login' %}"><img src = "{%static '개설.png'%}"></a>
             {% endif %}
         </div>
