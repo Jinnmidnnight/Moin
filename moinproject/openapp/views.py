@@ -222,3 +222,120 @@ def index_9(request):
 def detail_9(request, open_id):
     open = get_object_or_404(Open_9, pk = open_id)
     return render(request, 'detail_9.html', {'open' : open})
+
+@login_required(login_url='login')
+def likes_1(request, open_id):
+    like_b = get_object_or_404(Open_1, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_1', open_id)
+
+@login_required(login_url='login')
+def likes_2(request, open_id):
+    like_b = get_object_or_404(Open_2, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_2', open_id)
+
+@login_required(login_url='login')
+def likes_3(request, open_id):
+    like_b = get_object_or_404(Open_3, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_3', open_id)
+
+@login_required(login_url='login')
+def likes_4(request, open_id):
+    like_b = get_object_or_404(Open_4, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_4', open_id)
+
+@login_required(login_url='login')
+def likes_5(request, open_id):
+    like_b = get_object_or_404(Open_5, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_5', open_id)
+
+@login_required(login_url='login')
+def likes_6(request, open_id):
+    like_b = get_object_or_404(Open_6, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_6', open_id)
+
+@login_required(login_url='login')
+def likes_7(request, open_id):
+    like_b = get_object_or_404(Open_7, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_7', open_id)
+
+@login_required(login_url='login')
+def likes_8(request, open_id):
+    like_b = get_object_or_404(Open_8, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_8', open_id)
+
+@login_required(login_url='login')
+def likes_9(request, open_id):
+    like_b = get_object_or_404(Open_9, id=open_id)
+    if request.user in like_b.like.all():
+        like_b.like.remove(request.user)
+        like_b.like_count -= 1
+        like_b.save()
+    else:
+        like_b.like.add(request.user)
+        like_b.like_count += 1
+        like_b.save()
+    return redirect('detail_9', open_id)

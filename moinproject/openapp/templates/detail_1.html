@@ -355,6 +355,16 @@
 </div>
 </div>
 
+<a href="{% url 'likes_1' open.id %}">
+    {% if user in open.like.all %}
+    취소
+    {% else %}
+    좋아요
+    {% endif %}
+</a>
+
+좋아요 개수: {{ open.like_count }}개
+
 {% if user.is_authenticated %}
     <a href="{%url 'write_1' open.id %}">
     <div class = "writebotton">
