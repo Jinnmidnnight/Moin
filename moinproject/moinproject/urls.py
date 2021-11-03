@@ -25,4 +25,8 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('openapp/', include('openapp.urls')),
     path('writeapp/', include('writeapp.urls')),
+    path('scheduleapp/', include('scheduleapp.urls')),
+    path('mypageapp/', include('mypageapp.urls')),
+    path('joinapp/', include('joinapp.urls')),
+    path('search/', search, name="search"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

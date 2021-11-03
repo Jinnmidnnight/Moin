@@ -4,4 +4,4 @@ from .models import User
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', '성별', '생년월일']
+        fields = ['username', 'email', 'password1', 'password2', '성별', '생년월일', '자기소개', 'image']

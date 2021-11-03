@@ -1,23 +1,119 @@
 {% extends 'base.html' %}
 {% block content %}
+{%load static%}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family: Nanum Gothic;}
+    /* #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        align-self: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 15vh;
+        margin-bottom: 8vh;
+    } */
+    #logintxt{
+        font-family: Nanum Gothic;
+        font-size: 14px;
+        margin-top:1vh;
+        margin-bottom:1vh;
+    }
+    #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        
+    }
+    #jointhemoin{
+        font-family: 'MonteCarlo', cursive;
+        margin-left : 10px;
+    }
+    h3{
+        margin : 0px;
+        font-weight : medium;
+    }
+    h1{margin : 0px; font-weight : medium;}
+    #platform{
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size : 10px;
+    margin-left : 5px;    }
+
+</style>
 <div>
 
-    {% if error %}
-    {{ error }}
-    {% endif %}
-
-    <h1>Sign Up!</h1>
-    <form action="{% url 'signup' %}" method="post">
-
-        {% csrf_token %}
-        <p>연세 메일을 입력해주세요: {{form.email}}</p>
-        <p>비밀번호를 설정해주세요: {{form.password1}}</p>
-        <p>비밀번호를 확인해주세요: {{form.password2}}</p>
-        <p>이름을 입력해주세요: {{form.username}}</p>
-        <p>성별을 설정해주세요: {{form.성별}}</p>
-        <p>생년월일을 설정해주세요: (ex: 2000-01-01) {{form.생년월일}}</p>
-        <button type='submit'>Sign Up</button>
-        
-    </form>
+    
+    <div class = "logobox" style = "display : flex;flex-direction : column;justify-content : center;width : 100%;height : 30vh;vertical-align : baseline;text-align : center;margin-top: 5vh;;">
+        <div id="biglogo" style = "margin-top : 10px;margin-right : 5px;"><img src = "{%static 'biglogo.png' %}"></div>
+        <div id = "moin"> 
+            <h1>moin</h1>
+        </div>
+        <div id = "jointhemoin">
+            <h3>join the moin</h3>
+        </div>
+        <div id = "platform">
+            <h3>대학생을 위한 소모임 플랫폼</h3>
+        </div>
+    </div>
+    <div class ="error" style = "text-align: center; font-family:'Gowun Dodum';font-size:15px;font-weight: bold;">
+        {% if error %}
+        {{ error }}
+        {% endif %}
+    </div>
+    <div class = "all" style = "padding-left:23%;display:flex;flex-direction: column;justify-content: center;">
+        <form action="{% url 'signup' %}" method="post">
+            
+            {% csrf_token %}
+            <div id = "logintxt">
+            아이디(학교 메일)
+            </div>
+            <div class = "loginbutton">
+            <div id = "loginbutton">    
+                <input type="email" name="email" maxlength="254" id="id_email" style = "border-radius: 5px; width:195px;height:3vh;border: 2px solid #707070;">
+            </div>
+            <div id = "logintxt">
+            비밀번호 
+            </div>
+            <div id = "loginbutton1">
+                <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" style = "border-radius: 5px; width:195px;height:3vh;border: 2px solid #707070;">
+            </div>
+            <div id = "logintxt">
+            비밀번호 재확인 
+            </div>
+            <div id = "loginbutton">
+                <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" style = "border-radius: 5px; width:195px;height:3vh;border: 2px solid #707070;">
+            </div>
+            <div id = "logintxt">
+            이름
+            </div>
+            <div id = "loginbutton">
+                <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" style = "border-radius: 5px; width:195px;height:3vh;border: 2px solid #707070;">
+            </div>
+            <div id = "logintxt">
+            성별
+            </div>
+            <div id = "loginbutton">
+                <select name="성별" required="" id="id_성별"  style = "border-radius: 5px; width:205px;height:4vh;border: 2px solid #707070;">
+                    <option value="" selected="">선택해주세요.</option>
+                  
+                    <option value="0">남성</option>
+                  
+                    <option value="1">여성</option>
+                  
+                  </select>
+            </div>
+            <div id = "logintxt">
+            생년월일(ex: 2000-01-01) 
+            </div>
+            <div id = "loginbutton">
+                <input type="text" name="생년월일" required="" id="id_생년월일" style = "border-radius: 5px; width:195px;height:3vh;border: 2px solid #707070;">
+            </div>
+            <button type='submit' style="margin-left:20%;margin-top:2vh;width: 80px;height:4.5vh;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">가입완료</button>
+            
+        </form>
+    </div>
 </div>
 {% endblock %}

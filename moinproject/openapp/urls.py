@@ -4,7 +4,6 @@ from .views import *
 
 urlpatterns = [
     path('select', select, name="select"),
-    path('schedule', schedule, name="schedule"),
     path('open_1', open_1, name="open_1"),
     path('index_1', index_1, name="index_1"),
     path('detail_1/<str:open_id>', detail_1, name="detail_1"),
@@ -32,5 +31,18 @@ urlpatterns = [
     path('open_9', open_9, name="open_9"),
     path('index_9', index_9, name="index_9"),
     path('detail_9/<str:open_id>', detail_9, name="detail_9"),
+
+    path('like_1/<str:open_id>/', likes_1, name="likes_1"),
+    path('like_2/<str:open_id>/', likes_2, name="likes_2"),
+    path('like_3/<str:open_id>/', likes_3, name="likes_3"),
+    path('like_4/<str:open_id>/', likes_4, name="likes_4"),
+    path('like_5/<str:open_id>/', likes_5, name="likes_5"),
+    path('like_6/<str:open_id>/', likes_6, name="likes_6"),
+    path('like_7/<str:open_id>/', likes_7, name="likes_7"),
+    path('like_8/<str:open_id>/', likes_8, name="likes_8"),
+    path('like_9/<str:open_id>/', likes_9, name="likes_9"),
+
+
+
 ]
 

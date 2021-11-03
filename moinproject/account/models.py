@@ -9,7 +9,10 @@ class User(AbstractUser):
         (1, '여성')
     )
 
-    성별 = models.SmallIntegerField( choices = GENDER_CHOICES, null = True )
+    성별 = models.SmallIntegerField(choices = GENDER_CHOICES, null=True)
 
-    생년월일 = models.DateField(null=True) 
-    # 생년월일 = models.DateField(widget = widgets.SelectDateWidget)
+    생년월일 = models.DateField(null=True)
+
+    자기소개 = models.TextField(null=True)
+
+    image = models.ImageField(blank = True)

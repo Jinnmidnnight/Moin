@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+
+
+    .bottombar{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0px;
+        left:0px;
+        position:fixed;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        zoom: 1;
+        z-index: 1;
+        line-height: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height:6.5vh;
+        background: rgba(255, 255, 255);
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+    }
+    #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+    .secondbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 16px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+
+    }
+    .categoryicon{
+        opacity: .7;
+        padding: 6px 2.8vw;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        color: #000;
+        font-weight: 200;
+        padding-left: 20px;
+        padding-right : 20px;
+    }
+    .fourthbox{
+        display: flex;
+        flex-direction:row;
+        justify-content:space-around;
+
+
+    }
+    #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+    .firstbox{
+        height: 5.5vh;
+        background: rgba(0, 0, 0, 0.045);
+        justify-content: space-between;
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        margin-top: 6vh;
+
+    }
+    #intro_txt{
+        color :#F6B955; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-left : 22.5%;}
+    #date_txt{
+        color :black ; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-right : 22.5%;}
+
+    #yellow_line{
+        background : #F6B955; height:0.3vh; width:50%;z-index: 0;}
+    .membersbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 0px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        padding-left : 0px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+        
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+    .mointext{
+        width:90%;
+        height: 15vh;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        background: white;
+        margin-left: 5%;
+        margin-top: 1.5vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .moin1box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: auto;
+        margin-top: 10px;
+        
+    }
+    .moin2box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width:70%;
+        margin-left:16.4%;
+        margin-top: 1vh;
+        margin-right:5%;
+        overflow:hidden;
+    }
+    .moin3box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top:auto;
+        margin-bottom: 4px;
+    }
+    a { text-decoration:none; color:inherit }
+    a:active {text-decoration: none; color: #f6b955;}
+    
+    input[id="cb1"] + label {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border: 2px solid #bcbcbc;
+				cursor: pointer;
+			}
+	input[id="cb1"]:checked + label {
+				background-color: #666666;
+			}
+	input[id="cb1"] {
+				display: none;
+			}
+</style>
+<body>
+    <div class="navbar" 
+    style = "
+    top:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 6vh;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
+                <img src = "{%static 'yonsei.png' %}">
+        </div>
+        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
+            <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+        </div>
+        
+    </div>
+    <div class = "bottombar">
+        <a href="{%url 'home' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '홈.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    홈
+                </div>
+            </div>
+        </a>
+        <a href="{%url 'index_1' %}">
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '소모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                소모임
+            </div>
+        </div>
+        </a>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+            <img src = "{%static '내모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                내 모임
+            </div>
+        </div>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '알림.png' %}">
+            <br>
+            <div id="bottom_txt">
+                알림
+            </div>
+        </div>
+    </div>
+<div class="everything" style="position:relative;">
+        <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
+            <div class = "firstbox">
+                <div id = "intro_txt" >소개</div>
+                <div id = "date_txt"><a href="{%url 'schedule_1' open.id %}">일정</a></div>
+            </div>
+        <div id = "yellow_line"></div>
+        <div class = "detailimg">
+            {% if open.image %}        
+            <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 22.5vh; object-fit:cover;position:relative;">
+            {% endif %}
+            <div class="blackbox" style = "width:100%; height: 22.5vh; background: rgba(0, 0, 0, 0.35);position:absolute;top:6vh;display:flex;align-items: center;flex-direction: column;">
+                <div id= "title" style = "font-size: 27px;font-weight: bold;font-family: Nanum-Gothic;color:white;margin-top:7vh;">
+                    {{open.title}}
+                </div>
+                <div id = "intro" style= "font-size: 15px;font-weight: bold;font-family: Nanum Gothic;color:white;margin-top:1vh;">
+                    {{open.intro}}
+                </div>
+                <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;margin-top:4.5vh;;margin-left: 300px;
+                    font-family: Nanum Gothic;color:white;">관리하기</button></div>
+            </div>
+        </div>
+        <div class = "contentwrap" style = "width:90%;margin-left:5%;padding-top:1vh;padding-bottom:1vh;">
+            <div class = "content" style = "white-space:pre-line;font-size:13px;font-family: Nanum Gothic;vertical-align: baseline;">
+                {{open.content}}
+            </div>
+            <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                font-family: Nanum Gothic;color:white;;margin-left: 35.5vh;">관리하기</button></div>
+        </div>
+
+        <div class = "members">
+            <div class = "memberstitle" style = "display:flex;flex-direction:row;">
+                <div id = "yellowmember" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
+                <div id = "membertxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">멤버</div>
+                <div id = "membernumber" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">({{open.number}})</div>
+                <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                    font-family: Nanum Gothic;color:white;;margin-left:13px;">관리하기</button></div>
+            </div>
+        </div>
+            
+        <div class = "membersbox">
+            <ul style="list-style: none;margin:0px;padding:0px;">
+                <li style = "float: left;">
+                    <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
+                        <div id = "memberprofile" style = "display:flex;justify-content: center;">
+                            {% if open.image %}        
+                            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% endif %}
+                        </div>
+                        <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class = "moinwritings" style = "margin-top: 20px;">
+            <div class = "mointexttitle" style = "display:flex;flex-direction:row;">
+                <div id = "yellowmoin" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
+                <div id = "mointitletxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">글</div>
+                <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                    font-family: Nanum Gothic;color:white;;margin-left: 15px;">관리하기</button></div>
+            </div>
+            
+            <ul style="list-style: none;margin:0px;padding:0px;">
+                {% for write in open.writes.all %}
+                <a href="{%url 'comment_1' write.id %}">
+                <li>
+                    <div class = "mointext">
+                        <div class = "moin1box" style = "position:relative;">
+                            <div class = "profile" style = "display: flex;flex-direction:row;">
+                                <div id = "writerprofile" style="margin-left:10px;">
+                                    {% if open.image %}        
+                                    <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                                    {% endif %}
+                                </div>
+                                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
+                            </div>
+                            <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{write.created_at}}</div>
+                        </div>
+                        <div class = "moin2box" style = "position:absolute;">
+                            <div class = "contenttxt" style = "height:5.4vh;overflow:hidden ;width:210px;text-overflow: ellipsis;">
+                                <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 13px;font-weight: bold;margin-bottom:5px;">{{write.제목}}</div>
+                                <div id = "content" style = "font-family:Nanum Gothic;font-size: 11px;width:100%">{{write.내용}}</div>
+                            </div>
+                            <div class = "contentimg">
+                                {% if write.사진 %}        
+                                    <img src="{{write.사진.url}}" alt="" style = "width: 60px; height: 7vh; object-fit:cover;">
+                                {%else%}
+                                    <img src = "{%static '사진파일.png' %}"style = "width: 60px; height: 7vh;">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class = "moin3box">
+                            <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
+                                <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
+                                    <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
+                                    <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 1</div>
+                                </div>
+                                <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
+                                    <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
+                                    <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 2</div>
+                                </div>
+                            </div>
+                            <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
+                        </div>
+                    </div>
+                </li>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class = "blank" style = "display:flex;height:5vh;"></div>
+    </div>
+
+    <div class = "writebotton">
+        <a href="{%url 'write_1' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+    </div>
+</div>
+
+
+<div class="approvalbox" style="position:absolute;background:rgba(0, 0, 0, 0.25);width:100%;height:120vh;;top:0px;">
+    <div class="membermanagebox" style="width:80%;margin-left: 7%;padding:1.5vh;background: white;margin-top: 45vh;;">
+        <div id ="membermanagetxt" style="font-size:17px;font-weight: bold;margin-top: 1vh;margin-bottom: 0.5vh;">강퇴하기</div>
+        <div class = "membersbox">
+            <ul style="list-style: none;margin:0px;padding:0px;">
+                <li>
+                    <div class = "memberimg1" style = "display:flex; flex-direction: row;align-items:center;margin-bottom:1vh;">
+                        <div id = "memberprofile" style = "display:flex;justify-content: center;">
+                            {% if open.image %}        
+                            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% endif %}
+                        </div>
+                        <div class="membercontent" style="display:flex;flex-direction:column;margin-left:10px;">
+                            <div id ="membername" style = "font-size:14px;font-weight:bold;font-family: Nanum Gothic;margin-right:auto;">조윤</div>
+                            <div id ="introduce" style = "font-size:13px;font-family: Nanum Gothic;">안녕하세요! 잘 부탁드립니다~~</div>
+                        </div>
+                        <div id="checkboxbox" style="margin-top:1vh;margin-left:17%;">
+                            <input type="checkbox" id="cb1">
+                            <label for="cb1"></label>
+                        </div>
+                    </div>
+                    <div class = "memberimg1" style = "display:flex; flex-direction: row;align-items:center;margin-bottom:1vh;">
+                        <div id = "memberprofile" style = "display:flex;justify-content: center;">
+                            {% if open.image %}        
+                            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% endif %}
+                        </div>
+                        <div class="membercontent" style="display:flex;flex-direction:column;margin-left:10px;">
+                            <div id ="membername" style = "font-size:14px;font-weight:bold;font-family: Nanum Gothic;margin-right:auto;">조윤</div>
+                            <div id ="introduce" style = "font-size:13px;font-family: Nanum Gothic;">안녕하세요! 잘 부탁드립니다~~</div>
+                        </div>
+                        <div id="checkboxbox" style="margin-top:1vh;margin-left:17%;">
+                            <input type="checkbox" id="cb1">
+                            <label for="cb1"></label>
+                        </div>
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+        <a href="{%url 'update_1' open.id%}">
+        <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+            border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+            font-family: Nanum Gothic;color:white;;margin-left: 40%;">강퇴하기</button></div>
+        </a>
+    </div>
+</div>
+
+
+<div class = "bottombar">
+    <a href="{%url 'home' %}">
+    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+        <img src = "{%static '홈.png' %}">
+        <br>
+        <div id="bottom_txt">
+            홈
+        </div>
+    </div>
+    </a>
+    <a href="{%url 'index_1'%}">
+    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+        <img src = "{%static '소모임.png' %}">
+        <br>
+        <div id="bottom_txt">
+            소모임
+        </div>
+    </div>
+    </a>
+    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+        <img src = "{%static '내모임.png' %}">
+        <br>
+        <div id="bottom_txt">
+            내 모임
+        </div>
+    </div>
+    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+        <img src = "{%static '알림.png' %}">
+        <br>
+        <div id="bottom_txt">
+            알림
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

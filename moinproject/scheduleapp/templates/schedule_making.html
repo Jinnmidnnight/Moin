@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+
+    .bottombar{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0px;
+        left:0px;
+        position:fixed;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        zoom: 1;
+        z-index: 1;
+        line-height: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 7vh;
+        background: rgba(255, 255, 255);
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+    }
+    #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+    .firstbox{
+        height: 5.5vh;
+        background: rgba(0, 0, 0, 0.045);
+        justify-content: space-between;
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+
+    }
+    #intro_txt{
+        color :black; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-left : 22.5%;}
+    #date_txt{
+        color :#F6B955 ; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-right : 22.5%;}
+
+    #yellow_line{
+        background : #F6B955; height:0.3vh; width:50%;margin-left:auto;}
+    #noticetitle{
+        font-size:15px; font-family: Nanum Gothic; font-weight: bold;margin-bottom: 1vh;
+    }
+    .noticedetail{display:flex; flex-direction: row;margin-top:1vh;}
+    #yellownotice{color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 13px;font-weight: bold;
+
+    }
+    #notice{font-family: 'Nanum Gothic';font-size: 13px;font-weight: bold;margin-left:0.5vh;}
+    .meetingfirstbox{
+        color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 15px;font-weight: bold;
+        display:Flex;flex-direction: row;
+    }
+    .meetingsecondbox{
+        display: flex;flex-direction: row;justify-content: space-around;
+    }
+    .meetingdate{
+        display:flex;flex-direction: column;justify-content: center;align-items: center;
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+    </style>
+<body>
+    <div class="navbar" 
+    style = "
+    top:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 6vh;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
+                <img src = "{%static 'yonsei.png' %}">
+        </div>
+        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
+            <div id="1"> <a href=""><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top : 2px;"> </a> </div>
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+        </div>
+        
+    </div>
+    <div class = "bottombar">
+        <a href="{%url 'home' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '홈.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    홈
+                </div>
+            </div>
+        </a>
+        <a href="{%url 'index_1' %}">
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '소모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                소모임
+            </div>
+        </div>
+        </a>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;">
+            <img src = "{%static '내모임.png' %}">
+            <br>
+            <div id="bottom_txt">
+                내 모임
+            </div>
+        </div>
+        <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;; margin-right:48px;margin-top:8px;margin-bottom:3px;">
+            <img src = "{%static '알림.png' %}">
+            <br>
+            <div id="bottom_txt">
+                알림
+            </div>
+        </div>
+    </div>
+<div class="allbox" style="position:relative;">
+        <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
+            <div class = "firstbox">
+                <div id = "intro_txt" ><a href="{%url 'detail_1' open.id %}">소개</a></div>
+                <div id = "date_txt">일정</div>
+            </div>
+                <div id = "yellow_line"></div>
+            <div class = "noticebox" style = "display:flex;flex-direction:column;margin-left:5%;margin-top:2vh;">
+                <div id = "noticetitle">공지사항</div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">신촌 새내기들 운영 방침입니다.</div>
+                </div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">가입 시 자기소개 작성 양식 (3일 이내 미작성 시 퇴장)</div>
+                </div>
+                <div class = "noticedetail">
+                    <div id = "yellownotice">[공지]</div>
+                    <div id = "notice">가입 요강 및 음주 방침</div>
+                </div>
+            </div>
+            <div class = "regularmeetingbox" style = "display:flex;flex-direction:column;margin-top:2vh;">
+                <div id = "noticetitle" style = "margin-left:5%;">모임정모</div>
+                <ul style="list-style: none;margin:0px;padding:0px;">
+                    <li>
+                        <div class = "regularmeeting" style ="box-shadow:0px 3px 6px 1px rgba(0, 0, 0, 0.16);height:15vh;display:flex;flex-direction:column;justify-content: space-around;
+                        width:100%;margin-top:2vh;">
+                            <div class = "meetingfirstbox" style = "margin-left:3vh;margin-top:1.2vh;">
+                                <div id = "meetingtitle">9월 5일 2시쯤! 낮술할 사람??</div>
+                                <div id = "meetingnumber">(3/4명)</div>
+                            </div>
+                            <div class = "meetingsecondbox" style = "z-index: -1;margin-left:1vh;margin-bottom: 1vh;">
+                                <div class = "meetingdate" style = "width:60px;height:55px;border-radius: 10px;background-color: white;border: 1.5px solid #707070;">
+                                    <div id = "meetingday" style = "font-size: 12px;">일요일</div>
+                                    <div id = "meetingwhen" style = "font-size:17px;font-weight: bold;margin-top: 3.5px;">5일</div>
+                                </div>
+                                <div class = "meetingdetail" style = "font-size: 13px; display:flex;flex-direction: column; justify-content: center;;">
+                                    <div id = "meetingtime">
+                                        📅 9월 5일 (일) 오후 14:00
+                                    </div>
+                                    <div id = "meetingplace">
+                                        🗺 연대포(신촌)
+                                    </div>
+                                    <div id = "meetingcost">
+                                        💸 약 12000 ~ 20000
+                                    </div>
+                                </div>
+                                <div class= "meetingshare" style = "font-size: 13px;color:#848484;text-decoration: underline;display:flex;text-align: center;margin-top:1.5vh;">
+                                    친구에게
+                                    <br>
+                                    공유하기
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>    
+            <div class = "writebotton">
+                <a href="{%url 'schedule_make' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+            </div>
+        </div>
+</div>
+<div class="approvalbox" style="top:0px;position:absolute;background:rgba(0, 0, 0, 0.25);width:100%;height:120vh;">
+    <div class="approval" style="top:40vh;height:26vh;width:85%;background:white;position:absolute;align-items: center;margin-left: 7.5%;;">
+        <div class="writegroupname">
+            <textarea placeholder="모임명(최대20자)" name="title" cols="40" rows="10" required="" id="id_내용" style = "height: 4vh;width:98.3%;display:flex;;background: white;border: 1px solid #d3d3d3;font-size: 14px;color: #707070;font-family: Nanum Gothic;line-height: 30px;"></textarea>
+        </div>
+        <div class="writedetails" style="margin-top: 0.5vh;display:flex;flex-direction: row;justify-content: center;">
+            <div class="writedate" style="border: 1px solid #707070;border-radius: 10px;height:11vh;width:45%;display:flex;flex-direction: column;justify-content: center;padding-left:3px;margin-right: 20px;margin-left: 20px;margin-top:15px;;">
+                <div id="day">
+                    <textarea placeholder="요일을 써주세요" name="내용" cols="40" rows="10" required="" id="id_내용" style = "background: transparent;border:0px;height:4vh;width:90%;display:flex;;background: white;font-size: 11px;color: #707070;font-family: Nanum Gothic;line-height: 30px;text-align: center;"></textarea>
+                </div>
+                <div id ="exactdate">
+                    <textarea placeholder="날짜" name="내용" cols="40" rows="10" required="" id="id_내용" style = "font-weight:bold;background: transparent;border:0px;height: 5vh;width:90%;display:flex;;background: white;font-size: 16px;color: #707070;font-family: Nanum Gothic;line-height: 30px;text-align: center;"></textarea>
+                </div>
+            </div>
+            <div class="writealldetails" style="align-items:center;margin-top: 9px;;">
+                <div class ="datetxt" style="display:flex;flex-direction: row;align-items: center;">
+                    <div id ="img" style="margin-bottom:3px;margin-right:3px;">📅 </div>
+                    <div id ="datetxt_">
+                        <textarea placeholder=" 날짜 (요일) 시간" name="date" cols="40" rows="10" required="" id="id_내용" style = "height: 4vh;width:80%;display:flex;;background: white;border: 0px;font-size: 14px;color: #707070;font-family: Nanum Gothic;line-height: 30px;"></textarea>
+                    </div>
+                </div>
+                <div class="locationtxt" style="display:flex;flex-direction: row;align-items: center;">
+                    <div id ="img" style="margin-bottom:3px;margin-right:3px;">🗺 </div>
+                    <div id ="locationtxt_">
+                        <textarea placeholder=" 정확한 위치" name="location" cols="40" rows="10" required="" id="id_내용" style = "height: 4vh;width:80%;display:flex;;background: white;border:0px;font-size: 14px;color: #707070;font-family: Nanum Gothic;line-height: 30px;"></textarea>
+                    </div>
+                </div>
+                <div class="costtxt" style="display:flex;flex-direction: row;align-items: center;">
+                    <div id ="img" style="margin-bottom:3px;margin-right:3px;">💸</div>
+                    <div id ="costtxt_">
+                        <textarea placeholder=" 예상금액" name="price" cols="40" rows="10" required="" id="id_내용" style = "height: 4vh;width:80%;display:flex;;background: white;border:0px;font-size: 14px;color: #707070;font-family: Nanum Gothic;line-height: 30px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="{%url 'schedule_make' open.id%}">
+        <button type="submit" style="margin-top: 6px;;margin-left:32%;width: 115px;height: 30px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">작성하기</button>
+        </a>
+    </div>
+    
+</div>
+
+</body>
+{% endblock %}
