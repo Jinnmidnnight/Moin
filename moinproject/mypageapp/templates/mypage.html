@@ -104,7 +104,7 @@
     <div class="profileimg">
         <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
             {% if user.image %}
-                <img src="{{user.image.url}}">
+                <img src="{{user.image.url}}" style="width:31px;height:31px;object-fit: cover;">
             {% else %}
                 <img src="{% static 'personid.png' %}">
             {% endif %}
