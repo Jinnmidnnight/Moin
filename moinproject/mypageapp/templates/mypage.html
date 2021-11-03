@@ -134,7 +134,7 @@
                 {% endif %}
             </div>
             <div id="birth" style="font-size: 12px;margin-right: 45%;">{{user.생년월일}}</div>
-            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;">회원탈퇴</div>
+            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;"><a href="{%url 'member_del'%}">회원탈퇴</a></div>
         </div>
         <div class="profilebox3" style="display:flex;flex-direction: row;justify-content: space-around;font-size: 12px;padding:5px;">
             {% if user.자기소개 != None %}

@@ -150,3 +150,12 @@ def edit(request):
 
 def personalinfo(request):
     return render(request, 'personalinfo.html')
+
+def member_del(request):
+	if request.method == "POST":
+		pw_del = request.POST["pw_del"]
+		user = request.user
+		if check_password(pw_del, user.password):
+			user.delete()
+			return redirect('/')
+	return render(request, 'member_del.html')
