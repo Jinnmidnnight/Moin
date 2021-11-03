@@ -6,6 +6,7 @@ from django.conf import settings
 urlpatterns = [
     path('mypage/', mypage, name="mypage"),
     path('manage_1/<str:open_id>', manage_1, name="manage_1"),
+    path('manage_2/<str:open_id>', manage_2, name="manage_2"),
     path('deport_1/<str:open_id>', deport_1, name="deport_1"),
     path('update_1/<str:open_id>', update_1, name="update_1"),
     path('delete_1/<str:open_id>', delete_1, name="delete_1"),
