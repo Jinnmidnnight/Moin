@@ -368,38 +368,39 @@
                 </div>
 
                 <br>
-
-                <a href="{%url 'detail_1' hot_open_11.id%}">
-                    제목: {{hot_open_11.title}}<br>
-                    내용: {{hot_open_11.intro}}<br>
-                    좋아요: {{hot_open_11.like_count}}개<br>
-                </a>
-
+                {% if hot_open_11 %}
+                    <a href="{%url 'detail_1' hot_open_11.id%}">
+                        제목: {{hot_open_11.title}}<br>
+                        내용: {{hot_open_11.intro}}<br>
+                        좋아요: {{hot_open_11.like_count}}개<br>
+                    </a>
+                {% endif %}
                 <br>
-
-                <a href="{%url 'detail_1' hot_open_12.id%}">
-                    제목: {{hot_open_12.title}}<br>
-                    내용: {{hot_open_12.intro}}<br>
-                    좋아요: {{hot_open_12.like_count}}개<br>
-                </a>
-
+                {% if hot_open_12 %}
+                    <a href="{%url 'detail_1' hot_open_12.id%}">
+                        제목: {{hot_open_12.title}}<br>
+                        내용: {{hot_open_12.intro}}<br>
+                        좋아요: {{hot_open_12.like_count}}개<br>
+                    </a>
+                {% endif %}
                 <br>
-
-                <a href="{%url 'detail_1' hot_open_13.id%}">
-                    제목: {{hot_open_13.title}}<br>
-                    내용: {{hot_open_13.intro}}<br>
-                    좋아요: {{hot_open_13.like_count}}개<br>
-                </a>
-
+                {% if hot_open_13 %}
+                    <a href="{%url 'detail_1' hot_open_13.id%}">
+                        제목: {{hot_open_13.title}}<br>
+                        내용: {{hot_open_13.intro}}<br>
+                        좋아요: {{hot_open_13.like_count}}개<br>
+                    </a>
+                {% endif %}
                 <br>
-
-                <a href="{%url 'detail_1' hot_open_14.id%}">
-                    제목: {{hot_open_14.title}}<br>
-                    내용: {{hot_open_14.intro}}<br>
-                    좋아요: {{hot_open_14.like_count}}개<br>
-                </a>
-                
+                {% if hot_open_14 %}
+                    <a href="{%url 'detail_1' hot_open_14.id%}">
+                        제목: {{hot_open_14.title}}<br>
+                        내용: {{hot_open_14.intro}}<br>
+                        좋아요: {{hot_open_14.like_count}}개<br>
+                    </a>
+                {% endif %}           
                 <br>
+                            
                
                 <!-- <div class = "latestcontent">
                     <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:5px;width:43%;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
