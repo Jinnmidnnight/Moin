@@ -8,7 +8,59 @@ def home(request):
     # if user_id:
     #     user = User.objects.get(pk = user_id)
     #     return render(request, 'home.html', {'user': user})
-    return render(request, 'home.html')
+
+    open_index_1 = Open_1.objects.all()
+    list_open = []
+    for open in open_index_1:
+        list_open.append(open)
+
+    list_like = []
+    for open in open_index_1:
+        list_like.append(open.like_count)
+
+    num = len(list_open)
+
+    if num == 0:
+        return render(request, 'home.html')
+
+    index = list_like.index(max(list_like))
+    hot_open_11 = list_open[index]
+
+    del list_open[index]
+    del list_like[index]
+
+    if num == 1:
+
+        return render(request, 'home.html', {'hot_open_11' : hot_open_11})
+    
+
+    index = list_like.index(max(list_like))
+    hot_open_12 = list_open[index]
+
+    del list_open[index]
+    del list_like[index]
+
+    if num == 2:
+
+        return render(request, 'home.html', {'hot_open_11' : hot_open_11, 'hot_open_12' : hot_open_12})
+
+
+    index = list_like.index(max(list_like))
+    hot_open_13 = list_open[index]
+
+    del list_open[index]
+    del list_like[index]
+
+
+    if num == 3:
+
+        return render(request, 'home.html', {'hot_open_11' : hot_open_11, 'hot_open_12' : hot_open_12, 'hot_open_13' : hot_open_13})
+
+    index = list_like.index(max(list_like))
+    hot_open_14 = list_open[index]
+
+    return render(request, 'home.html', {'hot_open_11' : hot_open_11, 
+    'hot_open_12' : hot_open_12, 'hot_open_13' : hot_open_13, 'hot_open_14' : hot_open_14})
 
 def search(request):
     query = request.GET['query']
@@ -24,3 +76,4 @@ def search(request):
         open9 = Open_9.objects.filter(title__contains=query)      
     return render(request, 'search.html', { 'open1': open1, 'open2': open2, 'open3': open3, 'open4': open4, 'open5': open5, 'open6': open6, 'open7': open7,
     'open8': open8, 'open9': open9 })
+
