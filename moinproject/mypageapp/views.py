@@ -34,6 +34,10 @@ def manage_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
     return render(request, 'manage_1.html', {'open' : open})
 
+def manage_2(request, open_id):
+    open = get_object_or_404(Open_1, pk = open_id)
+    return render(request, 'manage_2.html', {'open' : open})
+
 def update_1(request, open_id):
     if request.method == "GET":
         open = get_object_or_404(Open_1, pk = open_id)

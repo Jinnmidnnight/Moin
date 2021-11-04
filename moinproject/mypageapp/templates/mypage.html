@@ -104,7 +104,7 @@
     <div class="profileimg">
         <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
             {% if user.image %}
-                <img src="{{user.image.url}}">
+                <img src="{{user.image.url}}" style="width:31px;height:31px;object-fit: cover;">
             {% else %}
                 <img src="{% static 'personid.png' %}">
             {% endif %}
@@ -124,7 +124,7 @@
                 </button>
             </div>
         </div>
-        <div class="profilebox2" style="display:flex;flex-direction: row;justify-content: space-around;color: #8d8d8d;">
+        <div class="profilebox2" style="display:flex;flex-direction: row;justify-content: space-around;color: #8d8d8d;align-items:center;height:2vh;">
             <div id="gender" style="font-size: 12px;;">
                 {% if user.성별 == 0 %}
                     <p>남성</p>
@@ -134,7 +134,7 @@
                 {% endif %}
             </div>
             <div id="birth" style="font-size: 12px;margin-right: 45%;">{{user.생년월일}}</div>
-            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;">회원탈퇴</div>
+            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;"><a href="{%url 'member_del'%}">회원탈퇴</a></div>
         </div>
         <div class="profilebox3" style="display:flex;flex-direction: row;justify-content: space-around;font-size: 12px;padding:5px;">
             {% if user.자기소개 != None %}
