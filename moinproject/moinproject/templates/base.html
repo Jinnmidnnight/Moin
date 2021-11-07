@@ -69,7 +69,7 @@
             <a href="{%url 'mypage' %}">
             <div id="2" >
                 {% if user.image %}
-                <img src="{{user.image.url}}" style = "width: 25px; height: 25px; object-fit:cover;margin-right : 15px;margin-top : 2px;">
+                <img src="{{user.image.url}}" style = "width: 25px; height: 25px; border-radius:100px;object-fit:cover;margin-right : 15px;margin-top : 2px;">
                 {% else %}
                     <img src="{% static 'personid.png' %}" style = "width: 25px; height:25px;margin-right : 15px;margin-top : 2px;">
                 {% endif %}

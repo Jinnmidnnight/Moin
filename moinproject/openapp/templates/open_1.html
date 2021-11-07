@@ -6,7 +6,7 @@
 <form method="POST" action="{%url 'open_1' %}" enctype="multipart/form-data" style="margin-top: 70px;">
     {% csrf_token %}
     <div class = "firstbox" style = "margin-top:10vh;margin-bottom:2vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
-        <div id = "arrow" style="margin-left:20px;"><img src = "{%static '화살표.png'%}"> </div>
+        <div id = "arrow" style="margin-left:20px;"><a href="{{ request.META.HTTP_REFERER }}"><img src = "{%static '화살표.png'%}"></a></div>
         <div id = "make_txt" style = "margin-right: 37%;font-weight: bold;font-size: 20px;font-family: 'Nanum Gothic';">모임 개설</div>
     </div>
     <div class = "groupname" style = "display:flex; flex-direction: row;justify-content: space-around;align-items: center;">

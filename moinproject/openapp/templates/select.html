@@ -6,7 +6,7 @@
     #category_txt{font-size: 13.5px;font-family:Nanum Gothic;text-align:center;margin-right:0.8px;}
 </style>
 <div class = "firstbox" style = "margin-top:12vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; ">
-    <div id = "arrow" style="margin-left:20px;"><a href="{%url 'home' %}"><img src = "{%static '화살표.png'%}"></a></div>
+    <div id = "arrow" style="margin-left:20px;"><a href="{{ request.META.HTTP_REFERER }}"><img src = "{%static '화살표.png'%}"></a></div>
     <div id = "choose_txt" style = "margin-right: 29%;font-weight: bold;font-size: 17px;font-family: 'Nanum Gothic';">개설 카테고리 선택</div>
 </div>
 <div class = "secondbox" style="display:flex; flex-direction:column;justify-content: space-around; height: 40vh;padding-left:20px;padding-right:20px;">

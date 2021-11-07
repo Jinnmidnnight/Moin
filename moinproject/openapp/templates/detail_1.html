@@ -170,7 +170,7 @@
     a:active {text-decoration: none; color: #f6b955;}
 </style>
 <body>
-    <div class="navbar" 
+    <!-- <div class="navbar" 
     style = "
     top:0px;
     display: flex;
@@ -204,7 +204,7 @@
 
         </div>
         
-    </div>
+    </div> -->
     <div class = "bottombar">
         <a href="{%url 'home' %}">
             <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
@@ -256,6 +256,18 @@
             <div id = "intro" style= "font-size: 15px;font-weight: bold;font-family: Nanum Gothic;color:white;margin-top:1vh;">
                 {{open.intro}}
             </div>
+        </div>
+        <div id = "arrow" style="margin-left:15px;position:absolute;top:13vh;"><a href="{% url 'index_1' %}"><img src = "{%static '하얀화살표.png'%}"></a></div>
+        <div class="like" style="right:15px;;position:absolute;top:13vh;display:flex;flex-direction:row;">
+            <a href="{% url 'likes_1' open.id %}">
+                {% if user in open.like.all %}
+                <img src = "{%static '하트.png'%}">
+                {% else %}
+                <img src = "{%static 'whiteheart.png'%}" style="height:11.5px;width:15px;margin-bottom: 1px;">
+                {% endif %}
+            </a>
+            
+            <div id ="like_count" style="color:white;font-size: 13.5px;font-weight:600;margin-left:3px;">{{ open.like_count }}</div>
         </div>
     </div>
     <div class = "contentwrap" style = "width:90%;margin-left:5%;padding-top:1vh;padding-bottom:1vh;">
@@ -355,15 +367,6 @@
 </div>
 </div>
 
-<a href="{% url 'likes_1' open.id %}">
-    {% if user in open.like.all %}
-    취소
-    {% else %}
-    좋아요
-    {% endif %}
-</a>
-
-좋아요 개수: {{ open.like_count }}개
 
 {% if user.is_authenticated %}
     <a href="{%url 'write_1' open.id %}">

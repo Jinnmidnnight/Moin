@@ -98,13 +98,15 @@
     }  
 
 </style>
-
-<div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;margin-top: 10vh;;margin-bottom: 3vh;">내 모임</div>
+<div class="realfirstbox" style="display:flex; flex-direction:row;margin-top:10vh;">
+    <div id = "arrow" style="margin-left:20px;"><a href="{% url 'home' %}"><img src = "{%static '화살표.png'%}"></a></div>
+    <div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;;margin-bottom: 3vh;margin-left: 34%;;">내 모임</div>
+</div>
 <div class = "profilebox" style="display:flex;flex-direction: row;border: 1px solid rgba(196, 196, 196, 0.22);padding: 2vh 10px 1.5vh 10px;justify-content: space-around;margin-bottom: 3vh;">
     <div class="profileimg">
         <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
             {% if user.image %}
-                <img src="{{user.image.url}}" style="width:31px;height:31px;object-fit: cover;">
+                <img src="{{user.image.url}}" style="width:31px;height:31px;border-radius:100px;object-fit: cover;">
             {% else %}
                 <img src="{% static 'personid.png' %}">
             {% endif %}
