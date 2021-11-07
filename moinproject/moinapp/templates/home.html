@@ -172,17 +172,24 @@
                 </div>
             </form>
 
-            
             {% if user.is_authenticated %}
-                <a href="{%url 'mypage' %}">
-                <div id="2" > <img src="{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
-                </a>
+
+            <a href="{%url 'mypage' %}">
+            <div id="2" >
+                {% if user.image %}
+                <img src="{{user.image.url}}" style = "width: 25px; height: 25px; border-radius:100px;object-fit:cover;margin-right : 15px;margin-top : 2px;">
+                {% else %}
+                    <img src="{% static 'personid.png' %}" style = "width: 25px; height:25px;margin-right : 15px;margin-top : 2px;">
+                {% endif %}
             
+            </div>
+            </a>
+
             {% else %}
-            
-                <a href="{%url 'login' %}">
-                <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
-                </a>
+
+            <a href="{%url 'login' %}">
+            <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
             
             {% endif %}
         </div>
@@ -368,7 +375,7 @@
                     </div>
                     </a>
                 </div>
-
+<!-- 
                 <br>
                 {% if hot_open_11 %}
                     <a href="{%url 'detail_1' hot_open_11.id%}">
@@ -403,78 +410,106 @@
                     </a>
                 {% endif %}           
                 <br>
-                            
+                             -->
                
-                <!-- <div class = "latestcontent">
+                <div class = "latestcontent">
+                    {% if hot_open_11 %}
                     <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:5px;width:43%;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
-                        <div id = "latestimg"> <img src="{%static '친목1.png' %}"> </div>
-                        <div id = "latestgrouptitle" style="font-size: 14.5px;">
-                            신촌새내기들
+                        <a href="{%url 'detail_1' hot_open_11.id%}">
+                        <div id = "latestimg"> <img src="{{hot_open_11.image.url}}" style="width: 140px;height: 135px;border-radius: 10px;object-fit: cover;"> </div>
+                        <div id = "latestgrouptitle" style="font-size: 14.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_11.title}}
                         </div>
-                        <div id = "latestlittletitle" style="font-size:11.5px;">
-                            ✨새내기들 밥+카페+술 모임✨
+                        <div id = "latestlittletitle" style="font-size:11.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_11.intro}}
                         </div>
                         <div class = "latestsmallest" style = "display:flex;flex-direction:row;font-size:9px;color: #707070;justify-content:space-between;line-height:20px;">
                             <div id = "latestmember" style="margin-left:11px;">
                                 인원 : 5/20
                             </div>
-                            <div id = "latestmanager" style="margin-right:11px;">
+                            <div id = "latestmanager" style="margin-right:5px;margin-left: 5px;;">
                                 운영자 : 조윤
                             </div>
+                            <div id = "latestmanager" style="margin-right:11px;">
+                                <img src="{%static '하트.png' %}" style="width:10px;height:10px;"> {{hot_open_11.like_count}}
+                            </div>
                         </div>
+                        </a>
                     </div>
+                    {% endif %}
+                    {% if hot_open_12 %}
                     <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:5px;width:43%;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
-                        <div id = "latestimg"> <img src="{%static '친목1.png' %}"> </div>
-                        <div id = "latestgrouptitle" style="font-size: 14.5px;">
-                            신촌새내기들
+                        <a href="{%url 'detail_1' hot_open_12.id%}">
+                        <div id = "latestimg"> <img src="{{hot_open_12.image.url}}" style="width: 140px;height: 135px;border-radius: 10px;object-fit: cover;"> </div>
+                        <div id = "latestgrouptitle" style="font-size: 14.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_12.title}}
                         </div>
-                        <div id = "latestlittletitle" style="font-size:11.5px;">
-                            ✨새내기들 밥+카페+술 모임✨
+                        <div id = "latestlittletitle" style="font-size:11.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_12.intro}}
                         </div>
                         <div class = "latestsmallest" style = "display:flex;flex-direction:row;font-size:9px;color: #707070;justify-content:space-between;line-height:20px;">
                             <div id = "latestmember" style="margin-left:11px;">
                                 인원 : 5/20
                             </div>
-                            <div id = "latestmanager" style="margin-right:11px;">
+                            <div id = "latestmanager" style="margin-right:5px;margin-left: 5px;;">
                                 운영자 : 조윤
                             </div>
+                            <div id = "latestmanager" style="margin-right:11px;">
+                                <img src="{%static '하트.png' %}" style="width:10px;height:10px;"> {{hot_open_12.like_count}}
+                            </div>
                         </div>
+                        </a>
                     </div>
+                    {% endif %}
+                    {% if hot_open_13 %}
                     <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:5px;width:43%;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
-                        <div id = "latestimg"> <img src="{%static '친목1.png' %}"> </div>
-                        <div id = "latestgrouptitle" style="font-size: 14.5px;">
-                            신촌새내기들
+                        <a href="{%url 'detail_1' hot_open_13.id%}">
+                        <div id = "latestimg"> <img src="{{hot_open_13.image.url}}" style="width: 140px;height: 135px;border-radius: 10px;object-fit: cover;"> </div>
+                        <div id = "latestgrouptitle" style="font-size: 14.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_13.title}}
                         </div>
-                        <div id = "latestlittletitle" style="font-size:11.5px;">
-                            ✨새내기들 밥+카페+술 모임✨
+                        <div id = "latestlittletitle" style="font-size:11.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_13.intro}}
                         </div>
                         <div class = "latestsmallest" style = "display:flex;flex-direction:row;font-size:9px;color: #707070;justify-content:space-between;line-height:20px;">
                             <div id = "latestmember" style="margin-left:11px;">
                                 인원 : 5/20
                             </div>
-                            <div id = "latestmanager" style="margin-right:11px;">
+                            <div id = "latestmanager" style="margin-right:5px;margin-left: 5px;;">
                                 운영자 : 조윤
                             </div>
+                            <div id = "latestmanager" style="margin-right:11px;">
+                                <img src="{%static '하트.png' %}" style="width:10px;height:10px;"> {{hot_open_13.like_count}}
+                            </div>
                         </div>
+                        </a>
                     </div>
+                    {% endif %}
+                    {% if hot_open_14 %}
                     <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:5px;width:43%;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
-                        <div id = "latestimg"> <img src="{%static '친목1.png' %}"> </div>
-                        <div id = "latestgrouptitle" style="font-size: 14.5px;">
-                            신촌새내기들
+                        <a href="{%url 'detail_1' hot_open_14.id%}">
+                        <div id = "latestimg"> <img src="{{hot_open_14.image.url}}" style="width: 140px;height: 135px;border-radius: 10px;object-fit: cover;"> </div>
+                        <div id = "latestgrouptitle" style="font-size: 14.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_14.title}}
                         </div>
-                        <div id = "latestlittletitle" style="font-size:11.5px;">
-                            ✨새내기들 밥+카페+술 모임✨
+                        <div id = "latestlittletitle" style="font-size:11.5px; ;width:160px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;">
+                            {{hot_open_14.intro}}
                         </div>
                         <div class = "latestsmallest" style = "display:flex;flex-direction:row;font-size:9px;color: #707070;justify-content:space-between;line-height:20px;">
                             <div id = "latestmember" style="margin-left:11px;">
                                 인원 : 5/20
                             </div>
-                            <div id = "latestmanager" style="margin-right:11px;">
+                            <div id = "latestmanager" style="margin-right:5px;margin-left: 5px;;">
                                 운영자 : 조윤
                             </div>
+                            <div id = "latestmanager" style="margin-right:11px;">
+                                <img src="{%static '하트.png' %}" style="width:10px;height:10px;"> {{hot_open_14.like_count}}
+                            </div>
                         </div>
+                        </a>
                     </div>
-                </div>     -->
+                    {% endif %}
+                </div>    
                 
 
             </div>
