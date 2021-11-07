@@ -97,7 +97,13 @@
 </head>
 
 <body>
-    <div class="relationship" style="display:flex;flex-direction: column;margin-top:9.5vh;">
+    <div class="query" style="display:flex;margin-top:9.5vh;font-weight: bold;margin-left:10px;font-size: 22px;flex-direction: row;">
+        {{query}}
+        <div id="searchresult" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">
+            의 검색결과
+        </div>
+    </div>
+    <div class="relationship" style="display:flex;flex-direction: column;margin-top:3.5vh;">
         <div class="title" style="display:flex;flex-direction:row;">
             <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 친목 </div>
             <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
@@ -141,7 +147,52 @@
         </ul>
 
     </div>
-    
+    <div class="searchingword">
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+        <div class="title" style="display:flex;flex-direction:row;">
+            <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 문화 </div>
+            <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+            <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+        </div>
+        <ul style="list-style: none;padding: 0 20px 20px 20px;">
+            {% for open in open2 %}
+            <a href="{%url 'detail_2' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "padding-top:2vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;">
+                        <div id = "members" style = "margin-right:20px;">인원:0/{{open.number}}</div>
+                        <div id = "leader"> 작성자 : 조윤</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;">
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}"></div>
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;">5</div>
+                </div>
+
+            </div>
+            </li>
+            </a>
+            {% empty %}
+            <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+            <p>No result</p>
+            </div>
+            {% endfor %}
+            
+        </ul>
+
+    </div>
+    </div>
     <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
         <div class="title" style="display:flex;flex-direction:row;">
             <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 문화 </div>
