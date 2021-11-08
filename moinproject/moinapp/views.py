@@ -75,5 +75,5 @@ def search(request):
         open8 = Open_8.objects.filter(title__contains=query)
         open9 = Open_9.objects.filter(title__contains=query)      
     return render(request, 'search.html', { 'open1': open1, 'open2': open2, 'open3': open3, 'open4': open4, 'open5': open5, 'open6': open6, 'open7': open7,
-    'open8': open8, 'open9': open9 })
+    'open8': open8, 'open9': open9, 'query':query })
 
