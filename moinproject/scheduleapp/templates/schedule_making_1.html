@@ -1,0 +1,25 @@
+{% if error %}
+{{ error }}
+{% endif %}
+
+<form method="POST" action="{% url 'schedule_making_1' open.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div>
+            제목: <input type="text" name="title">
+        </div>
+
+        <div class="button">
+            날짜: (ex: 2022-01-01) <input type="text" name="date">
+        </div>
+
+        <div class="button">
+            장소: <input type="text" name="location">
+        </div>
+
+        <div class="button">
+            금액: <input type="text" name="price">
+        </div>
+        
+        <button id="submit" type="submit" class="btn btn-warning">제출</button>
+
+</form>
