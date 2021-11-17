@@ -166,7 +166,7 @@
         </div>
         <div class = "regularmeetingbox" style = "display:flex;flex-direction:column;margin-top:2vh;">
             <div id = "noticetitle" style = "margin-left:5%;">모임정모</div>
-            <ul style="list-style: none;margin:0px;padding:0px;">
+            <!-- <ul style="list-style: none;margin:0px;padding:0px;">
                 <li>
                     <div class = "regularmeeting" style ="box-shadow:0px 3px 6px 1px rgba(0, 0, 0, 0.16);height:15vh;display:flex;flex-direction:column;justify-content: space-around;
                     width:100%;margin-top:2vh;">
@@ -198,12 +198,29 @@
                         </div>
                     </div>
                 </li>
-            </ul>
-        </div>  
+            </ul> -->
+        </div>
+
+        <!--1116-->
+        {% for schedule in schedules %}
+            <a href="{%url 'schedule_detail_1' schedule.id%}">
+            <br>
+            <li>
+            <div>
+                <div>제목: {{schedule.title}}</div>
+                <div>날짜: {{schedule.date}}</div>
+                <div>장소: {{schedule.location}}</div>
+                <div>금액: {{schedule.price}}</div>
+            </div>
+            </li>
+            </a>
+            <br>
+        {% endfor %}
+        <!--1116-->
         
         {% if user.is_authenticated %}
             <div class = "writebotton">
-                <a href="{%url 'schedule_making' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
+                <a href="{%url 'schedule_making_1' open.id %}"><img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;"></a>
             </div>
 
         {% else %}
