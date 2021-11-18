@@ -59,7 +59,7 @@ def index_2(request):
     return render(request, 'index_2.html', {'open_index' : open_index})
 
 def detail_2(request, open_id):
-    open = get_object_or_404(Open_1, pk = open_id)
+    open = get_object_or_404(Open_2, pk = open_id)
     return render(request, 'detail_2.html', {'open' : open})
 
 @login_required(login_url='login')
