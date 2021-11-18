@@ -38,6 +38,11 @@ def like_1(request, open_id):
     else:
         open.like_users.add(request.user)
 
+def join_1(request, open_id):
+    open = get_object_or_404(Open_1, pk = open_id)
+    return render(request, 'join_1.html', {'open' : open})
+
+
 
 @login_required(login_url='login')
 def open_2(request):
