@@ -100,7 +100,6 @@
     .membersbox{
         display : flex;
         flex-direction : row;
-        justify-content: space-between;
         bottom: 0;
         left: 0;
         right: 0;
@@ -229,15 +228,27 @@
 </div>
     
 <div class = "membersbox">
+    <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
+        <div id = "memberprofile" style = "display:flex;justify-content: center;">
+            {% if open.writer.image %}        
+                <img src="{{open.writer.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+            {% else %}
+                <img src="{% static 'personid.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+            {% endif %}
+        </div>
+        <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{open.writer}}</div>
+    </div>
     <ul style="list-style: none;margin:0px;padding:0px;">
         <li style = "float: left;">
             <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
                 <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                    {% if open.image %}        
-                    <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% if user.image %}        
+                        <img src="{{user.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% else %}
+                        <img src="{% static 'personid.png' %}">
                     {% endif %}
                 </div>
-                <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
+                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{user.username}}</div>
             </div>
         </li>
     </ul>

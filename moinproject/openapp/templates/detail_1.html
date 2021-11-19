@@ -100,7 +100,6 @@
     .membersbox{
         display : flex;
         flex-direction : row;
-        justify-content: space-between;
         bottom: 0;
         left: 0;
         right: 0;
@@ -177,14 +176,12 @@
         <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
             <div class = "firstbox">
                 <div id = "intro_txt" >소개</div>
-                <div id = "date_txt"><a href="{%url 'schedule_1' open.id %}">일정</a></div>
+                <div id = "date_txt"><a href="{%url 'manage_2' open.id %}">일정</a></div>
             </div>
         <div id = "yellow_line"></div>
         <div class = "detailimg">
             {% if open.image %}        
             <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 22.5vh; object-fit:cover;position:relative;">
-            {%else%}
-            <img src="{%static '친목1.png' %}" style = "width: 100%; height: 22.5vh;object-fit:cover;position:relative;">
             {% endif %}
             <div class="blackbox" style = "width:100%; height: 22.5vh; background: rgba(0, 0, 0, 0.35);position:absolute;top:11.5vh;display:flex;align-items: center;flex-direction: column;">
                 <div id= "title" style = "font-size: 27px;font-weight: bold;font-family: Nanum-Gothic;color:white;margin-top:7vh;">
@@ -194,52 +191,52 @@
                     {{open.intro}}
                 </div>
             </div>
-            <div id = "arrow" style="margin-left:15px;position:absolute;top:13vh;"><a href="{% url 'index_1' %}"><img src = "{%static '하얀화살표.png'%}"></a></div>
-            <div class="like" style="right:15px;;position:absolute;top:13vh;display:flex;flex-direction:row;">
-                <a href="{% url 'likes_1' open.id %}">
-                    {% if user in open.like.all %}
-                    <img src = "{%static '하트.png'%}">
-                    {% else %}
-                    <img src = "{%static 'whiteheart.png'%}" style="height:11.5px;width:15px;margin-bottom: 1px;">
-                    {% endif %}
-                </a>
-                
-                <div id ="like_count" style="color:white;font-size: 13.5px;font-weight:600;margin-left:3px;">{{ open.like_count }}</div>
-            </div>
         </div>
         <div class = "contentwrap" style = "width:90%;margin-left:5%;padding-top:1vh;padding-bottom:1vh;">
             <div class = "content" style = "white-space:pre-line;font-size:13px;font-family: Nanum Gothic;vertical-align: baseline;">
                 {{open.content}}
             </div>
+            <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                font-family: Nanum Gothic;color:white;;margin-left: 35.5vh;"><a href="{% url 'update_1' open.id %}">수정하기</a></button></div>
         </div>
-
-        
-            {% if user in open.like_users.all %}
-            <i class="fas fa-heart"></i>
-            {% else %}
-            <i class="far fa-heart"></i>
-            {% endif %}
-        
-
 
         <div class = "members">
             <div class = "memberstitle" style = "display:flex;flex-direction:row;">
                 <div id = "yellowmember" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
                 <div id = "membertxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">멤버</div>
                 <div id = "membernumber" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">({{open.number}})</div>
+                <a href="{%url 'deport_1' open.id%}">
+                <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                    font-family: Nanum Gothic;color:white;;margin-left:13px;">관리하기</button></div>
+                </a>
             </div>
-        </div>
+        </div>   
+
             
         <div class = "membersbox">
+            <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
+                <div id = "memberprofile" style = "display:flex;justify-content: center;">
+                    {% if open.writer.image %}        
+                        <img src="{{open.writer.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% else %}
+                        <img src="{% static 'personid.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% endif %}
+                </div>
+                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{open.writer}}</div>
+            </div>
             <ul style="list-style: none;margin:0px;padding:0px;">
                 <li style = "float: left;">
                     <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
                         <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                            {% if open.image %}        
-                            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% if user.image %}        
+                                <img src="{{user.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% else %}
+                                <img src="{% static 'personid.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
                             {% endif %}
                         </div>
-                        <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
+                        <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{user.username}}</div>
                     </div>
                 </li>
             </ul>
@@ -253,8 +250,9 @@
             
             <ul style="list-style: none;margin:0px;padding:0px;">
                 {% for write in open.writes.all %}
-                <a href="{%url 'comment_1' write.id %}">
+                
                 <li>
+                <a href="{%url 'comment_1' write.id %}">
                     <div class = "mointext">
                         <div class = "moin1box" style = "position:relative;">
                             <div class = "profile" style = "display: flex;flex-direction:row;">
@@ -295,17 +293,28 @@
                             <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
                         </div>
                     </div>
-                </li>
                 </a>
+                <a href="{% url 'write_delete_1' write.id %}">
+                <div id="manage" style="text-align: center;"><button type="submit" style="width: 40px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                    font-family: Nanum Gothic;color:white; margin-top: 10px;">삭제</button>
+                </div>
+                </a>
+                </li>
+                
                 {% endfor %}
             </ul>
         </div>
         <div class = "blank" style = "display:flex;height:5vh;"></div>
-        <a href="{%url 'write_1' open.id %}">
-            <div class = "writebotton">
-                <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
-            </div>
-        </a>
+    </div>
+    </div>
+
+    <div class = "blank" style = "display:flex;height:5vh;"></div>
+    <a href="{%url 'write_1' open.id %}">
+        <div class = "writebotton">
+            <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
+        </div>
+    </a>
 
     {% else %}
         <div class = "all" style = "margin-top : 6vh; width:100%; margin-bottom : 7vh; top : 0vh;">
@@ -369,11 +378,11 @@
                 <li style = "float: left;">
                     <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
                         <div id = "memberprofile" style = "display:flex;justify-content: center;">
-                            {% if open.image %}        
-                            <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                            {% if open.writer.image %}        
+                            <img src="{{open.writer.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
                             {% endif %}
                         </div>
-                        <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">조윤</div>
+                        <div id ="membername" style = "font-size:13px;font-family: Nanum Gothic;">{{open.writer}}</div>
                     </div>
                 </li>
             </ul>
