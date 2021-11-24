@@ -2,42 +2,136 @@
 
 {% block content %}
 {% load static %}
-<div style= "border-color: rgb(138, 134, 134); border-style: solid; border-width: 5px; margin-left: 10px; margin-right: 10px; margin-top: 70px; text-align: center;">
-    {{write.제목}}<br>
-    {{write.내용}}<br>
-    {% if write.사진 %}        
-    <img src="{{write.사진.url}}" alt="" style="width: 100px; height:100px;">
-    {% endif %}
+<style>
+    .mointext{
+        /* height: 50vh; */
+        background: white;
+        margin-top: 1.5vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .moin1box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+        
+    }
+    .moin2box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left:16.4%;
+        margin-top: 4vh;
+        margin-right:5%;
+        margin-bottom: 2vh;
+    }
+    .mointext_2{
+        background: white;
+        margin-top: 1.5vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .moin1box_2{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+        margin-bottom: 1vh;;
+        
+    }
+    .moin2box_2{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left:16.4%;
+        margin-top: 4vh;
+        margin-right:5%;
+    }
+    
+    a { text-decoration:none; color:inherit }
+    a:active {text-decoration: none; color: #f6b955;}
+</style>
+<div class = "all" style="display:flex;flex-direction: column;margin-top: 7.5vh;">
+    <div class = "firstbox" style = "margin-bottom:0.5vh; height:7vh;
+    display: flex; flex-direction: row; justify-content:space-between; align-items: center; background: rgba(255, 255, 255, 0.62);
+    filter: drop-shadow(0px 3px 20px rgba(0, 0, 0, 0.16));">
+        <div id = "arrow" style="margin-left:20px;"><a href="{{ request.META.HTTP_REFERER }}"><img src = "{%static '화살표.png'%}"></a></div>
+        
 </div>
-
-<form method="POST" action="{% url 'add_comment_2' write.id %}" style="margin-top: 30px; text-align: center;">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="입력">
-</form><br>
-
-<ul style="list-style: none;margin:0px;padding:0px;">
-    {% for comment in write.comments.all %}
-    <li style="border-color: black; border-style: solid; border-width: 5px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;">
-        <div class = "mointext">
+    <div class = "mointext">
+        <div class = "moin1box" style = "position:relative;">
             <div class = "profile" style = "display: flex;flex-direction:row;">
                 <div id = "writerprofile" style="margin-left:10px;">
-                    {% if profile.image %}        
-                    <img src="{{profile.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                    {% if open.image %}        
+                    <img src="{{open.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                    {%else%}
+                    <img src = "{%static '독수리.png' %}" style="width:45px;height:45px;">
                     {% endif %}
                 </div>
-                <div id ="membername">조윤</div>
+                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
             </div>
-            <div id = "writtendate" >{{comment.created_at}}</div>
-            <div class = "moin2box">
-                <div class = "contenttxt">
-                    <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;">{{comment.댓글}}</div>
-                </div>
+            <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{write.created_at}}</div>
+        </div>
+        <div class = "moin2box" style = "position:absolute;">
+            <div class = "contenttxt" >
+                <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;margin-bottom:5px;">{{write.제목}}</div>
             </div>
         </div>
-    </li>
-    {% endfor %}
-</ul>
+        <div id = "content" style = "font-family:Nanum Gothic;font-size: 12px;width:90%;padding-left: 5%;padding-right: 5%;margin-bottom: 2vh;;">{{write.내용}}</div>
+        <div class = "contentimg" style="display:flex;align-items: center;justify-content: center;border-radius: 10px;margin-top:5px;border-radius: 10px;border: 1px solid rgba(112, 112, 112, 0.53);width:90%;margin-left: 5%;">
+                {% if write.사진 %}        
+                    <img src="{{write.사진.url}}" alt="" style = "width: 80%; height: 20vh; object-fit:contain;">
+                {%else%}
+                    <img src = "{%static '사진파일.png' %}"style = "width: 60px; height: 7vh;">
+                {% endif %}
+        </div>
 
+    </div>
+    <!-- <div style= "border-color: rgb(138, 134, 134); border-style: solid; border-width: 5px; margin-left: 10px; margin-right: 10px; margin-top: 70px; text-align: center;">
+        {{write.제목}}<br>
+        {{write.내용}}<br>
+        {% if write.사진 %}        
+        <img src="{{write.사진.url}}" alt="" style="width: 100px; height:100px;">
+        {% endif %}
+    </div> -->
+    <div class="commentbox" style="height:8vh;border: 1px solid #ccc;margin-top:2vh;display: flex;justify-content: center;align-items: center;">
+        <form method="POST" action="{% url 'add_comment_2' write.id %}" style=" text-align: center;">
+            {% csrf_token %}
+            <input type="hidden" name="csrfmiddlewaretoken" value="20G1EYqili1dh6pdcBXV0HUqbJU3JBTZGDnci2NppqcbhK1j4QLZP6wQbiHspcQX" >
+            <input type="text" textarea placeholder="댓글을 달아주세요." name="댓글" maxlength="200" required="" id="id_댓글" style = "height: 34px; width: 227px;border-radius: 10px;background: #f5f5f5;border:0px;text-align: center;">
+            <input type="submit" value="입력" style="width: 54px;height: 34px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+        </form><br>
+    </div>
+    <ul style="list-style: none;margin:0px;padding:0px;margin-bottom: 8vh;;">
+        {% for comment in write.comments.all %}
+        <li>
+            <div class = "mointext_2" style="border: 1px solid; border-color: #ccc #ccc white #ccc;">
+                <div class = "moin1box_2" style = "position:relative;">
+                    <div class = "profile" style = "display: flex;flex-direction:row;">
+                        <div id = "writerprofile" style="margin-left:10px;">
+                            {% if profile.image %}        
+                            <img src="{{profile.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                            {% else %}
+                            <img src = "{%static '독수리.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;" >
+                            {% endif %}
+                        </div>
+                        <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;">조윤</div>
+                    </div>
+                    <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{comment.created_at}}</div>
+                    
+                </div>
+                <div class = "moin2box_2" style = "position:absolute;">
+                    <div class = "contenttxt">
+                        <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 11px;">{{comment.댓글}}</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        </a>
+        {% endfor %}
+    </ul>
+    
+</div>
 
 {% endblock %}
