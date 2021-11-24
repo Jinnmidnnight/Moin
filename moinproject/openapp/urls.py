@@ -7,6 +7,7 @@ urlpatterns = [
     path('open_1', open_1, name="open_1"),
     path('index_1', index_1, name="index_1"),
     path('detail_1/<str:open_id>', detail_1, name="detail_1"),
+    path('join_1/<str:open_id>', join_1, name="join_1"),
     path('open_2', open_2, name="open_2"),
     path('index_2', index_2, name="index_2"),
     path('detail_2/<str:open_id>', detail_2, name="detail_2"),

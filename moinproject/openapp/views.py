@@ -29,7 +29,19 @@ def index_1(request):
 
 def detail_1(request, open_id):
     open = get_object_or_404(Open_1, pk = open_id)
-    return render(request, 'detail_1.html', {'open' : open})
+    user_id = request.session.get('user')
+    if user_id:
+        user = User.objects.get(pk = user_id)
+        return render(request, 'detail_1.html', {'user': user})
+    else:
+        return render(request, 'detail_1.html', {'open' : open})
+    # return render(request, 'detail_1.html', {'open' : open})
+
+# def detail_1(request, open_id):
+#     open = get_object_or_404(Open_1, pk = open_id)
+#     user_id = request.session.get('user')
+
+
 
 def like_1(request, open_id):
     open = get_object_or_404(Open_1, id=open_id)
@@ -38,6 +50,9 @@ def like_1(request, open_id):
     else:
         open.like_users.add(request.user)
 
+def join_1(request, open_id):
+    open = get_object_or_404(Open_1, pk = open_id)
+    return render(request, 'join_1.html', {'open' : open})
 
 @login_required(login_url='login')
 def open_2(request):
