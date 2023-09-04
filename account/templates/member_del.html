@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family: Nanum Gothic;}
+    #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        
+    }
+    #jointhemoin{
+        font-family: 'MonteCarlo', cursive;
+        margin-left : 10px;
+    }
+    h3{
+        margin : 0px;
+        font-weight : medium;
+    }
+    h1{margin : 0px; font-weight : medium;}
+    #platform{
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size : 10px;
+    margin-left : 5px;    }
+
+
+</style>
+<div class="realfirstbox" style="display:flex; flex-direction:row;margin-top:12vh;">
+    <div id = "arrow" style="margin-left:20px;"><a href="{% url 'mypage' %}"><img src = "{%static '화살표.png'%}"></a></div>
+    <div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;;margin-bottom: 5vh;margin-left: 30%;">회원탈퇴</div>
+</div>
+<div class ="error" style = "text-align: center; font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+    {% if error %}
+    {{ error }}
+    {% endif %}
+</div>
+	<form action="{%url 'member_del'%}" method="POST">
+
+        {% csrf_token %}
+        <div class = "loginbox" style = "display:flex;flex-direction:column;justify-content:center;vertical-align : baseline;text-align : center;width:100%;align-items: center;margin-top: 20vh;">
+            <br><br>
+			<input type="password" name="pw_del" textarea placeholder="비밀번호" style = "border-radius: 5px; width:195px;height:4vh;border: 2px solid #707070;">
+			<br>
+			<input type="submit" value="회원탈퇴" style="width: 80px;height:4.5vh;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+        </div>
+        
+    </form>
+
+{%endblock%}

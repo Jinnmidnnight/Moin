@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+
+    .secondbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 16px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .categoryicon{
+        opacity: .7;
+        padding: 6px 2.8vw;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        color: #000;
+        font-weight: 200;
+        padding-left: 20px;
+        padding-right : 20px;
+    }
+    .fourthbox{
+        display: flex;
+        flex-direction:row;
+        justify-content:space-around;
+    }
+    #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+    .firstbox{
+        height: 5.5vh;
+        background: rgba(0, 0, 0, 0.045);
+        justify-content: space-between;
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        margin-top: 6vh;
+
+    }
+    #intro_txt{
+        color :#F6B955; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-left : 22.5%;}
+    #date_txt{
+        color :black ; font-family: 'Nanum Gothic', sans-serif; font-size : 13.5px;font-weight: bold;text-align:center;margin-right : 22.5%;}
+
+    #yellow_line{
+        background : #F6B955; height:0.3vh; width:50%;z-index: 0;}
+
+    .membersbox{
+        display : flex;
+        flex-direction : row;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 20px;
+        margin-left:20px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 15px;
+        padding-bottom: 0px;
+        padding-left : 0px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+        
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+    .writebotton_1{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;margin-bottom: 3vh;
+    }
+    .mointext{
+        width:90%;
+        height: 15vh;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        background: white;
+        margin-left: 5%;
+        margin-top: 2.5vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .moin1box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 8px;
+        
+    }
+    .moin2box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width:70%;
+        margin-left:17.4%;
+        margin-right:4%;
+        overflow:hidden;
+    }
+    .moin3box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top:auto;
+        margin-bottom: 4px;
+    }
+</style>
+<body>
+
+<div class = "detailimg" style="z-index: 0;">
+    {% if open.image %}        
+    <img src="{{open.image.url}}" alt="" style = "width: 100%; height: 22.5vh; object-fit:cover;position:relative; margin-top: 8vh;">
+    {% else %}
+    <img src="{%static 'biglogo.png' %}" style = "width: 100%; height: 22.5vh;object-fit:cover;position:relative; margin-top: 8vh;">
+    {% endif %}
+    <div class="blackbox" style = "width:100%; height: 22.5vh; background: rgba(0, 0, 0, 0.35);position:absolute;top:8vh;display:flex;align-items: center;flex-direction: column;">
+        <div id= "title" style = "font-size: 27px;font-weight: bold;font-family: Nanum-Gothic;color:white;margin-top:9vh;text-align: center; word-break: break-all;">
+            {{open.title}}
+        </div>
+        <div id = "intro" style= "font-size: 15px;font-weight: bold;font-family: Nanum Gothic;color:white;margin-top:1.5vh;text-align: center; word-break: break-all;">
+            {{open.intro}}
+        </div>
+    </div>
+    <div id = "arrow" style="margin-left:15px;position:absolute;top:10vh;"><a href="{% url 'index_5' %}"><img src = "{%static '하얀화살표.png'%}"></a></div>
+    <div class="like" style="right:15px;;position:absolute;top:10vh;display:flex;flex-direction:row;">
+        <a href="{% url 'likes_5' open.id %}">
+            {% if user in open.like.all %}
+            <img src = "{%static '하트.png'%}">
+            {% else %}
+            <img src = "{%static 'heart.png'%}" style="height:11.5px;width:14px;margin-bottom: 1px;margin-right: 2.7px;">
+            {% endif %}
+        </a>
+        <div id ="like_count" style="color:white;font-size: 13.5px;font-weight:600;padding-left: 7px;;">{{ open.like_count }}</div>
+    </div>
+</div>
+    
+<div class = "contentwrap" style = "width:90%;margin-left:5%;padding-top:1vh;padding-bottom:1vh;">
+    <div class = "content" style = "white-space:pre-line;font-size:13px;font-family: Nanum Gothic;vertical-align: baseline;word-break:break-all;">
+        {{open.content}}
+    </div>
+    <br>
+    {% if request.user == open.writer%}
+    <div id="manage"><button type="submit" style="width: 60px;height: 18px;
+        border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+        font-family: Nanum Gothic;color:white;;margin-left: 75%;"><a href="{% url 'update_5' open.id %}">수정하기</a></button></div>
+    {% endif %}
+</div>
+
+<div class = "members">
+    <div class = "memberstitle" style = "display:flex;flex-direction:row;">
+        <div id = "yellowmember" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
+        <div id = "membertxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">멤버</div>
+        <div id = "membernumber" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">({{open.follower_count}}/{{open.number}})</div>
+        {% if request.user == open.writer%}
+        <a href="{%url 'deport_alert_5' open.id %}">
+            <button type="submit" style="width: 60px;height: 18px;
+            border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+            font-family: Nanum Gothic;color:white; margin-left: 15px;">강퇴하기</button>
+        </a>
+        {% endif %}
+    </div>
+</div>
+    
+<div class = "membersbox">
+    <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;">
+        <div id = "memberprofile" style = "display:flex;justify-content: center;">
+            {% if open.writer.image %}        
+                <img src="{{open.writer.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+            {% else %}
+                <img src="{% static 'personid.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+            {% endif %}
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <img src="{% static 'crown.png'%}" style="width:15px; height: 15px;margin-top: 3px; margin-right: 4px;">
+            <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{open.writer}}</div>
+        </div>
+    </div>
+    <ul style="list-style: none;margin:0px;padding:0px;display : flex; flex-direction : row;-webkit-overflow-scrolling: touch;">
+        {% for follow in open.follower.all %}
+        <li style = "float: left;" name="follow">
+            <div class = "memberimg1" style = "display:flex; flex-direction: column;align-items:center;margin-right:20px;" >
+                <div id = "memberprofile" style = "display:flex;justify-content: center;" >
+                    {% if follow.image %}        
+                        <img src="{{follow.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% else %}
+                        <img src="{% static 'personid.png' %}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;border: 2px solid #f6b955;">
+                    {% endif %}
+                </div>
+                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;">{{follow.username}}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class = "moinwritings" style = "margin-top: 20px;">
+    <div class = "mointexttitle" style = "display:flex;flex-direction:row;">
+        <div id = "yellowmoin" style = "font-weight:bold; color:#F6B955; font-size:15px;font-family: Nanum Gothic;margin-left:20px;">모인</div>
+        <div id = "mointitletxt" style = "font-weight:bold; font-size:15px;font-family: Nanum Gothic;margin-left:5px;">글</div>
+    </div>
+    
+    <ul style="list-style: none;margin:0 0 30px 0;padding:0px;">
+        {% for write in open.writes.all %}
+            <li>
+            {% if request.user == open.writer %}
+            <a href="{%url 'comment_5' write.id %}">
+            {% endif %}
+            {% if user in open.follower.all %}
+            <a href="{%url 'comment_5' write.id %}">
+            {% endif %}
+                <div class = "mointext">
+                    <div class = "moin1box" style = "position:relative;">
+                        <div class = "profile" style = "display: flex;flex-direction:row;margin-top: 2px;margin-bottom: 5px;">
+                            <div id = "writerprofile" style="margin-left:8px; width: 40px;">
+                                {% if write.author.image %}        
+                                <img src="{{write.author.image.url}}" alt="" style = "width: 40px; height: 40px;border-radius: 100px; object-fit:cover;">
+                                {% else %}
+                                <img src="{% static 'personid.png' %}" alt="" style = "width: 40px; height: 40px;border-radius: 100px; object-fit:cover;">
+                                {% endif %}
+                                <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;text-align: center;text-overflow: ellipsis;overflow:hidden; white-space: nowrap;">{{write.author}}</div>
+                            </div>
+                        </div>
+                        <div id = "writtendate" style = "font-size:10px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{write.created_at}}</div>
+                    </div>
+                    <div class = "moin2box" style = "position:absolute;margin-top:5px;">
+                        <div class = "contenttxt" style = "height:8.5vh;overflow:hidden ;width:180px;text-overflow: ellipsis;">
+                            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 13px;font-weight: bold;margin-bottom:5px;text-overflow: ellipsis;overflow:hidden; white-space: nowrap;">{{write.제목}}</div>
+                            <div id = "content" style = "font-family:Nanum Gothic;font-size: 11px;width:100%;word-break: break-all;text-overflow: ellipsis;overflow:hidden; white-space: nowrap;">{{write.내용}}</div>
+                        </div>
+                        <div class = "contentimg">
+                            {% if write.사진 %}        
+                                <img src="{{write.사진.url}}" alt="" style = "width: 60px; height: 7vh; object-fit:cover; border-radius: 10px;">
+                            {%else%}
+                                <div style = "width: 60px; height: 7vh;border-radius: 10px;"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class = "moin3box" >
+                        <div class = "commentlike" style = "display:flex;flex-direction: row;justify-content: space-around;margin-left:15px;">
+                            <div class = "like" style = "display: flex;flex-direction: row;justify-content: space-around;">
+                                <div id = "likeimg"><img src = "{%static '좋아요.png'%}" style = "width: 15px;height:15px;"></div>
+                                <div id = "liketxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">좋아요 {{write.write_like_count}}</div>
+                            </div>
+                            <div class = "comment" style = "display: flex;flex-direction: row;justify-content: space-around;margin-left:10px;">
+                                <div id = "commentimg"><img src = "{%static '댓글.png'%}" style = "width: 15px;height:15px;"></div>
+                                <div id = "commenttxt" style = "font-family:Nanum Gothic;font-size: 11px;margin-left:5px;">댓글 {{write.comment_count}}</div>
+                            </div>
+                        </div>
+                        <div id = "seeindetail"  style = "font-family:Nanum Gothic;font-size: 11px;color:#afafaf;margin-left:auto;margin-right: 10px;">자세히보기</div>
+                    </div>
+                </div>
+            </a>
+            {% if request.user == open.writer %}
+                {% if request.user == write.author %}
+                    <div style="display: flex;justify-content: center;">
+                        <div id="manage" style="flex-direction: row;"><button type="submit" style="width: 60px;height: 18px;
+                        border-radius: 10px;background: #F6B955;;border:0px;font-size: 11.5px;
+                        font-family: Nanum Gothic;color:white;margin-top: 15px; margin-right: 30px;"><a href="{% url 'write_update_5' open.id write.id %}">수정하기</a></button></div>
+                        <div id="manage" style="flex-direction: row;"><button type="submit" style="width: 60px;height: 18px;
+                            border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                            font-family: Nanum Gothic;color:white; margin-top: 15px; "><a href="{% url 'write_delete_5' write.id %}">삭제하기</a></button>
+                        </div>
+                    </div>
+                {% else %}
+                    <div id="manage" style="display:flex;justify-content: center;">
+                        <div><button type="submit" style="flex-direction:row;width: 60px;height: 18px;
+                        border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                        font-family: Nanum Gothic;color:white; margin-top: 15px;"><a href="{% url 'write_delete_5' write.id %}">삭제하기</a></button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if user in open.follower.all %}
+                    {% if request.user == write.author %}
+                    <div style="display: flex;justify-content: center;">
+                        <div id="manage" style="flex-direction: row;"><button type="submit" style="width: 60px;height: 18px;
+                        border-radius: 10px;background: #F6B955;;border:0px;font-size: 11.5px;
+                        font-family: Nanum Gothic;color:white;margin-top: 15px; margin-right: 30px;"><a href="{% url 'write_update_5' open.id write.id %}">수정하기</a></button></div>
+                        <div id="manage" style="flex-direction: row;"><button type="submit" style="width: 60px;height: 18px;
+                            border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                            font-family: Nanum Gothic;color:white; margin-top: 15px;"><a href="{% url 'write_delete_5' write.id %}">삭제하기</a></button>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% if user in open.follower.all %}
+<div class = "button" style="display:flex;justify-content: center;margin-top:20px;margin-bottom:30px;">
+    <a href="{% url 'follow_5' open.id %}">
+    <button type="submit" style="width: 274px;height: 41px;border-radius: 10px;background: #e68686;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">모임 탈퇴</button>
+    </a>
+</div>
+{% else %}
+{% endif %}
+
+
+<div class = "blank" style = "display:flex;height:5vh;"></div>
+
+{% if request.user == open.writer %}
+<a href="{%url 'write_5' open.id %}">
+    <div class = "writebotton">
+        <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
+    </div>
+</a>
+{% else %}
+    {% if user in open.follower.all %}
+    <a href="{%url 'write_5' open.id %}">
+        <div class = "writebotton">
+            <img src = "{%static '작성.png'%}" style = "width: 41px;height:41px;">
+        </div>
+    </a>
+    {% else %}
+    <a href="{% url 'follow_5' open.id %}">
+        <div class = "writebotton">
+            <img src = "{%static '가입.png'%}" style = "width: 41px;height:41px;">
+        </div>
+    </a>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

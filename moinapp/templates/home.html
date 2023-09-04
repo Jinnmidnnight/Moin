@@ -1,0 +1,2083 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="http://moin2021.herokuapp.com/">
+    <meta property="og:title" content="Moin">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{%static 'biglogo.png'%}" width="400px" height="200px">
+    <meta property="og:description" content="대학생을 위한 교내 소모임 플랫폼">
+    <title>Moin</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;-webkit-tap-highlight-color:transparent;}
+    input {outline:none}
+    .firstbox{
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    width : 100%;
+    height : 35vh;
+    vertical-align : baseline;
+    text-align : center;
+        
+    }
+    #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        
+    }
+    #jointhemoin{
+        font-family: 'MonteCarlo', cursive;
+        margin-left : 10px;
+    }
+    h3{
+        margin : 0px;
+        font-weight : medium;
+    }
+    h1{margin : 0px; font-weight : medium;}
+    #platform{
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size : 10px;
+    margin-left : 5px;    }
+    .secondbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        margin-top: 20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 12px;
+        margin-right: 16px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+
+    }
+    .categoryicon{
+        opacity: .7;
+        padding: 6px 2.8vw;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        color: #000;
+        font-weight: 200;
+        padding-left: 20px;
+        padding-right : 20px;
+    }
+    .bottombar{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0px;
+        left:0px;
+        position:fixed;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        zoom: 1;
+        z-index: 1;
+        line-height: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 8vh;
+        background: rgba(255, 255, 255);
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+    }
+    #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+    #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+    .thirdbox{
+        margin-top:3vh
+    }
+
+    .latestcontent{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        margin-top: 12.5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 12px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+
+    }
+    #footertxt{font-family: 'Nanum Gothic', sans-serif; font-size : 10px;text-align:left; color:white;
+    }
+    a { text-decoration:none; color:inherit }
+    a:active {text-decoration: none; color: inherit;}
+
+    </style>
+    
+</head>
+
+<body>
+    <div class="navbar" 
+    style = "
+    top:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 8vh;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);">
+        <div id="navimg" style = "margin-right: auto; margin-left : 10px; margin-top : 2px;">
+            <a href="{%url 'home' %}"><img src = "{%static 'yonsei.png' %}"></a>
+        </div>
+        <div class = "navimages" style = "margin-left:auto; display : flex; flex-direction : row; align-items : center;">
+            <form method="GET" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="searchbox" style="display:flex;flex-direction:row;align-items:center;margin-right:20px;margin-left: 12%;">
+                    <input type="search" name="query" style="background:rgba(255, 255, 255, 0.62);;width:145px;height:25px;border: 1px solid rgba(16, 16, 16, 0.27);border-radius: 10px;margin-right: 5px;margin-left:20px;">
+                    <button type="submit" style="background-color: transparent;border:0px;"><img src = "{%static 'search.png' %}" style = "margin-right : 15px;margin-top:2px;"> </button>
+                </div>
+            </form>
+
+            {% if user.is_authenticated %}
+
+            <a href="{%url 'mypage' %}">
+                <div id="2" >
+                    {% if user.image %}
+                    <img src="{{user.image.url}}" style = "width: 25px; height: 25px; border-radius:100px;object-fit:cover;margin-right : 15px;margin-top : 2px;">
+                    {% else %}
+                        <img src="{% static 'personid.png' %}" style = "width: 25px; height:25px;margin-right : 15px;margin-top : 2px;">
+                    {% endif %}
+                </div>
+            </a>
+
+            {% else %}
+
+            <a href="{%url 'login' %}">
+                <div id="2" > <img src = "{%static 'personid.png' %}" style = "margin-right : 15px;margin-top : 2px;"></div>
+            </a>
+            
+            {% endif %}
+        </div>
+    </div>
+
+    <div class = "all" style = "margin-top : 9vh; width:100%; margin-bottom : 7vh;">
+        <div class = "firstbox">
+            <div id="biglogo" style = "margin-top : 10px;margin-right : 5px;"><img src = "{%static 'biglogo.png' %}"></div>
+            <div id = "moin"> 
+                <h1>moin</h1>
+            </div>
+            <div id = "jointhemoin">
+                <h3>join the moin</h3>
+            </div>
+            <div id = "platform">
+                <h3>대학생을 위한 소모임 플랫폼</h3>
+            </div>
+        </div>
+        <div class = "secondbox">
+            <a href="{%url 'index_1' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '친목.png' %}">
+                <br>
+                <div id="category_txt">
+                    친목
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_2' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '문화.png' %}">
+                <br>
+                <div id="category_txt">
+                    문화
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_3' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '스포츠.png' %}">
+                <br>
+                <div id="category_txt">
+                    스포츠
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_4' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '음악.png' %}">
+                <br>
+                <div id="category_txt">
+                    음악
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_5' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '스터디.png' %}">
+                <br>
+                <div id="category_txt">
+                    스터디
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_6' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '여행.png' %}">
+                <br>
+                <div id="category_txt">
+                    여행
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_7' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '게임.png' %}">
+                <br>
+                <div id="category_txt">
+                    게임
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_8' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '봉사.png' %}">
+                <br>
+                <div id="category_txt">
+                    봉사
+                </div>
+            </div>
+            </a>
+            <a href="{%url 'index_9' %}">
+            <div class = "category_icon" style="vertical-align:middle;cursor:pointer;margin-left : 15px; margin-right:15px;">
+                <img src = "{%static '기타.png' %}">
+                <br>
+                <div id="category_txt">
+                    기타
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class = "thirdbox">
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">친목 HOT 소모임</div>
+                    <a href="{%url 'index_1' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_11 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_1' hot_open_11.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_11.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_11.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_11.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_11.follower_count}}/{{hot_open_11.number}} 운영자 : {{hot_open_11.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_11.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_11.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_12 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_1' hot_open_12.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_12.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_12.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_12.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_12.follower_count}}/{{hot_open_12.number}} 운영자 : {{hot_open_12.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_12.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_12.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_13 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_1' hot_open_13.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_13.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_13.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_13.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_13.follower_count}}/{{hot_open_13.number}} 운영자 : {{hot_open_13.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_13.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_13.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_14 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_1' hot_open_14.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_14.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_14.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_14.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_14.follower_count}}/{{hot_open_14.number}} 운영자 : {{hot_open_14.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_14.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_14.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_15 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_1' hot_open_15.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_15.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_15.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_15.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_15.follower_count}}/{{hot_open_15.number}} 운영자 : {{hot_open_15.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_15.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_15.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">문화 HOT 소모임</div>
+                    <a href="{%url 'index_2' %}">
+                    <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                        <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                        <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                    </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_21 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_2' hot_open_21.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_21.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_21.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_21.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_21.follower_count}}/{{hot_open_21.number}} 운영자 : {{hot_open_21.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_21.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_21.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_22 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_2' hot_open_22.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_22.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_22.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_22.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_22.follower_count}}/{{hot_open_22.number}} 운영자 : {{hot_open_22.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_22.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_22.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_23 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_2' hot_open_23.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_23.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_23.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_23.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_23.follower_count}}/{{hot_open_23.number}} 운영자 : {{hot_open_23.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_23.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_23.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_24 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_2' hot_open_24.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_24.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_24.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_24.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_24.follower_count}}/{{hot_open_24.number}} 운영자 : {{hot_open_24.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_24.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_24.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_25 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_2' hot_open_25.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_25.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_25.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_25.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_25.follower_count}}/{{hot_open_25.number}} 운영자 : {{hot_open_25.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_25.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_25.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">스포츠 HOT 소모임</div>
+                    <a href="{%url 'index_3' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_31 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_3' hot_open_31.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_31.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_31.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_31.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_31.follower_count}}/{{hot_open_31.number}} 운영자 : {{hot_open_31.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_31.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_31.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_32 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_3' hot_open_32.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_32.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_32.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_32.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_32.follower_count}}/{{hot_open_32.number}} 운영자 : {{hot_open_32.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_32.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_32.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_33 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_3' hot_open_33.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_33.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_33.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_33.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_33.follower_count}}/{{hot_open_33.number}} 운영자 : {{hot_open_33.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_33.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_33.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_34 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_3' hot_open_34.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_34.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_34.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_34.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_34.follower_count}}/{{hot_open_34.number}} 운영자 : {{hot_open_34.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_34.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_34.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_35 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_3' hot_open_35.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_35.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_35.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_35.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_35.follower_count}}/{{hot_open_35.number}} 운영자 : {{hot_open_35.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_35.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_35.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">음악 HOT 소모임</div>
+                    <a href="{%url 'index_4' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_41 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_4' hot_open_41.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_41.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_41.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_41.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_41.follower_count}}/{{hot_open_41.number}} 운영자 : {{hot_open_41.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_41.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_41.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_42 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_4' hot_open_42.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_42.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_42.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_42.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_42.follower_count}}/{{hot_open_42.number}} 운영자 : {{hot_open_42.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_42.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_42.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_43 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_4' hot_open_43.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_43.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_43.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_43.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_43.follower_count}}/{{hot_open_43.number}} 운영자 : {{hot_open_43.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_43.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_43.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_44 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_4' hot_open_44.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_44.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_44.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_44.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_44.follower_count}}/{{hot_open_44.number}} 운영자 : {{hot_open_44.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_44.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_44.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_45 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_4' hot_open_45.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_45.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_45.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_45.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_45.follower_count}}/{{hot_open_45.number}} 운영자 : {{hot_open_45.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_45.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_45.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">스터디 HOT 소모임</div>
+                    <a href="{%url 'index_5' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_51 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_5' hot_open_51.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_51.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_51.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_51.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_51.follower_count}}/{{hot_open_51.number}} 운영자 : {{hot_open_51.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_51.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_51.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_52 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_5' hot_open_52.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_52.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_52.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_52.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_52.follower_count}}/{{hot_open_52.number}} 운영자 : {{hot_open_52.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_52.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_52.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_53 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_5' hot_open_53.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_53.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_53.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_53.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_53.follower_count}}/{{hot_open_53.number}} 운영자 : {{hot_open_53.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_53.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_53.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_54 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_5' hot_open_54.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_54.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_54.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_54.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_54.follower_count}}/{{hot_open_54.number}} 운영자 : {{hot_open_54.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_54.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_54.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_55 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_5' hot_open_55.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_55.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_55.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_55.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_55.follower_count}}/{{hot_open_55.number}} 운영자 : {{hot_open_55.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_55.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_55.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">여행 HOT 소모임</div>
+                    <a href="{%url 'index_6' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_61 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_6' hot_open_61.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_61.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_61.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_61.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_61.follower_count}}/{{hot_open_61.number}} 운영자 : {{hot_open_61.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_61.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_61.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_62 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_6' hot_open_62.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_62.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_62.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_62.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_62.follower_count}}/{{hot_open_62.number}} 운영자 : {{hot_open_62.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_62.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_62.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_63 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_6' hot_open_63.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_63.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_63.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_63.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_63.follower_count}}/{{hot_open_63.number}} 운영자 : {{hot_open_63.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_63.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_63.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_64 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_6' hot_open_64.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_64.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_64.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_64.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_64.follower_count}}/{{hot_open_64.number}} 운영자 : {{hot_open_64.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_64.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_64.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_65 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_6' hot_open_65.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_65.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_65.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_65.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_65.follower_count}}/{{hot_open_65.number}} 운영자 : {{hot_open_65.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_65.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_65.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">게임 HOT 소모임</div>
+                    <a href="{%url 'index_7' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                        </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_71 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_7' hot_open_71.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_71.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_71.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_71.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_71.follower_count}}/{{hot_open_71.number}} 운영자 : {{hot_open_71.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_71.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_71.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_72 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_7' hot_open_72.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_72.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_72.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_72.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_72.follower_count}}/{{hot_open_72.number}} 운영자 : {{hot_open_72.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_72.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_72.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_73 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_7' hot_open_73.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_73.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_73.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_73.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_73.follower_count}}/{{hot_open_73.number}} 운영자 : {{hot_open_73.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_73.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_73.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_74 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_7' hot_open_74.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_74.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_74.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_74.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_74.follower_count}}/{{hot_open_74.number}} 운영자 : {{hot_open_74.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_74.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_74.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_75 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_7' hot_open_75.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_75.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_75.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_75.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_75.follower_count}}/{{hot_open_75.number}} 운영자 : {{hot_open_75.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_75.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_75.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">봉사 HOT 소모임</div>
+                    <a href="{%url 'index_8' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_81 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_8' hot_open_81.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_81.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_81.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_81.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_81.follower_count}}/{{hot_open_81.number}} 운영자 : {{hot_open_81.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_81.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_81.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_82 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_8' hot_open_82.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_82.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_82.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_82.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_82.follower_count}}/{{hot_open_82.number}} 운영자 : {{hot_open_82.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_82.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_82.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_83 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_8' hot_open_83.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_83.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_83.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_83.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_83.follower_count}}/{{hot_open_83.number}} 운영자 : {{hot_open_83.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_83.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_83.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_84 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_8' hot_open_84.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_84.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_84.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_84.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_84.follower_count}}/{{hot_open_84.number}} 운영자 : {{hot_open_84.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_84.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_84.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_85 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_8' hot_open_85.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_85.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_85.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_85.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_85.follower_count}}/{{hot_open_85.number}} 운영자 : {{hot_open_85.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_85.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_85.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+            <div class = "latestgroup">
+                <div class = "latesttext" style="display:flex;flex-direction:row;justify-content:space-around;line-height:20px;">
+                    <div id="latesttitle" style="margin-right:auto;margin-left:20px;font-family: 'Nanum Gothic', sans-serif; font-size : 16px;">기타 HOT 소모임</div>
+                    <a href="{%url 'index_9' %}">
+                        <div class="entirebutton" style="margin-left:auto;margin-right:20px;display:flex;flex-direction: row;">
+                            <div id="entiretxt" style="font-family: 'Nanum Gothic', sans-serif; font-size : 13px;">전체보기</div>
+                            <div id="entireicon" style="margin-left:10px;"><img src="{%static '전체보기.png' %}"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class = "latestcontent">
+                    {% if hot_open_91 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_9' hot_open_91.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_91.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_91.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px;"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_91.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_91.follower_count}}/{{hot_open_91.number}} 운영자 : {{hot_open_91.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_91.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_91.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_92 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_9' hot_open_92.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_92.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_92.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_92.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_92.follower_count}}/{{hot_open_92.number}} 운영자 : {{hot_open_92.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_92.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_92.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_93 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_9' hot_open_93.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_93.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_93.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_93.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_93.follower_count}}/{{hot_open_93.number}} 운영자 : {{hot_open_93.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_93.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_93.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_94 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_9' hot_open_94.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_94.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_94.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_94.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_94.follower_count}}/{{hot_open_94.number}} 운영자 : {{hot_open_94.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_94.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_94.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if hot_open_95 %}
+                    <div class="latestrealgroup"style="line-height:160%;padding:0 20px 20px 0;margin-right:25px;width:140px;display:inline-block;vertical-align:top;cursor:pointer;text-align:center;font-family:'Nanum Gothic', sans-serif;">
+                        {% if user.is_authenticated %}
+                        <a href="{%url 'detail_9' hot_open_95.id%}">
+                        {% else %}
+                        <a href="{%url 'login' %}">
+                        {% endif %}
+                        {% if hot_open_95.image %}
+
+                        <div id = "latestimg"> <img src="{{hot_open_95.image.url}}" style="width: 140px;height: 118px;border-radius: 10px;object-fit: cover;"> </div>
+                        
+                        {% else %}
+                        
+                        <div id = "latestimg"> <img src="{%static 'biglogo.png' %}" style="width: 140px"> </div>
+                        
+                        {% endif %}
+                        <div id = "latestgrouptitle" style="font-size: 16px; ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            {{hot_open_95.title}}
+                        </div>
+                        <div id = "latestsmallest" style="font-size: 12px; color: #707070 ;width:140px;overflow: hidden;  text-overflow:clip;  white-space: nowrap;text-align: center;">
+                            인원 : {{hot_open_95.follower_count}}/{{hot_open_95.number}} 운영자 : {{hot_open_95.writer}}
+                        </div>
+                        <div id = "latestmanager" style="width:140px; margin-left:auto;margin-left:55px; display: flex">
+                            {% if user in hot_open_95.like.all %}
+                            <img src="{%static '하트.png' %}" style="height:17px;width:17px;flex-direction: row;padding-top: 5px;padding-right: 5px;">
+                            {% else %}
+                            <img src = "{%static 'love.png'%}" style="height:19px;width:19px;flex-direction: row;padding-top: 5px;padding-right: 2px;">
+                            {% endif %}
+                            <div style="font-size: 14px;">
+                                {{hot_open_95.like_count}}
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>    
+            </div>
+
+        <div class = "footer" style="height: 20vh;background: rgba(61, 61, 61, 0.59);padding: 10px 5px 13px 5px;">
+            <div class = "footerfirstbox" style="
+            display : flex;
+            flex-direction : column;
+            justify-content : center;
+            width : 100%;
+            vertical-align : baseline;
+            text-align : center;
+                ">
+                <div id = "moin" style="color:white; font-weight:light;" > 
+                    <h1>moin</h1>
+                </div>
+                <div id = "jointhemoin" style="color:white;font-weight:light;" >
+                    <h3>join the moin</h3>
+                </div>
+                <div id = "platform" style="color:white;font-weight:light;">
+                    <h3>대학생을 위한 소모임 플랫폼</h3>
+                </div>
+            </div>
+            <div class = "footersecondbox" style="display:flex; flex-direction:row;justify-content:space-between;height:10vh;">
+                <div class="footer1" style = "display:flex; flex-direction : column;width:80%;justify-content:space-between; padding : 2vh 0vh 2vh 1vh;">
+                    <div id = "footertxt">고객센터(팀) : 멋쟁이사자처럼</div>
+                    <div id = "footertxt">비즈니스 문의 : withmoin2021@gmail.com</div>
+                    <div id = "footertxt">이메일 문의 : withmoin2021@gmail.com</div>
+                </div>
+                <div class="footer2" style = "display:flex; flex-direction :column; justify-content:center;text-align:center;">
+                <a href="http://pf.kakao.com/_Svxjhb">
+                    <div id ="kakaotalk" style="padding:0px 20px 0 20px;"><img src = "{%static '카톡.png' %}"></div>
+                    <div id = "footerask" style = "font-family:  Nanum Gothic, sans-serif; font-size :11px;color:white;" >문의 및 제보</div>
+                </a>
+                </div>
+            </div>
+        </div> 
+
+        <div class = "bottombar" style="overflow: hidden;">
+            <a href="{%url 'home' %}">
+                <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-left : 48px;margin-top:8px;margin-bottom:3px;">
+                    <img src = "{%static '홈.png' %}">
+                    <br>
+                    <div id="bottom_txt">
+                        홈
+                    </div>
+                </div>
+            </a>
+            <a href="{%url 'index_1' %}">
+            <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:8px;margin-bottom:3px;">
+                <img src = "{%static '소모임.png' %}">
+                <br>
+                <div id="bottom_txt">
+                    소모임
+                </div>
+            </div>
+            </a>
+    
+            {% if user.is_authenticated %}
+    
+                <a href="{%url 'mypage' %}">
+                    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;margin-right: 48px;">
+                        
+                        <img src = "{%static '내모임.png' %}">
+                        <br>
+                        <div id="bottom_txt">
+                            내 모임
+                        </div>
+                    </div>
+                </a>
+    
+            {% else %}
+    
+                <a href="{%url 'login' %}">
+                    <div class = "bottom_icon" style="justify-content:center;vertical-align:middle;cursor:pointer;margin-top:5px;margin-bottom:3px;margin-right: 48px;">
+                        
+                        <img src = "{%static '내모임.png' %}">
+                        <br>
+                        <div id="bottom_txt">
+                            내 모임
+                        </div>
+                    </div>
+                </a>
+                
+            {% endif %}
+        </div>
+
+    </div>

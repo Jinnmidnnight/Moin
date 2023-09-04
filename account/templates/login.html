@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family: Nanum Gothic;}
+    #moin{
+        font-family: 'Kalam', 'Satisfy' ,cursive;
+        line-height:60%;
+        margin-left : 7px;
+        margin-top : 15px;
+        
+    }
+    #jointhemoin{
+        font-family: 'MonteCarlo', cursive;
+        margin-left : 10px;
+    }
+    h3{
+        margin : 0px;
+        font-weight : medium;
+    }
+    h1{margin : 0px; font-weight : medium;}
+    #platform{
+        font-family: 'Gowun Dodum', sans-serif;
+        font-size : 10px;
+    margin-left : 5px;    }
+
+
+</style>
+<div class = "personalinfo" style = "margin-top:10vh;margin-bottom:2vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+    <div id = "arrow" style="margin-left:20px;"><a href="{{ request.META.HTTP_REFERER }}"><img src = "{%static '화살표.png'%}"></a></div>
+    <div id = "personalinfo_txt" style = "margin-right: 3%;color:#686262;font-size: 17px;font-family: 'Nanum Gothic';"><a href="{% url 'personalinfo' %}">개인정보처리방침</a></div>
+</div>
+<div>
+<div class ="error" style = "text-align: center; font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+    {% if error %}
+    {{ error }}
+    {% endif %}
+</div>
+    <form method="POST" action="{% url 'login' %}" style="margin-top: 20vh">
+
+        {% csrf_token %}
+        <div class = "loginbox" style = "display:flex;flex-direction:column;justify-content:center;vertical-align : baseline;text-align : center;width:100%;align-items: center;;">
+            <br>
+            <input name="email" type="text" value="" textarea placeholder="학교 이메일" style = "border-radius: 5px; width:195px;height:4vh;border: 2px solid #707070;">
+            <br>
+            <input name="password" type="password" value="" textarea placeholder="비밀번호" style = "border-radius: 5px; width:195px;height:4vh;border: 2px solid #707070;">
+            <br>
+            <br>
+            <input type="submit" value="로그인" style="width: 80px;height:4.5vh;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+            <br>
+            <div id = "signup" style = "font-size:13px;color: #686262;">
+                <a href="{% url 'signup' %}">회원가입</a>
+            </div>
+        </div>
+        
+    </form>
+
+    
+    
+</div>
+{% endblock %}

@@ -1,0 +1,809 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+    .meetingfirstbox{
+        color :#F6B955 ; font-family: 'Nanum Gothic';font-size: 15px;font-weight: bold;
+        display:Flex;flex-direction: row;
+    }
+    .meetingsecondbox{
+        display: flex;flex-direction: row;justify-content: space-around;
+    }
+    .meetingdate{
+        display:flex;flex-direction: column;justify-content: center;align-items: center;
+    }
+    .writebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }
+
+    .firstbox{ display : flex; flex-direction : column; 
+        justify-content :space-around; height:11vh;margin-top : 7vh; width:100%;}
+
+
+    .bottombar{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0px;
+        left:0px;
+        position:fixed;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        zoom: 1;
+        z-index: 1;
+        line-height: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        height: 7vh;
+        background: rgba(255, 255, 255);
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+    }
+    #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+    .secondbox{
+        display : flex;
+        flex-direction : row;
+        justify-content: space-between;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        opacity: 1;
+        -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+        zoom: 1;
+        overflow-x: auto;
+        -webkit-tap-highlight-color: transparent;
+        margin-left: 0px;
+        margin-right: 16px;
+        zoom: 1;
+        z-index: 1;
+        white-space: nowrap;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left : 8px;
+        line-height: 20px;
+        -webkit-overflow-scrolling: touch;
+
+    }
+    .categoryicon{
+        opacity: .7;
+        padding: 6px 2.8vw;
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        color: #000;
+        font-weight: 200;
+        padding-left: 20px;
+        padding-right : 20px;
+    }
+    .fourthbox{
+        display: flex;
+        flex-direction: row;
+    }
+    #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+    .makebotton{
+        bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+    }  
+
+</style>
+<div class="realfirstbox" style="display:flex; flex-direction:row;margin-top:12vh;">
+    <div id = "arrow" style="margin-left:20px;"><a href="{% url 'home' %}"><img src = "{%static '화살표.png'%}"></a></div>
+    <div id ="mygrouptitle" style="font-size:19px ;font-weight: bold;text-align: center;align-items: center;;margin-bottom: 3vh;margin-left: 34%;;">내 모임</div>
+</div>
+<div class = "profilebox" style="display:flex;flex-direction: row;border: 1px solid rgba(196, 196, 196, 0.22);padding: 2vh 15px 1.5vh 10px;justify-content: space-around;margin-bottom: 3vh;">
+    <div class="profileimg">
+        <div id = "writerprofile" style="margin-left:10px;margin-right: 10px;">
+            {% if user.image %}
+                <img src="{{user.image.url}}" style="width:31px;height:31px;border-radius:100px;object-fit: cover;">
+            {% else %}
+                <img src="{% static 'personid.png' %}">
+            {% endif %}
+        </div>
+    </div>
+    <div class = "profilebigbox" style="display:flex;flex-direction: column;justify-content: space-around;width:100%">
+        <div class="profilebox1" style="display:flex;flex-direction: row;justify-content: space-around;width:100%;margin-bottom: 1.2vh;">
+            <div id="name" style="white-space: nowrap;overflow:hidden;flex-grow: 1;">{{user.username}}</div>
+        </div>
+        <div id="edit" style="display:flex;flex-direction:row;;margin-bottom: 0.5vh;justify-content: space-between;">
+            <button type="submit" style="width: 40px;height: 18px;border-radius: 10px;background: #f6b955;border:0px;font-size: 12px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+                <a href="{% url 'edit' %}">수정</a>
+            </button>
+            <button type="submit" style="width: 60px;height: 18px;border-radius: 10px;background: #828282;;border:0px;font-size: 12px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+                <a href="{% url 'logout' %}">로그아웃</a>
+            </button>
+        </div>
+        <div class="profilebox2" style="display:flex;flex-direction: row;justify-content: space-between;color: #8d8d8d;align-items:center;height:3vh;text-overflow: ellipsis; white-space: nowrap; overflow:hidden;">
+            <div style="display:flex;flex-direction:row;">
+                <div id="gender" style="font-size: 12px;;">
+                    {% if user.성별 == 0 %}
+                        <p>남성</p>
+                    {% endif %}
+                    {% if user.성별 == 1 %}
+                        <p>여성</p>
+                    {% endif %}
+                </div>
+                <div id="birth" style="font-size: 12px;margin-left:20px;margin-top: 12px;">{{user.생년월일}}</div>
+            </div>
+            <div id="quit" style="font-size: 9px; text-decoration: underline;margin-right: 10px;"><a href="{%url 'member_del'%}">회원탈퇴</a></div>
+        </div>
+        <div class="profilebox3" style="display:flex;flex-direction: row;font-size: 12px;padding:0.5vh 1vh 0 0;">
+            {% if user.자기소개 != None %}
+                {{user.자기소개}}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="joininggroup" style="border: 1px solid; border-color: rgba(0, 0, 0, 0.2) white;">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; padding:0.5vh 20px 3px 20px; ">
+        <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">내가 개설한 모임</div>
+    </div>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_1 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_1' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_2 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_2' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_3 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_3' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_4 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_4' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_5 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_5' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_6 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_6' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_7 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_7' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_8 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_8' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_9 %}
+        {% if request.user == open.writer %}
+            <a href="{%url 'detail_9' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="joininggroup" style="border: 1px solid; border-color: rgba(0, 0, 0, 0.2) white;margin-top:20px;margin-bottom: 70px;">
+    <div class = "joininggrouptitle" style = " height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; padding:0.5vh 20px 3px 20px; ">
+        <div id = "group_txt" style = "font-size: 16px;font-family: 'Nanum Gothic';">내가 가입한 모임</div>
+    </div>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_1 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_1' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_2 %}
+        {% if user in open.follower.all %}
+        <a href="{%url 'detail_2' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_3 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_3' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_4 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_4' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_5 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_5' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_6 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_6' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_7 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_7' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_8 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_8' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <ul style="list-style: none;padding:0px 40px 0px 20px;margin:0;">
+        {% for open in open_9 %}
+        {% if user in open.follower.all %}
+            <a href="{%url 'detail_9' open.id%}">
+            <li>
+            <div class = "fourthbox" style= "margin-bottom:2.5vh;">
+                <div id = "imgbox" >
+                    {% if open.image %}
+                    <img src="{{open.image.url}}" alt="" style = "width: 78px; height: 59px; object-fit:cover;">
+                    {% else %}
+                    <img src ="{%static 'biglogo.png'%}" style = "width: 78px;height:59px">
+                    {% endif %}
+                </div>
+                <div class = "txtbox" style = "display:flex;flex-direction:column;justify-content:space-around;padding-right:15px;padding-left:15px; width:55%;">
+                    <div id = "detailtitle" style = "font-size: 13px;font-weight:bold;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">{{open.title}}</div>
+                    <div id = "detailsubtitle" style = "font-size:10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{open.intro}}</div>
+                    <div class = "detaildetail" style = "display : flex; flex-direction :row; justify-content:space between; font-size: 9px;color:#707070;text-overflow: ellipsis;white-space: nowrap;overflow: hidden">
+                        <div id = "members" style = "margin-right:20px">인원:{{open.follower_count}}/{{open.number}}</div>
+                        <div id = "leader" > 작성자 : {{open.writer}}</div>
+                    </div>
+                </div>
+                <div class = "heart" style = "display:flex;flex-direction:column;justify-content:center"></div>
+                <div class = "heartgroup" style = "display:flex;flex-direction:row;justify-content:center;margin-top:15px;">
+                    {% if user in open.like.all %}
+                    <div id = "heartimg"><img src = "{%static '하트.png' %}" style="margin-top:1.3px; margin-right: 2px;"></div>
+                    {% else %}
+                    <img src = "{%static 'love.png'%}" style="height:18.8px;width:18.8px;">
+                    {% endif %}
+                    <div id = "hearttxt"style = "font-size:13px;padding-left:7px;padding-top:1px;">{{open.like_count}}</div>
+                </div>
+            </div>
+            </li>
+            </a>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

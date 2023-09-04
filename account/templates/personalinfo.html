@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{%load static%}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+    html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family: Nanum Gothic;}
+</style>
+<div class = "personalinfo" style = "margin-top:10vh;margin-bottom:1vh; height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+    <div id = "arrow" style="margin-left:20px;"><a href="{%url 'login' %}"><img src = "{%static '화살표.png'%}"></a></div>
+</div>
+<div class = "all" style="padding-left: 5%;;">
+    <div id="personalinfotitle" style="font-size: 30px;font-weight: bold;margin-bottom:2.5vh">개인정보</div>
+    <div class="personalinfotext" style="padding-right: 5%;font-size: 12px;margin-bottom: 3vh;line-height: 15px;;">
+        Moin은 이용자의 사전 동의 없이는 이용자의 개인정보를 함부로 공개하지
+        않으며, 수집된 정보는 아래와 같이 이용하고 있습니다. <br> 이용자가 제공한 모
+        든 정보는 아래의 목적에 필요한 용도 이외로는 사용되지 않으며 이용 목적
+        이 변경될 시에는 이를 알리고 동의를 구할 것입니다.
+    </div>
+    <div class="peronsalinfobox" style="width:90%;padding: 10px 10px 10px 10px;background:#ededed;height:35vh;overflow: auto;font-size: 12px;;">
+        <br>
+        [정보통신망 이용 촉진 및 정보보호 등에 관한 법률 제30조의 2] 에 따라 모인서비스 회원의 개인 정보 이용내역을 다음과 같이 안내해 드립니다.
+        <br>
+        <br>
+        개인 정보 수집, 이용 현황
+        <br>
+        <br>
+        필수항목 : 재학중인 대학교 이메일, 비밀번호, 이름, 성별, 생년월일, 암호화된 이용자 확인값, IP주소, 쿠키, 서비스 이용기록, 방문기록 등
+        <br>
+        <br>
+        가. 회원가입 및 본인확인 - 재학중인 대학교 이메일, 비밀번호, 이름, 성별, 생년월일 - 회원제 서비스에 따른 본인확인 및 회원관리
+        <br>
+        <br>
+        정보 보관 기한 : 회원 탈퇴 시까지 <br> <br>
+        *단, 이름과 재학중인 대학교 이메일의 경우, 무분별한 탈퇴 및 재가입을 통한 서비스 품질 유지를 위해 탈퇴 후 6개월간 보관
+        <br> <br>
+        2. 개인정보 제3자 제공 모은 회원들의 개인 정보를 고지한 범위 내에서만 사용하며, 회원님이 사전동의 없이는 동 범위를 초과하여 이용하거나 원칙적으로 개인 정보를 외부에 절대로 공개하지 않습니다. 하지만, 다음과 같은 경우에는 예외로 합니다. <br><br>
+        - 회원이 사전에 동의한 경우<br>
+        - 법령의 규정에 의거하거나, 범죄 행위 등으로 인한 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우<br>
+        <br>
+    </div>
+    <br>
+    <a href="{% url 'login' %}"><input type="submit" value="확인" style="width: 80px;height:4.5vh;border-radius: 10px;background: #f6b955;border:0px;font-size: 15.5px;font-family: Nanum Gothic;color:white;font-weight: bold;align-items: center;margin-left: 35%;"></a>
+</div>
+
+{% endblock %}

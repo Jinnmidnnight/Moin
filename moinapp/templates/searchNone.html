@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>moin main page</title>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Kalam:wght@300&family=MonteCarlo&family=Nanum+Gothic&family=Satisfy&display=swap');
+        html, body, div{margin : 0px;padding : 0px;border:0px; font-weight : medium;font-family:'Nanum Gothic', sans-serif;}
+        .firstbox{ display : flex; flex-direction : column; 
+            justify-content :space-around; height:11vh;margin-top : 7vh; width:100%;}
+
+
+        .bottombar{
+            display : flex;
+            flex-direction : row;
+            justify-content: space-between;
+            bottom: 0px;
+            left:0px;
+            position:fixed;
+            text-align: center;
+            opacity: 1;
+            -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+            transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+            zoom: 1;
+            overflow-x: auto;
+            -webkit-tap-highlight-color: transparent;
+            zoom: 1;
+            z-index: 1;
+            line-height: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            height: 7vh;
+            background: rgba(255, 255, 255);
+            box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+
+        }
+        #bottom_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 8.5px;}
+        .secondbox{
+            display : flex;
+            flex-direction : row;
+            justify-content: space-between;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            opacity: 1;
+            -webkit-transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+            transition: opacity .3s cubic-bezier(.215,.61,.355,1);
+            zoom: 1;
+            overflow-x: auto;
+            -webkit-tap-highlight-color: transparent;
+            margin-left: 0px;
+            margin-right: 16px;
+            zoom: 1;
+            z-index: 1;
+            white-space: nowrap;
+            padding-top: 10px;
+            padding-bottom: 0px;
+            padding-left : 8px;
+            line-height: 20px;
+            -webkit-overflow-scrolling: touch;
+
+        }
+        .categoryicon{
+            opacity: .7;
+            padding: 6px 2.8vw;
+            display: inline-block;
+            font-size: 14px;
+            text-align: center;
+            color: #000;
+            font-weight: 200;
+            padding-left: 20px;
+            padding-right : 20px;
+        }
+        .fourthbox{
+            display: flex;
+            flex-direction:row;
+            justify-content:space-around;
+
+
+        }
+        #category_txt{font-family: 'Nanum Gothic', sans-serif; font-size : 12.5px;}
+        .makebotton{
+            bottom:14vh;position:fixed;display: flex; flex-direction: row;margin-left:85%;margin-right:10px;
+        }
+        </style>
+        
+    </head>
+
+    <body>
+        <div class="query" style="display:flex;margin-top:11.5vh;font-weight: bold;margin-left:10px;font-size: 22px;flex-direction: row;">
+            <div id="searchresult" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">
+                의 검색결과
+            </div>
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:3.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 친목 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+        </div>
+        <div class="searchingword">
+            <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 문화 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 문화 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 스포츠 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 음악 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 스터디 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 여행 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 게임 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 봉사 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <div class="relationship" style="display:flex;flex-direction: column;margin-top:1.5vh;">
+            <div class="title" style="display:flex;flex-direction:row;">
+                <div id = "title" style = "font-size: 18px; font-family:'Nanum Gothic', sans-serif;font-weight:bold;;margin-left:10px;"> 기타 </div>
+                <div id = "subtxt1" style="font-weight: bold;font-size:13px;padding-top:1vh;padding-left:3px;">하러</div>
+                <div id = "subtxt2" style = "color :#F6B955; padding-left:5px;font-weight: bold;font-size:13px;padding-top:1vh;">모인</div>
+            </div>
+            <ul style="list-style: none;padding: 0 20px 20px 20px;">
+                <div id ="noresult" style = " font-family:'Kalam', 'Satisfy' ,cursive;font-size:20px;">
+                <p>No result</p>
+                </div>
+            </ul>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+
+{% endblock %}
+

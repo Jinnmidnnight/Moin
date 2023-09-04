@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    .mointext{
+        /* height: 50vh; */
+        background: #ffffff;
+        margin-top: 1vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .moin1box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        
+    }
+    .moin2box{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left:18%;
+        margin-right:5px;
+        margin-bottom: 2vh;
+        margin-top: 0.5vh;
+    }
+    .mointext_2{
+        background: white;
+        margin-top: 1.5vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .moin1box_2{
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        margin-bottom: 1vh;;
+        
+    }
+    .moin2box_2{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-left:18%;
+        margin-top: 4vh;
+        margin-right:5%;
+    }
+    
+    a { text-decoration:none; color:inherit }
+    a:active {text-decoration: none; color: #f6b955;}
+</style>
+
+<div class = "all" style="display:flex;flex-direction: column;margin-top: 9.5vh;">
+    <div class = "firstbox" style = "margin-top:3vh;height:7vh; display: flex; flex-direction: row; justify-content:space-between; align-items: center; ">
+        <div id = "arrow" style="margin-left:20px;"><a href="{%url 'index_8' %}"><img src = "{%static '화살표.png'%}"></a></div>
+        <div id = "make_txt" style = "margin-right:35%;font-weight: bold;font-size: 20px;font-family: 'Nanum Gothic';">댓글 작성</div>
+    </div>
+</div>
+
+<div class = "mointext">
+    <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;">{{write.created_at}}</div>
+    <div class = "moin1box" style = "position:relative;">
+        <div class = "profile" style = "display: flex;flex-direction:row;width:25vh">
+            <div id = "writerprofile" style="margin-left:10%;">
+                {% if write.author.image %}        
+                <img src="{{write.author.image.url}}" alt="" style = "width: 40px; height: 40px;border-radius: 100px; object-fit:cover;">
+                {%else%}
+                <img src = "{%static 'personid.png' %}" style="width:45px;height:45px;">
+                {% endif %}
+            </div>
+            <div id ="membername" style = "font-size:15px;font-family: Nanum Gothic;font-weight: bold;margin-left:10px;margin-right:20px;margin-top: 10px;text-overflow: ellipsis;white-space: nowrap;">{{write.author}}</div>
+        </div>
+        <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;margin-left:auto;margin-right: 10px;margin-top:30px"></div>
+    </div>
+    <div class = "moin2box" style = "position:relative;" >
+        <div class = "contenttxt" style="width: 280px; height: auto;margin-right: 10%;">
+            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;font-weight: bold;margin-bottom:5px;word-break: break-all;">{{write.제목}}</div>
+            <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 14px;margin-bottom:5px; word-break: break-all;">{{write.내용}}</div>
+        </div>
+    </div>
+    <div class = "contentimg" style="display:flex;align-items: center;justify-content: center;border-radius: 10px;border-radius: 10px;border: 1px solid white;width:90%;margin-left: 5%;">
+        {% if write.사진 %}        
+            <img src="{{write.사진.url}}" alt="" style = "width: 80%; height: 20vh; object-fit:contain;">
+        {%else%}
+        {% endif %}
+    </div>
+    <div class="like" style="width:50px;margin-left:8%;margin-top:13px;margin-bottom:5px;display:flex;flex-direction:row;border-radius: 10px;background-color: #ffdea8;">
+        <a href="{% url 'write_like_8' write.id %}">
+            {% if user in write.write_like.all %}
+            <img src = "{%static 'like.png'%}" style="height:15px;width:15px;margin-left:10px;margin-top:3px;">
+            {% else %}
+            <img src = "{%static '좋아요.png'%}" style="height:15px;width:14px;margin-left:10px;margin-top:3px;">
+            {% endif %}
+        </a>
+        <div id ="write_like_count" style="color:black;font-size: 13.5px;font-weight:550;padding-left: 7px;margin-top:1.5px;">{{ write.write_like_count }}</div>
+    </div>
+</div>
+
+<script>
+    function numberMaxLength(e){
+        if(e.value.length > e.maxLength){
+            e.value = e.value.slice(0, e.maxLength);
+        }
+    }
+</script>
+
+<div class="commentbox" style="height:8vh;border: 1px solid; border-color: #ccc white #ccc white;margin-top:1.5vh;display: flex;justify-content: center;align-items: center;">
+    <form method="POST" action="{% url 'add_comment_8' write.id %}" style=" text-align: center;">
+        {% csrf_token %}
+        <input type="hidden" name="csrfmiddlewaretoken" value="20G1EYqili1dh6pdcBXV0HUqbJU3JBTZGDnci2NppqcbhK1j4QLZP6wQbiHspcQX" >
+        <input type="text" textarea placeholder="댓글을 달아주세요." name="댓글" maxlength="50" oninput="numberMaxLength(this);" required="" id="id_댓글" style = "height: 34px; width: 227px;border-radius: 10px;background: #f5f5f5;border:0px;text-align: center;">
+        <input type="submit" value="입력" style="width: 54px;height: 34px;border-radius: 10px;background: #f6b955;border:0px;font-size: 13px;font-family: Nanum Gothic;color:white;font-weight: bold;">
+    </form><br>
+</div>
+
+<ul style="list-style: none;margin:0px;padding:0px;margin-bottom: 12vh;;">
+    {% for comment in write.comments.all %}
+    <li>
+        <div class = "mointext_2" style="border: 1px solid; border-color: #ccc white #ccc white;">
+            <div class = "moin1box_2" style = "position:relative;display: flex; flex-direction: row;">
+                <div id = "writerprofile" style="margin-left: 20px;">
+                    {% if comment.reply.image %}        
+                    <img src="{{comment.reply.image.url}}" alt="" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;">
+                    {% else %}
+                    <img src = "{%static 'personid.png' %}" style = "width: 45px; height: 45px;border-radius: 100px; object-fit:cover;" >
+                    {% endif %}
+                </div>
+                <div style="display: flex; flex-direction: column;flex-grow: 1;margin-right: 20px;">
+                    <div style="display: flex;justify-content: space-between;">
+                        <div id ="membername" style = "font-size:12px;font-family: Nanum Gothic;font-weight: bold;margin-left:15px;margin-top:1.5px">{{comment.reply}}</div>
+                        <div id = "writtendate" style = "font-size:12px;font-family: Nanum Gothic; color:#afafaf;text-align: right">{{comment.created_at}}</div>
+                    </div>
+                    <div class = "contenttxt" style="flex-direction: column; display: flex; margin-left:13px; margin-top: 8px;" >
+                        <div id = "contenttitle" style = "font-family:Nanum Gothic;font-size: 11px; word-break: break-all; ">{{comment.댓글}}</div>
+                    </div>
+                </div>
+            </div>
+            {% if request.user == write.author %}
+            <a href="{% url 'comment_delete_8' comment.id %}">
+                <div id="manage" style="text-align: right; margin-right: 20px;"><button type="submit" style="width: 60px;height: 18px;
+                    border-radius: 10px;background: #e68686;;border:0px;font-size: 11.5px;
+                    font-family: Nanum Gothic;color:white;margin-bottom: 10px;">삭제하기</button>
+                </div>
+            </a>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
