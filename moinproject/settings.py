@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['moinyonsei.pythonanywhere.com']
 
 AUTH_USER_MODEL = 'account.User'
 AUTH_FOLLOWER_MODEL = "account.User"
