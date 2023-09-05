@@ -69,7 +69,7 @@ ROOT_URLCONF = 'moinproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['moinproject/templates'],
+        'DIRS': [BASE_DIR / 'moinproject/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,7 +148,7 @@ STATICFIELS_DIRS = [
     os.path.join(BASE_DIR, 'moin_9', 'static'),
     ]
 
-STATIC_ROOT = os.path.join('staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
