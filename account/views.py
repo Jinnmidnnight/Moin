@@ -93,6 +93,7 @@ def login(request):
         
         if (email == "moinyonsei@yonsei.ac.kr" and password == "1234"):
             auth.login(request, user)
+            return redirect('home')
 
         # user = User.objects.get(username = username)
 
