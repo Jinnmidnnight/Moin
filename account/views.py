@@ -90,10 +90,6 @@ def login(request):
         except:
             errMsg['error'] = "Unregistered email."
             return render(request, 'login.html', errMsg)
-        
-        if (email == "moinyonsei@yonsei.ac.kr" and password == "1234"):
-            auth.login(request, user)
-            return redirect('home')
 
         # user = User.objects.get(username = username)
 
